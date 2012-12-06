@@ -8,4 +8,15 @@
     #import <UIKit/UIKit.h>
     #import <Foundation/Foundation.h>
     #import <CoreData/CoreData.h>
+    #import <CoreLocation/CoreLocation.h>
+
+    #import <A2DynamicDelegate/A2DynamicDelegate.h>
+    #import <AFNetworking/AFNetworking.h>
+    #import <MSNavigationPaneViewController/MSNavigationPaneViewController.h>
+    #import <FormatterKit/TTTLocationFormatter.h>
+
+    #define MR_SHORTHAND
+    #import <MagicalRecord/CoreData+MagicalRecord.h>
+
+    #import "UIControl+BlockActions.h"
 #endif

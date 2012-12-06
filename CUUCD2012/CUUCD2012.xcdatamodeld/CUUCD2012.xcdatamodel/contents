@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model name="" userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="1811" systemVersion="12C2034" minimumToolsVersion="Automatic" macOSVersion="Automatic" iOSVersion="Automatic">
-    <entity name="Ping" syncable="YES">
+    <entity name="Ping" representedClassName="UCDPing" syncable="YES">
         <attribute name="accuracyRadius" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
         <attribute name="latitude" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
         <attribute name="longitude" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
         <relationship name="user" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="User" inverseName="pings" inverseEntity="User" syncable="YES"/>
     </entity>
-    <entity name="Place" syncable="YES">
+    <entity name="Place" representedClassName="UCDPlace" syncable="YES">
         <attribute name="classification" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <attribute name="detail" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="latitude" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
@@ -14,12 +14,9 @@
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="usersFavorited" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="User" inverseName="favoritePlaces" inverseEntity="User" syncable="YES"/>
     </entity>
-    <entity name="User" syncable="YES">
+    <entity name="User" representedClassName="UCDUser" syncable="YES">
         <attribute name="birthday" optional="YES" attributeType="Date" syncable="YES"/>
-        <attribute name="email" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="firstName" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="gender" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="lastName" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="locationAccuracyRadius" optional="YES" attributeType="Float" defaultValueString="0" syncable="YES"/>
         <attribute name="locationCollectionInterval" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
         <attribute name="occupation" optional="YES" attributeType="String" syncable="YES"/>
@@ -27,8 +24,8 @@
         <relationship name="pings" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Ping" inverseName="user" inverseEntity="Ping" syncable="YES"/>
     </entity>
     <elements>
-        <element name="User" positionX="160" positionY="192" width="128" height="195"/>
         <element name="Ping" positionX="160" positionY="192" width="128" height="105"/>
         <element name="Place" positionX="160" positionY="192" width="128" height="135"/>
+        <element name="User" positionX="160" positionY="192" width="128" height="150"/>
     </elements>
 </model>

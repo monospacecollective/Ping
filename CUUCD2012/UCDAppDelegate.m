@@ -7,14 +7,18 @@
 //
 
 #import "UCDAppDelegate.h"
-
-#import "AFNetworkActivityIndicatorManager.h"
+#import "CUUCD2012IncrementalStore.h"
+#import "UCDMasterViewController.h"
+#import "UCDUser.h"
+#import "UCDWelcomeViewController.h"
 
 @implementation UCDAppDelegate
 
 @synthesize managedObjectContext = _managedObjectContext;
 @synthesize managedObjectModel = _managedObjectModel;
 @synthesize persistentStoreCoordinator = _persistentStoreCoordinator;
+
+#pragma mark - UIApplicationDelegate
 
 - (BOOL)application:(UIApplication *)application
 didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
@@ -24,11 +28,23 @@ didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
     
     [[AFNetworkActivityIndicatorManager sharedManager] setEnabled:YES];
     
-    UIViewController *viewController = [[UITableViewController alloc] initWithStyle:UITableViewStylePlain];
-    self.navigationController = [[UINavigationController alloc] initWithRootViewController:viewController];
+    self.navigationPaneViewController = [[MSNavigationPaneViewController alloc] init];
     
+    UCDMasterViewController *masterViewController = [[UCDMasterViewController alloc] init];
+    masterViewController.navigationPaneViewController = self.navigationPaneViewController;
+    
+    self.navigationPaneViewController.masterViewController = masterViewController;
+    
+    UCDUser *user = [UCDUser MR_findFirstInContext:self.managedObjectContext];
+    
+    if (user == nil) {
+        [self presentWelcomeView];
+    } else {
+        [masterViewController transitionToViewController:UCDPaneViewControllerTypePlaces];
+    }
+
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-    self.window.rootViewController = self.navigationController;
+    self.window.rootViewController = self.navigationPaneViewController;
     [self.window makeKeyAndVisible];
     
     return YES;
@@ -124,6 +140,37 @@ didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
     }
     
     return _persistentStoreCoordinator;
+}
+
+#pragma mark - UCDAppDelegate
+
++ (UCDAppDelegate *)sharedAppDelegate
+{
+    return (UCDAppDelegate *)[[UIApplication sharedApplication] delegate];
+}
+
+- (void)presentWelcomeView
+{
+    UCDWelcomeViewController *welcomeViewController = [[UCDWelcomeViewController alloc] initWithNibName:nil bundle:nil];
+    welcomeViewController.managedObjectContext = self.managedObjectContext;
+    UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:welcomeViewController];
+    [self.navigationPaneViewController setPaneViewController:navigationController animated:YES completion:^{
+        self.navigationPaneViewController.paneView.draggingEnabled = NO;
+    }];
+}
+
+- (void)welcomeComplete
+{
+    UCDMasterViewController *masterViewController = (UCDMasterViewController *)self.navigationPaneViewController.masterViewController;
+    [masterViewController transitionToViewController:UCDPaneViewControllerTypePlaces];
+    self.navigationPaneViewController.paneView.draggingEnabled = YES;
+}
+
+- (void)signOut
+{
+    [UCDUser MR_truncateAllInContext:self.managedObjectContext];
+    [self.managedObjectContext MR_saveWithErrorCallback:nil];
+    [self presentWelcomeView];
 }
 
 @end

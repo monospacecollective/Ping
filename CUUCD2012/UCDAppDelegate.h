@@ -8,11 +8,12 @@
 
 #import <UIKit/UIKit.h>
 
-#import "CUUCD2012IncrementalStore.h"
+@class MSNavigationPaneViewController;
 
 @interface UCDAppDelegate : UIResponder <UIApplicationDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
+@property (strong, nonatomic) MSNavigationPaneViewController *navigationPaneViewController;
 
 @property (readonly, strong, nonatomic) NSManagedObjectContext *managedObjectContext;
 @property (readonly, strong, nonatomic) NSManagedObjectModel *managedObjectModel;
@@ -20,6 +21,10 @@
 
 - (void)saveContext;
 
-@property (strong, nonatomic) UINavigationController *navigationController;
+- (void)presentWelcomeView;
+- (void)welcomeComplete;
+- (void)signOut;
+
++ (UCDAppDelegate *)sharedAppDelegate;
 
 @end
