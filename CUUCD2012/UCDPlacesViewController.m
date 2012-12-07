@@ -11,6 +11,7 @@
 #import "UCDPlaceCell.h"
 #import "UCDStyleManager.h"
 #import "UCDNavigationTitleView.h"
+#import "UCDTableView.h"
 
 NSString * const UCDPlaceCellIdentifier = @"PlaceCell";
 
@@ -19,6 +20,7 @@ NSString * const UCDPlaceCellIdentifier = @"PlaceCell";
 @property (nonatomic, strong) CLLocationManager *locationManager;
 @property (nonatomic, strong) NSFetchedResultsController *fetchedResultsController;
 @property (nonatomic, strong) UCDNavigationTitleView *titleView;
+@property (nonatomic, strong) SSPullToRefreshView *refreshView;
 
 - (void)configureCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath;
 
@@ -35,6 +37,13 @@ NSString * const UCDPlaceCellIdentifier = @"PlaceCell";
     return self;
 }
 
+- (void)loadView
+{
+    self.tableView = [[UCDTableView alloc] init];
+    self.tableView.delegate = self;
+    self.tableView.dataSource = self;
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -46,19 +55,21 @@ NSString * const UCDPlaceCellIdentifier = @"PlaceCell";
     
     [[UCDStyleManager sharedManager] styleNavigationController:self.navigationController];
     self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"UCDViewBackground"]];
-    self.tableView.separatorColor = [[UIColor lightGrayColor] colorWithAlphaComponent:0.5];
+    self.tableView.separatorColor = [UIColor clearColor];
     
     __weak typeof(self) blockSelf = self;
     
-    self.refreshControl = [[UIRefreshControl alloc] init];
-//    self.refreshControl.attributedTitle = [[NSAttributedString alloc] initWithString:@"Pull to Refresh"];
-    self.refreshControl.tintColor = [UIColor blackColor];
-    [self.refreshControl addEventHandler:^{
-        [self.fetchedResultsController performFetch:nil];
-        [self.tableView reloadData];
-        [blockSelf.refreshControl endRefreshing];
-    } forControlEvents:UIControlEventValueChanged];
-    
+    self.refreshView = [[SSPullToRefreshView alloc] initWithScrollView:self.tableView delegate:nil];
+    self.refreshView.contentView = [[SSPullToRefreshSimpleContentView alloc] initWithFrame:CGRectZero];
+    A2DynamicDelegate *refreshViewDelegate = [self.refreshView dynamicDelegateForProtocol:@protocol(SSPullToRefreshViewDelegate)];
+    [refreshViewDelegate implementMethod:@selector(pullToRefreshViewDidStartLoading:) withBlock:^(SSPullToRefreshView *view){
+        [blockSelf.tableView setNeedsDisplay];
+        [blockSelf.refreshView startLoading];
+        [blockSelf.fetchedResultsController performSelectorOnMainThread:@selector(performFetch:) withObject:nil waitUntilDone:YES modes:@[NSRunLoopCommonModes]];
+        [blockSelf.refreshView finishLoading];
+    }];
+    self.refreshView.delegate = (id<SSPullToRefreshViewDelegate>)refreshViewDelegate;
+
     self.locationManager = [[CLLocationManager alloc] init];
     self.locationManager.distanceFilter = 1.0;
     self.locationManager.desiredAccuracy = kCLLocationAccuracyBest;
@@ -74,10 +85,6 @@ NSString * const UCDPlaceCellIdentifier = @"PlaceCell";
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] initWithEntityName:@"Place"];
     fetchRequest.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"name" ascending:YES]];
     self.fetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest managedObjectContext:self.managedObjectContext sectionNameKeyPath:nil cacheName:nil];
-//    A2DynamicDelegate *fetchedResultsControllerDynamicDelegate = [self.fetchedResultsController dynamicDelegateForProtocol:@protocol(NSFetchedResultsControllerDelegate)];
-//    [fetchedResultsControllerDynamicDelegate implementMethod:@selector(controllerDidChangeContent:) withBlock:^(NSFetchedResultsController *fetchedResultsController){
-//        [self.tableView reloadData];
-//    }];
     self.fetchedResultsController.delegate = self;
     
     [self.tableView registerClass:UCDPlaceCell.class forCellReuseIdentifier:UCDPlaceCellIdentifier];
@@ -142,7 +149,6 @@ NSString * const UCDPlaceCellIdentifier = @"PlaceCell";
 {
     [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
-
 
 #pragma mark - NSFetchedResultsControllerDelegate
 

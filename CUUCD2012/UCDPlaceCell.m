@@ -10,6 +10,10 @@
 
 //#define LAYOUT_DEBUG
 
+@interface UCDPlaceCell ()
+
+@end
+
 @implementation UCDPlaceCell
 
 #pragma mark - UIView
@@ -58,10 +62,12 @@
         [self.contentView addSubview:self.distanceLabel];
         
         self.textLabel.font = [UIFont fontWithName:@"Gotham HTF" size:17.0];
+        self.textLabel.backgroundColor = [UIColor clearColor];
         self.textLabel.shadowColor = [UIColor whiteColor];
         self.textLabel.shadowOffset = CGSizeMake(0.0, 1.0);
         
         self.detailTextLabel.font = [UIFont fontWithName:@"Gotham HTF Book" size:13.0];
+        self.detailTextLabel.backgroundColor = [UIColor clearColor];
         self.detailTextLabel.textColor = [UIColor darkGrayColor];
         self.detailTextLabel.shadowColor = [UIColor whiteColor];
         self.detailTextLabel.shadowOffset = CGSizeMake(0.0, 1.0);

@@ -14,6 +14,7 @@
     #import <AFNetworking/AFNetworking.h>
     #import <MSNavigationPaneViewController/MSNavigationPaneViewController.h>
     #import <FormatterKit/TTTLocationFormatter.h>
+    #import "SSPullToRefresh/SSPullToRefresh.h"
 
     #define MR_SHORTHAND
     #import <MagicalRecord/CoreData+MagicalRecord.h>

@@ -74,6 +74,9 @@
 		3AD8496C1671779900159856 /* UCDBarButtonBackgroundPressed@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3AD849681671779900159856 /* UCDBarButtonBackgroundPressed@2x.png */; };
 		3AD84971167178D000159856 /* UIImage+Darken.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AD84970167178D000159856 /* UIImage+Darken.m */; };
 		3AD8497416717D7700159856 /* UCDBorderedLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AD8497316717D7700159856 /* UCDBorderedLabel.m */; };
+		3AD849891671A27E00159856 /* UCDTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AD849881671A27E00159856 /* UCDTableView.m */; };
+		3AD8498D1671A2E200159856 /* UCDTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AD8498C1671A2E200159856 /* UCDTableViewCell.m */; };
+		3AD849AA1671AF2500159856 /* UCDPlaceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AD849A91671AF2500159856 /* UCDPlaceViewController.m */; };
 		BDFCF21E5B8A413CB1D08F43 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 11438977B2DB4A26B07FE3DD /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -174,6 +177,12 @@
 		3AD84970167178D000159856 /* UIImage+Darken.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Darken.m"; sourceTree = "<group>"; };
 		3AD8497216717D7700159856 /* UCDBorderedLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UCDBorderedLabel.h; sourceTree = "<group>"; };
 		3AD8497316717D7700159856 /* UCDBorderedLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UCDBorderedLabel.m; sourceTree = "<group>"; };
+		3AD849871671A27E00159856 /* UCDTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UCDTableView.h; sourceTree = "<group>"; };
+		3AD849881671A27E00159856 /* UCDTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UCDTableView.m; sourceTree = "<group>"; };
+		3AD8498B1671A2E200159856 /* UCDTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UCDTableViewCell.h; sourceTree = "<group>"; };
+		3AD8498C1671A2E200159856 /* UCDTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UCDTableViewCell.m; sourceTree = "<group>"; };
+		3AD849A81671AF2500159856 /* UCDPlaceViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UCDPlaceViewController.h; sourceTree = "<group>"; };
+		3AD849A91671AF2500159856 /* UCDPlaceViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UCDPlaceViewController.m; sourceTree = "<group>"; };
 		5250BB6505B34302B0001798 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
@@ -362,6 +371,8 @@
 				3AB1910D166FF8910098227C /* UCDMasterViewController.m */,
 				3AB190D4166FE2A00098227C /* UCDPlacesViewController.h */,
 				3AB190D5166FE2A00098227C /* UCDPlacesViewController.m */,
+				3AD849A81671AF2500159856 /* UCDPlaceViewController.h */,
+				3AD849A91671AF2500159856 /* UCDPlaceViewController.m */,
 				3AB19149167001E40098227C /* UCDSettingsViewController.h */,
 				3AB1914A167001E40098227C /* UCDSettingsViewController.m */,
 				3A7ADBC51670055100362071 /* UCDWelcomeViewController.h */,
@@ -373,6 +384,10 @@
 		3AB19145167000050098227C /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				3AD849871671A27E00159856 /* UCDTableView.h */,
+				3AD849881671A27E00159856 /* UCDTableView.m */,
+				3AD8498B1671A2E200159856 /* UCDTableViewCell.h */,
+				3AD8498C1671A2E200159856 /* UCDTableViewCell.m */,
 				3AD8497216717D7700159856 /* UCDBorderedLabel.h */,
 				3AD8497316717D7700159856 /* UCDBorderedLabel.m */,
 				3AB19146167000170098227C /* UCDPlaceCell.h */,
@@ -543,6 +558,9 @@
 				3A9C1B5216713B9800B53BA3 /* UCDWelcomePageViewComplete.m in Sources */,
 				3AD84971167178D000159856 /* UIImage+Darken.m in Sources */,
 				3AD8497416717D7700159856 /* UCDBorderedLabel.m in Sources */,
+				3AD849891671A27E00159856 /* UCDTableView.m in Sources */,
+				3AD8498D1671A2E200159856 /* UCDTableViewCell.m in Sources */,
+				3AD849AA1671AF2500159856 /* UCDPlaceViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
