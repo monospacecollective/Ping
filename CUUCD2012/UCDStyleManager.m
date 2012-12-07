@@ -155,4 +155,18 @@ static UCDStyleManager *singletonInstance = nil;
     return barButtonItem;
 }
 
+#pragma mark - Pull to refresh
+
+- (SSPullToRefreshView *)pullToRefreshViewWithScrollView:(UIScrollView *)scrollView
+{
+    SSPullToRefreshView *refreshView = [[SSPullToRefreshView alloc] initWithScrollView:scrollView delegate:nil];
+    SSPullToRefreshSimpleContentView *defaultContentView = [[SSPullToRefreshSimpleContentView alloc] init];
+    defaultContentView.statusLabel.font = [UIFont fontWithName:@"Gotham HTF" size:15.0];
+    defaultContentView.statusLabel.textColor = [UIColor darkGrayColor];
+    defaultContentView.statusLabel.shadowColor = [UIColor whiteColor];
+    defaultContentView.statusLabel.shadowOffset = CGSizeMake(0.0, 1.0);
+    refreshView.contentView = defaultContentView;
+    return refreshView;
+}
+
 @end

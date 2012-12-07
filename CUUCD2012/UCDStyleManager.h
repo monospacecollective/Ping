@@ -26,5 +26,7 @@
 - (UIBarButtonItem *)barButtonItemWithImage:(UIImage*)image action:(void(^)(void))handler;
 - (UIBarButtonItem *)backBarButtonItemWithTitle:(NSString*)title action:(void(^)(void))handler;
 
+// Pull to refresh
+- (SSPullToRefreshView *)pullToRefreshViewWithScrollView:(UIScrollView *)scrollView;
 
 @end
