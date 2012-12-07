@@ -56,6 +56,7 @@ typedef NS_ENUM(NSUInteger, UCDMasterViewControllerTableViewSectionType) {
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.tableView.scrollsToTop = NO;
     [self.tableView registerClass:UITableViewCell.class forCellReuseIdentifier:UCDMasterViewControllerCellReuseIdentifier];
 }
 
