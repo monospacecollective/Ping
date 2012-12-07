@@ -49,7 +49,6 @@ NSString * const UCDPlaceCellIdentifier = @"PlaceCell";
     self.navigationItem.titleView = [[UCDNavigationTitleView alloc] initWithTitle:@"Ping" subtitle:@"Nearby Places"];
     [[UCDStyleManager sharedManager] styleToolbar:self.navigationController.toolbar];
     [[UCDStyleManager sharedManager] styleNavigationController:self.navigationController];
-    [self.navigationController setToolbarHidden:NO];
     self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"UCDViewBackground"]];
     self.tableView.separatorColor = [UIColor clearColor];
     
