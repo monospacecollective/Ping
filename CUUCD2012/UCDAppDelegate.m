@@ -35,9 +35,7 @@ didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
     
     self.navigationPaneViewController.masterViewController = masterViewController;
     
-    UCDUser *user = [UCDUser MR_findFirstInContext:self.managedObjectContext];
-    
-    if (user == nil) {
+    if ([UCDUser currentUserInContext:self.managedObjectContext] == nil) {
         [self presentWelcomeView];
     } else {
         [masterViewController transitionToViewController:UCDPaneViewControllerTypePlaces];
