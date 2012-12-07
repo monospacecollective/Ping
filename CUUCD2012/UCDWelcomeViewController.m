@@ -115,7 +115,7 @@ const NSUInteger UCDWelcomeViewPageCount = 5;
     
     UCDWelcomePageViewDuration *welcomePage2 = [[UCDWelcomePageViewDuration alloc] initWithFrame:self.view.bounds];
     A2DynamicDelegate *welcomePage2Delegate = [welcomePage2 dynamicDelegateForProtocol:@protocol(UCDWelcomePageViewDurationDelegate)];
-    [welcomePage2Delegate implementMethod:@selector(welcomePageViewDuration:didSelectDuration:) withBlock:^(UCDWelcomePageViewDuration *welcomePageViewDuration, UCDWelcomePageViewDurationInterval durationInterval){
+    [welcomePage2Delegate implementMethod:@selector(welcomePageViewDuration:didSelectDuration:) withBlock:^(UCDWelcomePageViewDuration *welcomePageViewDuration, UCDUserDurationInterval durationInterval){
         NSLog(@"Duration interval %d", durationInterval);
         user.locationCollectionInterval = @(durationInterval);
         [blockSelf scrollToPage:(blockSelf.currentPage + 1) animated:YES];
@@ -126,7 +126,7 @@ const NSUInteger UCDWelcomeViewPageCount = 5;
 
     UCDWelcomePageViewAccuracy *welcomePage3 = [[UCDWelcomePageViewAccuracy alloc] initWithFrame:self.view.bounds];
     A2DynamicDelegate *welcomePage3Delegate = [welcomePage3 dynamicDelegateForProtocol:@protocol(UCDWelcomePageViewAccuracyDelegate)];
-    [welcomePage3Delegate implementMethod:@selector(welcomePageViewAccuracy:didSelectAccuracy:) withBlock:^(UCDWelcomePageViewAccuracy *welcomePageViewAccuracy, UCDWelcomePageViewAccuracyInterval accuracyInterval){
+    [welcomePage3Delegate implementMethod:@selector(welcomePageViewAccuracy:didSelectAccuracy:) withBlock:^(UCDWelcomePageViewAccuracy *welcomePageViewAccuracy, UCDUserAccuracyInterval accuracyInterval){
         NSLog(@"Accuracy interval %d", accuracyInterval);
         user.locationAccuracyRadius = @(accuracyInterval);
         [blockSelf scrollToPage:(blockSelf.currentPage + 1) animated:YES];

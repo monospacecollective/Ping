@@ -7,15 +7,9 @@
 //
 
 #import "UCDWelcomePageView.h"
+#import "UCDUser.h"
 
 @protocol UCDWelcomePageViewAccuracyDelegate;
-
-typedef NS_ENUM(NSUInteger, UCDWelcomePageViewAccuracyInterval) {
-    UCDWelcomePageViewAccuracyIntervalTenMeters = (10),
-    UCDWelcomePageViewAccuracyIntervalFiftyMeters = (50),
-    UCDWelcomePageViewAccuracyIntervalFiveHundredMeters = (500),
-    UCDWelcomePageViewAccuracyIntervalOneKilometer = (1000),
-};
 
 @interface UCDWelcomePageViewAccuracy : UCDWelcomePageView
 
@@ -25,6 +19,6 @@ typedef NS_ENUM(NSUInteger, UCDWelcomePageViewAccuracyInterval) {
 
 @protocol  UCDWelcomePageViewAccuracyDelegate <NSObject>
 
-- (void)welcomePageViewAccuracy:(UCDWelcomePageViewAccuracy *)pageView didSelectAccuracy:(UCDWelcomePageViewAccuracyInterval)accuracy;
+- (void)welcomePageViewAccuracy:(UCDWelcomePageViewAccuracy *)pageView didSelectAccuracy:(UCDUserAccuracyInterval)accuracy;
 
 @end

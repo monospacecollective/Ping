@@ -11,6 +11,15 @@
 #import "UCDStyleManager.h"
 #import "UCDNavigationTitleView.h"
 #import "UCDGroupedTableViewCell.h"
+#import "UCDUser.h"
+
+typedef NS_ENUM(NSUInteger, UCDSettingsTableViewSection) {
+    UCDSettingsTableViewSectionInterval,
+    UCDSettingsTableViewSectionRadius,
+    UCDSettingsTableViewSectionAbout,
+    UCDSettingsTableViewSectionSignOut,
+    UCDSettingsTableViewSectionCount,
+};
 
 NSString * const UCDSettingsCellIdentifier = @"SettingsCell";
 
@@ -47,7 +56,7 @@ NSString * const UCDSettingsCellIdentifier = @"SettingsCell";
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return 1;
+    return UCDSettingsTableViewSectionCount;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -58,8 +67,29 @@ NSString * const UCDSettingsCellIdentifier = @"SettingsCell";
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:UCDSettingsCellIdentifier forIndexPath:indexPath];
-    cell.textLabel.textAlignment = NSTextAlignmentCenter;
-    cell.textLabel.text = @"Sign Out";
+    
+    switch (indexPath.section) {
+        case UCDSettingsTableViewSectionInterval: {
+            cell.textLabel.text = @"Ping Interval";
+            cell.detailTextLabel.text = [[UCDUser currentUserInContext:self.managedObjectContext] collectionIntervalDescription];
+            cell.selectionStyle = UITableViewCellSelectionStyleNone;
+            break;
+        }
+        case UCDSettingsTableViewSectionRadius: {
+            cell.textLabel.text = @"Ping Radius";
+            cell.detailTextLabel.text = [[UCDUser currentUserInContext:self.managedObjectContext] accuracyRadiusDescription];
+            cell.selectionStyle = UITableViewCellSelectionStyleNone;
+            break;
+        }
+        case UCDSettingsTableViewSectionAbout:
+            cell.textLabel.text = @"About Me";
+            cell.selectionStyle = UITableViewCellSelectionStyleNone;
+            break;
+        case UCDSettingsTableViewSectionSignOut:
+            cell.textLabel.textAlignment = NSTextAlignmentCenter;
+            cell.textLabel.text = @"Sign Out";
+            break;
+    }
     
     return cell;
 }
@@ -68,7 +98,11 @@ NSString * const UCDSettingsCellIdentifier = @"SettingsCell";
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    [[UCDAppDelegate sharedAppDelegate] signOut];
+    switch (indexPath.section) {
+        case UCDSettingsTableViewSectionSignOut:
+            [[UCDAppDelegate sharedAppDelegate] signOut];
+            break;
+    }
 }
 
 @end

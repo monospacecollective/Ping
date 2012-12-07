@@ -34,10 +34,10 @@
         
         NSArray *accuracyTitles = @[@"10m", @"50m", @".5km", @"1km"];
         NSArray *accuracys = @[
-            @(UCDWelcomePageViewAccuracyIntervalTenMeters),
-            @(UCDWelcomePageViewAccuracyIntervalFiftyMeters),
-            @(UCDWelcomePageViewAccuracyIntervalFiveHundredMeters),
-            @(UCDWelcomePageViewAccuracyIntervalOneKilometer),
+            @(UCDUserAccuracyIntervalTenMeters),
+            @(UCDUserAccuracyIntervalFiftyMeters),
+            @(UCDUserAccuracyIntervalFiveHundredMeters),
+            @(UCDUserAccuracyIntervalOneKilometer),
         ];
         
         for (NSUInteger accuracyButtonIndex = 0; accuracyButtonIndex < 4; accuracyButtonIndex++) {

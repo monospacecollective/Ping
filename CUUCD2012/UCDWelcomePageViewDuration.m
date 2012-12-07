@@ -34,10 +34,10 @@
         
         NSArray *durationTitles = @[@"1m", @"15m", @"30m", @"1h"];
         NSArray *durations = @[
-            @(UCDWelcomePageViewDurationIntervalMinute),
-            @(UCDWelcomePageViewDurationIntervalFiveMinutes),
-            @(UCDWelcomePageViewDurationIntervalThirtyMinutes),
-            @(UCDWelcomePageViewDurationIntervalHour),
+            @(UCDUserDurationIntervalMinute),
+            @(UCDUserDurationIntervalFiveMinutes),
+            @(UCDUserDurationIntervalThirtyMinutes),
+            @(UCDUserDurationIntervalHour),
         ];
         
         for (NSUInteger durationButtonIndex = 0; durationButtonIndex < 4; durationButtonIndex++) {

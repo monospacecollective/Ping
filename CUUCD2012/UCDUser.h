@@ -9,6 +9,20 @@
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
 
+typedef NS_ENUM(NSUInteger, UCDUserDurationInterval) {
+    UCDUserDurationIntervalMinute = (60),
+    UCDUserDurationIntervalFiveMinutes = (5 * 60),
+    UCDUserDurationIntervalThirtyMinutes = (30 * 60),
+    UCDUserDurationIntervalHour = (60 * 60),
+};
+
+typedef NS_ENUM(NSUInteger, UCDUserAccuracyInterval) {
+    UCDUserAccuracyIntervalTenMeters = (10),
+    UCDUserAccuracyIntervalFiftyMeters = (50),
+    UCDUserAccuracyIntervalFiveHundredMeters = (500),
+    UCDUserAccuracyIntervalOneKilometer = (1000),
+};
+
 @class UCDPing, UCDPlace;
 
 @interface UCDUser : NSManagedObject
@@ -21,6 +35,12 @@
 @property (nonatomic, retain) NSString * occupation;
 @property (nonatomic, retain) NSSet *favoritePlaces;
 @property (nonatomic, retain) NSSet *pings;
+
++ (UCDUser *)currentUserInContext:(NSManagedObjectContext *)context;
+
+- (NSString *)accuracyRadiusDescription;
+- (NSString *)collectionIntervalDescription;
+
 @end
 
 @interface UCDUser (CoreDataGeneratedAccessors)
