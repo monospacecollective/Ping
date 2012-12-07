@@ -18,6 +18,7 @@ typedef NS_ENUM(NSUInteger, UCDNavigationTitleViewAnimationDirection) {
 @property (nonatomic, strong) UILabel *title;
 @property (nonatomic, strong) UILabel *subtitle;
 
+- (id)initWithTitle:(NSString *)title subtitle:(NSString *)subtitle;
 - (void)setSubtitleText:(NSString *)text animated:(BOOL)animated direction:(UCDNavigationTitleViewAnimationDirection)direction;
 
 @end

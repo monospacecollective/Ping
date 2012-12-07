@@ -18,6 +18,16 @@
 
 @implementation UCDNavigationTitleView
 
+- (id)initWithTitle:(NSString *)title subtitle:(NSString *)subtitle
+{
+    self = [self initWithFrame:CGRectZero];
+    if (self) {
+        self.title.text = title;
+        self.subtitle.text = subtitle;
+    }
+    return self;
+}
+
 - (id)initWithFrame:(CGRect)frame
 {
     self = [super initWithFrame:CGRectMake(0.0, 0.0, 180.0, 40.0)];
