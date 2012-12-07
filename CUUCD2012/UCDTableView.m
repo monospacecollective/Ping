@@ -39,15 +39,6 @@
     return self;
 }
 
-- (id)initWithFrame:(CGRect)frame style:(UITableViewStyle)style
-{
-    self = [super initWithFrame:frame style:style];
-    if (self) {
-        [self initialize];
-    }
-    return self;
-}
-
 - (void)initialize
 {
     self.highlightColor = [UIColor colorWithWhite:1.0 alpha:0.8];
