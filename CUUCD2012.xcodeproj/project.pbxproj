@@ -77,6 +77,7 @@
 		3AD849891671A27E00159856 /* UCDTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AD849881671A27E00159856 /* UCDTableView.m */; };
 		3AD8498D1671A2E200159856 /* UCDTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AD8498C1671A2E200159856 /* UCDTableViewCell.m */; };
 		3AD849AA1671AF2500159856 /* UCDPlaceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AD849A91671AF2500159856 /* UCDPlaceViewController.m */; };
+		3AD849B51671C12700159856 /* UCDGroupedTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AD849B41671C12700159856 /* UCDGroupedTableViewCell.m */; };
 		BDFCF21E5B8A413CB1D08F43 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 11438977B2DB4A26B07FE3DD /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -183,6 +184,8 @@
 		3AD8498C1671A2E200159856 /* UCDTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UCDTableViewCell.m; sourceTree = "<group>"; };
 		3AD849A81671AF2500159856 /* UCDPlaceViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UCDPlaceViewController.h; sourceTree = "<group>"; };
 		3AD849A91671AF2500159856 /* UCDPlaceViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UCDPlaceViewController.m; sourceTree = "<group>"; };
+		3AD849B31671C12700159856 /* UCDGroupedTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UCDGroupedTableViewCell.h; sourceTree = "<group>"; };
+		3AD849B41671C12700159856 /* UCDGroupedTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UCDGroupedTableViewCell.m; sourceTree = "<group>"; };
 		5250BB6505B34302B0001798 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
@@ -388,6 +391,8 @@
 				3AD849881671A27E00159856 /* UCDTableView.m */,
 				3AD8498B1671A2E200159856 /* UCDTableViewCell.h */,
 				3AD8498C1671A2E200159856 /* UCDTableViewCell.m */,
+				3AD849B31671C12700159856 /* UCDGroupedTableViewCell.h */,
+				3AD849B41671C12700159856 /* UCDGroupedTableViewCell.m */,
 				3AD8497216717D7700159856 /* UCDBorderedLabel.h */,
 				3AD8497316717D7700159856 /* UCDBorderedLabel.m */,
 				3AB19146167000170098227C /* UCDPlaceCell.h */,
@@ -561,6 +566,7 @@
 				3AD849891671A27E00159856 /* UCDTableView.m in Sources */,
 				3AD8498D1671A2E200159856 /* UCDTableViewCell.m in Sources */,
 				3AD849AA1671AF2500159856 /* UCDPlaceViewController.m in Sources */,
+				3AD849B51671C12700159856 /* UCDGroupedTableViewCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

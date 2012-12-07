@@ -8,6 +8,9 @@
 
 #import "UCDSettingsViewController.h"
 #import "UCDAppDelegate.h"
+#import "UCDStyleManager.h"
+#import "UCDNavigationTitleView.h"
+#import "UCDGroupedTableViewCell.h"
 
 NSString * const UCDSettingsCellIdentifier = @"SettingsCell";
 
@@ -17,19 +20,22 @@ NSString * const UCDSettingsCellIdentifier = @"SettingsCell";
 
 @implementation UCDSettingsViewController
 
-- (id)initWithStyle:(UITableViewStyle)style
+- (void)loadView
 {
-    self = [super initWithStyle:UITableViewStyleGrouped];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
+    self.tableView = [[UITableView alloc] initWithFrame:CGRectZero style:UITableViewStyleGrouped];
+    self.tableView.delegate = self;
+    self.tableView.dataSource = self;
 }
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [self.tableView registerClass:UITableViewCell.class forCellReuseIdentifier:UCDSettingsCellIdentifier];
+    self.navigationItem.titleView = [[UCDNavigationTitleView alloc] initWithTitle:@"Ping" subtitle:@"Settings"];
+    [[UCDStyleManager sharedManager] styleNavigationController:self.navigationController];
+    UIView *backgroundView = [[UIView alloc] init];
+    backgroundView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"UCDViewBackground"]];
+    self.tableView.backgroundView = backgroundView;
+    [self.tableView registerClass:UCDGroupedTableViewCell.class forCellReuseIdentifier:UCDSettingsCellIdentifier];
 }
 
 - (void)didReceiveMemoryWarning
@@ -52,7 +58,7 @@ NSString * const UCDSettingsCellIdentifier = @"SettingsCell";
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:UCDSettingsCellIdentifier forIndexPath:indexPath];
-    
+    cell.textLabel.textAlignment = NSTextAlignmentCenter;
     cell.textLabel.text = @"Sign Out";
     
     return cell;
