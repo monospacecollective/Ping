@@ -48,6 +48,7 @@
         if (!bottomRow) {
             self.selectionView.frame = CGRectMake(0.0, 0.0, self.bounds.size.width, self.bounds.size.height - 1.0);
             self.shadowView.frame = CGRectMake(0.0, self.bounds.size.height - 1.0, self.bounds.size.width, 1.0);
+            self.shadowView.alpha = 1.0;
         } else {
             self.selectionView.frame = CGRectMake(0.0, 0.0, self.bounds.size.width, self.bounds.size.height);
             self.shadowView.alpha = 0.0;
