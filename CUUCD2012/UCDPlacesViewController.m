@@ -19,8 +19,6 @@ NSString * const UCDPlaceCellIdentifier = @"PlaceCell";
 
 @property (nonatomic, strong) CLLocationManager *locationManager;
 @property (nonatomic, strong) NSFetchedResultsController *fetchedResultsController;
-@property (nonatomic, strong) UCDNavigationTitleView *titleView;
-@property (nonatomic, strong) SSPullToRefreshView *refreshView;
 
 - (void)configureCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath;
 
@@ -48,27 +46,23 @@ NSString * const UCDPlaceCellIdentifier = @"PlaceCell";
 {
     [super viewDidLoad];
 
-    self.titleView = [[UCDNavigationTitleView alloc] init];
-    self.titleView.title.text = @"Ping";
-    self.titleView.subtitle.text = @"Nearby Places";
-    self.navigationItem.titleView = self.titleView;
-    
+    self.navigationItem.titleView = [[UCDNavigationTitleView alloc] initWithTitle:@"Ping" subtitle:@"Nearby Places"];
+    [[UCDStyleManager sharedManager] styleToolbar:self.navigationController.toolbar];
     [[UCDStyleManager sharedManager] styleNavigationController:self.navigationController];
+    [self.navigationController setToolbarHidden:NO];
     self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"UCDViewBackground"]];
     self.tableView.separatorColor = [UIColor clearColor];
     
     __weak typeof(self) blockSelf = self;
     
-    self.refreshView = [[SSPullToRefreshView alloc] initWithScrollView:self.tableView delegate:nil];
-    self.refreshView.contentView = [[SSPullToRefreshSimpleContentView alloc] initWithFrame:CGRectZero];
-    A2DynamicDelegate *refreshViewDelegate = [self.refreshView dynamicDelegateForProtocol:@protocol(SSPullToRefreshViewDelegate)];
+    SSPullToRefreshView *refreshView = [[UCDStyleManager sharedManager] pullToRefreshViewWithScrollView:self.tableView];
+    A2DynamicDelegate *refreshViewDelegate = [refreshView dynamicDelegateForProtocol:@protocol(SSPullToRefreshViewDelegate)];
     [refreshViewDelegate implementMethod:@selector(pullToRefreshViewDidStartLoading:) withBlock:^(SSPullToRefreshView *view){
-        [blockSelf.tableView setNeedsDisplay];
-        [blockSelf.refreshView startLoading];
+        [refreshView startLoading];
         [blockSelf.fetchedResultsController performSelectorOnMainThread:@selector(performFetch:) withObject:nil waitUntilDone:YES modes:@[NSRunLoopCommonModes]];
-        [blockSelf.refreshView finishLoading];
+        [refreshView finishLoading];
     }];
-    self.refreshView.delegate = (id<SSPullToRefreshViewDelegate>)refreshViewDelegate;
+    refreshView.delegate = (id<SSPullToRefreshViewDelegate>)refreshViewDelegate;
 
     self.locationManager = [[CLLocationManager alloc] init];
     self.locationManager.distanceFilter = 1.0;
@@ -137,9 +131,7 @@ NSString * const UCDPlaceCellIdentifier = @"PlaceCell";
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:UCDPlaceCellIdentifier forIndexPath:indexPath];
-    
     [self configureCell:cell forRowAtIndexPath:indexPath];
-    
     return cell;
 }
 
@@ -152,14 +144,12 @@ NSString * const UCDPlaceCellIdentifier = @"PlaceCell";
 
 #pragma mark - NSFetchedResultsControllerDelegate
 
-- (void)controllerWillChangeContent:(NSFetchedResultsController *)controller {
+- (void)controllerWillChangeContent:(NSFetchedResultsController *)controller
+{
     [self.tableView beginUpdates];
 }
 
-- (void)controller:(NSFetchedResultsController *)controller
-  didChangeSection:(id <NSFetchedResultsSectionInfo>)sectionInfo
-           atIndex:(NSUInteger)sectionIndex
-     forChangeType:(NSFetchedResultsChangeType)type
+- (void)controller:(NSFetchedResultsController *)controller didChangeSection:(id <NSFetchedResultsSectionInfo>)sectionInfo atIndex:(NSUInteger)sectionIndex forChangeType:(NSFetchedResultsChangeType)type
 {
     switch(type) {
         case NSFetchedResultsChangeInsert:
@@ -171,30 +161,27 @@ NSString * const UCDPlaceCellIdentifier = @"PlaceCell";
     }
 }
 
-- (void)controller:(NSFetchedResultsController *)controller
-   didChangeObject:(id)object
-       atIndexPath:(NSIndexPath *)indexPath
-     forChangeType:(NSFetchedResultsChangeType)type
-      newIndexPath:(NSIndexPath *)newIndexPath
+- (void)controller:(NSFetchedResultsController *)controller didChangeObject:(id)object atIndexPath:(NSIndexPath *)indexPath forChangeType:(NSFetchedResultsChangeType)type newIndexPath:(NSIndexPath *)newIndexPath
 {
     switch(type) {
         case NSFetchedResultsChangeInsert:
-            [self.tableView insertRowsAtIndexPaths:[NSArray arrayWithObject:newIndexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
+            [self.tableView insertRowsAtIndexPaths:@[newIndexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
             break;
         case NSFetchedResultsChangeDelete:
-            [self.tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
+            [self.tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
             break;
         case NSFetchedResultsChangeUpdate:
             [self configureCell:[self.tableView cellForRowAtIndexPath:indexPath] forRowAtIndexPath:indexPath];
             break;
         case NSFetchedResultsChangeMove:
-            [self.tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
-            [self.tableView insertRowsAtIndexPaths:[NSArray arrayWithObject:newIndexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
+            [self.tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
+            [self.tableView insertRowsAtIndexPaths:@[newIndexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
             break;
     }
 }
 
-- (void)controllerDidChangeContent:(NSFetchedResultsController *)controller {
+- (void)controllerDidChangeContent:(NSFetchedResultsController *)controller
+{
     [self.tableView endUpdates];
 }
 
