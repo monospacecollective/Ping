@@ -6,8 +6,10 @@
 //  Copyright (c) 2012 Team 11. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+#import "UCDBorderedLabel.h"
 
 @interface UCDPlaceCell : UITableViewCell
+
+@property (nonatomic, strong) UCDBorderedLabel *distanceLabel;
 
 @end

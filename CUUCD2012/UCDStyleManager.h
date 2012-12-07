@@ -18,8 +18,12 @@
 // Navigation Controller
 - (void)styleNavigationController:(UINavigationController *)navigationController;
 
-// Bat Button
+// Bar Button
+- (UIButton *)barButtonCustomView;
+- (UIButton *)buttonWithTitle:(NSString*)title;
 - (UIButton *)backButtonWithTitle:(NSString*)title;
+- (UIBarButtonItem *)barButtonItemWithTitle:(NSString*)title action:(void(^)(void))handler;
+- (UIBarButtonItem *)barButtonItemWithImage:(UIImage*)image action:(void(^)(void))handler;
 - (UIBarButtonItem *)backBarButtonItemWithTitle:(NSString*)title action:(void(^)(void))handler;
 
 

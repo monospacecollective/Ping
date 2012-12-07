@@ -10,6 +10,7 @@
 #import "UCDPlace.h"
 #import "UCDPlaceCell.h"
 #import "UCDStyleManager.h"
+#import "UCDNavigationTitleView.h"
 
 NSString * const UCDPlaceCellIdentifier = @"PlaceCell";
 
@@ -17,6 +18,7 @@ NSString * const UCDPlaceCellIdentifier = @"PlaceCell";
 
 @property (nonatomic, strong) CLLocationManager *locationManager;
 @property (nonatomic, strong) NSFetchedResultsController *fetchedResultsController;
+@property (nonatomic, strong) UCDNavigationTitleView *titleView;
 
 - (void)configureCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath;
 
@@ -37,7 +39,11 @@ NSString * const UCDPlaceCellIdentifier = @"PlaceCell";
 {
     [super viewDidLoad];
 
-    self.navigationItem.title = @"Places";
+    self.titleView = [[UCDNavigationTitleView alloc] init];
+    self.titleView.title.text = @"Ping";
+    self.titleView.subtitle.text = @"Nearby Places";
+    self.navigationItem.titleView = self.titleView;
+    
     [[UCDStyleManager sharedManager] styleNavigationController:self.navigationController];
     self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"UCDViewBackground"]];
     self.tableView.separatorColor = [[UIColor lightGrayColor] colorWithAlphaComponent:0.5];
@@ -96,16 +102,17 @@ NSString * const UCDPlaceCellIdentifier = @"PlaceCell";
 
 #pragma mark - UCDPlacesViewController
 
-- (void)configureCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
+- (void)configureCell:(UCDPlaceCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
 {
     UCDPlace *place = [self.fetchedResultsController objectAtIndexPath:indexPath];
     cell.textLabel.text = place.name;
+    cell.detailTextLabel.text = place.detail;
     
     TTTLocationFormatter *locationFormatter = [[TTTLocationFormatter alloc] init];
     [locationFormatter setBearingStyle:TTTBearingAbbreviationWordStyle];
     [locationFormatter setUnitSystem:TTTImperialSystem];
     locationFormatter.numberFormatter.maximumSignificantDigits = 1;
-    cell.detailTextLabel.text = [locationFormatter stringFromDistanceFromLocation:self.locationManager.location toLocation:place.location];
+    cell.distanceLabel.text = [locationFormatter stringFromDistanceFromLocation:self.locationManager.location toLocation:place.location];
 }
 
 #pragma mark - UITableViewDataSource

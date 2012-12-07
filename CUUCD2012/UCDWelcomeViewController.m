@@ -61,8 +61,8 @@ const NSUInteger UCDWelcomeViewPageCount = 5;
     
     self.titleView = [[UCDNavigationTitleView alloc] init];
     self.titleView.title.text = @"Welcome";
-    self.navigationItem.titleView = self.titleView;
     self.titleView.subtitle.text = self.welcomePageTitles[0];
+    self.navigationItem.titleView = self.titleView;
     
     __weak typeof(self) blockSelf = self;
     
@@ -128,7 +128,7 @@ const NSUInteger UCDWelcomeViewPageCount = 5;
     A2DynamicDelegate *welcomePage3Delegate = [welcomePage3 dynamicDelegateForProtocol:@protocol(UCDWelcomePageViewAccuracyDelegate)];
     [welcomePage3Delegate implementMethod:@selector(welcomePageViewAccuracy:didSelectAccuracy:) withBlock:^(UCDWelcomePageViewAccuracy *welcomePageViewAccuracy, UCDWelcomePageViewAccuracyInterval accuracyInterval){
         NSLog(@"Accuracy interval %d", accuracyInterval);
-        user.locationCollectionInterval = @(accuracyInterval);
+        user.locationAccuracyRadius = @(accuracyInterval);
         [blockSelf scrollToPage:(blockSelf.currentPage + 1) animated:YES];
     }];
     welcomePage3.delegate = (id<UCDWelcomePageViewAccuracyDelegate>)welcomePage3Delegate;

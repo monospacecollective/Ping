@@ -8,7 +8,7 @@
 
 #import "UCDMasterViewController.h"
 #import "UCDAppDelegate.h"
-
+#import "UCDStyleManager.h"
 #import "UCDPlacesViewController.h"
 #import "UCDSettingsViewController.h"
 
@@ -86,7 +86,11 @@ typedef NS_ENUM(NSUInteger, UCDMasterViewControllerTableViewSectionType) {
     NSParameterAssert([paneViewControllerClass isSubclassOfClass:UIViewController.class]);
     UIViewController *paneViewController = (UIViewController *)[[paneViewControllerClass alloc] init];
     paneViewController.navigationItem.title = self.paneViewControllerTitles[@(paneViewControllerType)];
-    paneViewController.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"MSBarButtonIconNavigationPane.png"] style:UIBarButtonItemStyleBordered target:self action:@selector(navigationPaneBarButtonItemTapped:)];
+    
+    __weak typeof(self) blockSelf = self;
+    paneViewController.navigationItem.leftBarButtonItem = [[UCDStyleManager sharedManager] barButtonItemWithImage:[UIImage imageNamed:@"MSBarButtonIconNavigationPane.png"] action:^{
+        [blockSelf.navigationPaneViewController setPaneState:MSNavigationPaneStateOpen animated:YES];
+    }];
     
     if ([paneViewController respondsToSelector:@selector(setManagedObjectContext:)]) {
         [paneViewController performSelector:@selector(setManagedObjectContext:) withObject:[[UCDAppDelegate sharedAppDelegate] managedObjectContext]];
@@ -97,11 +101,6 @@ typedef NS_ENUM(NSUInteger, UCDMasterViewControllerTableViewSectionType) {
     [self.navigationPaneViewController setPaneViewController:paneNavigationViewController animated:animateTransition completion:nil];
     
     self.paneViewControllerType = paneViewControllerType;
-}
-
-- (void)navigationPaneBarButtonItemTapped:(id)sender;
-{
-    [self.navigationPaneViewController setPaneState:MSNavigationPaneStateOpen animated:YES];
 }
 
 #pragma mark - UITableViewDataSource
