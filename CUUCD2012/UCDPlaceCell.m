@@ -24,7 +24,7 @@
     
     [self.distanceLabel sizeToFit];
     CGRect distanceLabelFrame = self.distanceLabel.frame;
-    distanceLabelFrame.origin.x = CGRectGetWidth(self.frame) - CGRectGetWidth(self.distanceLabel.frame) - 10.0;
+    distanceLabelFrame.origin.x = CGRectGetWidth(self.frame) - CGRectGetWidth(self.distanceLabel.frame) - 8.0;
     distanceLabelFrame.origin.y = ceilf((CGRectGetHeight(self.frame) / 2.0) - (CGRectGetHeight(self.distanceLabel.frame) / 2.0));
     self.distanceLabel.frame = distanceLabelFrame;
     
@@ -57,6 +57,7 @@
         self.distanceLabel.font = [UIFont fontWithName:@"Gotham HTF Book" size:12.0];
         self.distanceLabel.borderColor = [UIColor colorWithRed:0.56 green:0.24 blue:0.24 alpha:1.0];
         self.distanceLabel.textColor = [UIColor whiteColor];
+        self.distanceLabel.borderShadowColor = [[UIColor whiteColor] colorWithAlphaComponent:0.7];
         self.distanceLabel.shouldFill = YES;
         self.distanceLabel.textEdgeInsets = UIEdgeInsetsMake(1.0, 2.0, 2.0, 2.0);
         [self.contentView addSubview:self.distanceLabel];
@@ -73,13 +74,6 @@
         self.detailTextLabel.shadowOffset = CGSizeMake(0.0, 1.0);
     }
     return self;
-}
-
-- (void)setSelected:(BOOL)selected animated:(BOOL)animated
-{
-    [super setSelected:selected animated:animated];
-
-    // Configure the view for the selected state
 }
 
 @end
