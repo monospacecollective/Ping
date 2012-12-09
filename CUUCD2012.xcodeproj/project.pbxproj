@@ -177,7 +177,7 @@
 		3A9C1B4E16713A6900B53BA3 /* UCDWelcomePageViewAbout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UCDWelcomePageViewAbout.m; sourceTree = "<group>"; };
 		3A9C1B5016713B9800B53BA3 /* UCDWelcomePageViewComplete.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UCDWelcomePageViewComplete.h; sourceTree = "<group>"; };
 		3A9C1B5116713B9800B53BA3 /* UCDWelcomePageViewComplete.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UCDWelcomePageViewComplete.m; sourceTree = "<group>"; };
-		3AB19096166FBF990098227C /* CUUCD2012.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CUUCD2012.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		3AB19096166FBF990098227C /* Ping.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Ping.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3AB1909A166FBF990098227C /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		3AB1909C166FBF990098227C /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		3AB1909E166FBF990098227C /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -405,7 +405,7 @@
 		3AB19097166FBF990098227C /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				3AB19096166FBF990098227C /* CUUCD2012.app */,
+				3AB19096166FBF990098227C /* Ping.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -561,7 +561,7 @@
 			);
 			name = CUUCD2012;
 			productName = CUUCD2012;
-			productReference = 3AB19096166FBF990098227C /* CUUCD2012.app */;
+			productReference = 3AB19096166FBF990098227C /* Ping.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
