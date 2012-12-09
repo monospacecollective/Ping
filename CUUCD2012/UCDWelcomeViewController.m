@@ -181,7 +181,7 @@ const NSUInteger UCDWelcomeViewPageCount = 5;
         return;
     }
     UCDNavigationTitleViewAnimationDirection direction = ((self.currentPage < page) ? UCDNavigationTitleViewAnimationDirectionLeft : UCDNavigationTitleViewAnimationDirectionRight);
-    
+    [self.view endEditing:YES];
     self.welcomeStepsView.visibleSteps = (page + 1);
     CGFloat pageWidth = self.welcomeScrollView.frame.size.width;
     [self.welcomeScrollView setContentOffset:CGPointMake((pageWidth * page), 0.0) animated:animated];
