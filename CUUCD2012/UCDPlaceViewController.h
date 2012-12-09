@@ -6,10 +6,10 @@
 //  Copyright (c) 2012 Team 11. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+#import "UCDGroupedTableViewController.h"
 #import "UCDPlace.h"
 
-@interface UCDPlaceViewController : UITableViewController
+@interface UCDPlaceViewController : UCDGroupedTableViewController
 
 @property (nonatomic, strong) NSManagedObject *managedObjectContenxt;
 @property (nonatomic, strong) UCDPlace *place;

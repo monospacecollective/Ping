@@ -21,6 +21,18 @@ static UCDStyleManager *singletonInstance = nil;
     return singletonInstance;
 }
 
+#pragma mark - Fonts
+
+- (UIFont *)fontOfSize:(CGFloat)size
+{
+    return [UIFont fontWithName:@"Gotham HTF Book" size:size];
+}
+
+- (UIFont *)boldFontOfSize:(CGFloat)size
+{
+    return [UIFont fontWithName:@"Gotham HTF" size:size];
+}
+
 #pragma mark - Toolbar
 
 - (void)styleToolbar:(UIToolbar *)toolbar

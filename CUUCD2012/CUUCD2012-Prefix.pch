@@ -10,6 +10,9 @@
     #import <CoreData/CoreData.h>
     #import <CoreLocation/CoreLocation.h>
     #import <QuartzCore/QuartzCore.h>
+    #import <MapKit/MapKit.h>
+    #import <AddressBook/AddressBook.h>
+    #import <AddressBookUI/AddressBookUI.h>
 
     #import <A2DynamicDelegate/A2DynamicDelegate.h>
     #import <AFNetworking/AFNetworking.h>

@@ -9,6 +9,12 @@
 /* Begin PBXBuildFile section */
 		3A34001C167470D000C1B0A1 /* UCDGroupedTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A34001B167470D000C1B0A1 /* UCDGroupedTableViewController.m */; };
 		3A3400201674757500C1B0A1 /* UCDTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A34001F1674757500C1B0A1 /* UCDTableViewController.m */; };
+		3A34002316747C8F00C1B0A1 /* UCDMapGroupedTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A34002216747C8F00C1B0A1 /* UCDMapGroupedTableViewCell.m */; };
+		3A34002516747CBC00C1B0A1 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A34002416747CBC00C1B0A1 /* MapKit.framework */; };
+		3A3400281674841200C1B0A1 /* UCDExtendedTextGroupedTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A3400271674841200C1B0A1 /* UCDExtendedTextGroupedTableViewCell.m */; };
+		3A34002C167488B700C1B0A1 /* AddressBookUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A34002B167488B700C1B0A1 /* AddressBookUI.framework */; };
+		3A34002E167489F600C1B0A1 /* AddressBook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A34002D167489F600C1B0A1 /* AddressBook.framework */; };
+		3A34003116748AFF00C1B0A1 /* UCDSubtitleGroupedTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A34003016748AFF00C1B0A1 /* UCDSubtitleGroupedTableViewCell.m */; };
 		3A7ADBC71670055100362071 /* UCDWelcomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A7ADBC61670055100362071 /* UCDWelcomeViewController.m */; };
 		3A7ADBDD167006A900362071 /* UCDUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A7ADBDC167006A900362071 /* UCDUser.m */; };
 		3A7ADBE1167027C800362071 /* UCDNavigationTitleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A7ADBE0167027C800362071 /* UCDNavigationTitleView.m */; };
@@ -92,6 +98,15 @@
 		3A34001B167470D000C1B0A1 /* UCDGroupedTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UCDGroupedTableViewController.m; sourceTree = "<group>"; };
 		3A34001E1674757500C1B0A1 /* UCDTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UCDTableViewController.h; sourceTree = "<group>"; };
 		3A34001F1674757500C1B0A1 /* UCDTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UCDTableViewController.m; sourceTree = "<group>"; };
+		3A34002116747C8F00C1B0A1 /* UCDMapGroupedTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UCDMapGroupedTableViewCell.h; sourceTree = "<group>"; };
+		3A34002216747C8F00C1B0A1 /* UCDMapGroupedTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UCDMapGroupedTableViewCell.m; sourceTree = "<group>"; };
+		3A34002416747CBC00C1B0A1 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		3A3400261674841200C1B0A1 /* UCDExtendedTextGroupedTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UCDExtendedTextGroupedTableViewCell.h; sourceTree = "<group>"; };
+		3A3400271674841200C1B0A1 /* UCDExtendedTextGroupedTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UCDExtendedTextGroupedTableViewCell.m; sourceTree = "<group>"; };
+		3A34002B167488B700C1B0A1 /* AddressBookUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBookUI.framework; path = System/Library/Frameworks/AddressBookUI.framework; sourceTree = SDKROOT; };
+		3A34002D167489F600C1B0A1 /* AddressBook.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBook.framework; path = System/Library/Frameworks/AddressBook.framework; sourceTree = SDKROOT; };
+		3A34002F16748AFF00C1B0A1 /* UCDSubtitleGroupedTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UCDSubtitleGroupedTableViewCell.h; sourceTree = "<group>"; };
+		3A34003016748AFF00C1B0A1 /* UCDSubtitleGroupedTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UCDSubtitleGroupedTableViewCell.m; sourceTree = "<group>"; };
 		3A7ADBC51670055100362071 /* UCDWelcomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UCDWelcomeViewController.h; sourceTree = "<group>"; };
 		3A7ADBC61670055100362071 /* UCDWelcomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UCDWelcomeViewController.m; sourceTree = "<group>"; };
 		3A7ADBDB167006A900362071 /* UCDUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UCDUser.h; sourceTree = "<group>"; };
@@ -209,6 +224,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3A34002E167489F600C1B0A1 /* AddressBook.framework in Frameworks */,
+				3A34002C167488B700C1B0A1 /* AddressBookUI.framework in Frameworks */,
+				3A34002516747CBC00C1B0A1 /* MapKit.framework in Frameworks */,
 				3AB190DF166FE4AC0098227C /* CoreLocation.framework in Frameworks */,
 				3AB1909B166FBF990098227C /* UIKit.framework in Frameworks */,
 				3AB1909D166FBF990098227C /* Foundation.framework in Frameworks */,
@@ -224,12 +242,18 @@
 		3A34000E16745CC400C1B0A1 /* Grouped Table View */ = {
 			isa = PBXGroup;
 			children = (
+				3A34002116747C8F00C1B0A1 /* UCDMapGroupedTableViewCell.h */,
+				3A34002216747C8F00C1B0A1 /* UCDMapGroupedTableViewCell.m */,
 				3AD849C31674568300159856 /* UCDButtonGroupedTableViewCell.h */,
 				3AD849C41674568400159856 /* UCDButtonGroupedTableViewCell.m */,
 				3AD849C0167455FC00159856 /* UCDRightDetailGroupedTableViewCell.h */,
 				3AD849C1167455FC00159856 /* UCDRightDetailGroupedTableViewCell.m */,
 				3AD849B31671C12700159856 /* UCDGroupedTableViewCell.h */,
 				3AD849B41671C12700159856 /* UCDGroupedTableViewCell.m */,
+				3A3400261674841200C1B0A1 /* UCDExtendedTextGroupedTableViewCell.h */,
+				3A3400271674841200C1B0A1 /* UCDExtendedTextGroupedTableViewCell.m */,
+				3A34002F16748AFF00C1B0A1 /* UCDSubtitleGroupedTableViewCell.h */,
+				3A34003016748AFF00C1B0A1 /* UCDSubtitleGroupedTableViewCell.m */,
 			);
 			name = "Grouped Table View";
 			sourceTree = "<group>";
@@ -351,11 +375,14 @@
 		3AB19099166FBF990098227C /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				3A34002D167489F600C1B0A1 /* AddressBook.framework */,
+				3A34002B167488B700C1B0A1 /* AddressBookUI.framework */,
 				3AB190DE166FE4AC0098227C /* CoreLocation.framework */,
 				3AB1909A166FBF990098227C /* UIKit.framework */,
 				3AB1909C166FBF990098227C /* Foundation.framework */,
 				3AB1909E166FBF990098227C /* CoreGraphics.framework */,
 				3AB190A0166FBF990098227C /* CoreData.framework */,
+				3A34002416747CBC00C1B0A1 /* MapKit.framework */,
 				11438977B2DB4A26B07FE3DD /* libPods.a */,
 			);
 			name = Frameworks;
@@ -629,6 +656,9 @@
 				3AD849C51674568500159856 /* UCDButtonGroupedTableViewCell.m in Sources */,
 				3A34001C167470D000C1B0A1 /* UCDGroupedTableViewController.m in Sources */,
 				3A3400201674757500C1B0A1 /* UCDTableViewController.m in Sources */,
+				3A34002316747C8F00C1B0A1 /* UCDMapGroupedTableViewCell.m in Sources */,
+				3A3400281674841200C1B0A1 /* UCDExtendedTextGroupedTableViewCell.m in Sources */,
+				3A34003116748AFF00C1B0A1 /* UCDSubtitleGroupedTableViewCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

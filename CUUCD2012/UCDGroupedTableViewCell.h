@@ -10,4 +10,6 @@
 
 @interface UCDGroupedTableViewCell : UITableViewCell
 
++ (CGFloat)cellHeight;
+
 @end

@@ -12,6 +12,7 @@
 #import "UCDStyleManager.h"
 #import "UCDNavigationTitleView.h"
 #import "UCDAppDelegate.h"
+#import "UCDPlaceViewController.h"
 
 NSString * const UCDPlaceCellIdentifier = @"PlaceCell";
 
@@ -116,7 +117,14 @@ NSString * const UCDPlaceCellIdentifier = @"PlaceCell";
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
+//    [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
+    UCDPlaceViewController *placeViewController = [[UCDPlaceViewController alloc] initWithNibName:nil bundle:nil];
+    placeViewController.place = [self.fetchedResultsController objectAtIndexPath:indexPath];
+    __weak typeof(self) blockSelf = self;
+    placeViewController.navigationItem.leftBarButtonItem = [[UCDStyleManager sharedManager] backBarButtonItemWithTitle:@"Back" action:^{
+        [blockSelf.navigationController popViewControllerAnimated:YES];
+    }];
+    [self.navigationController pushViewController:placeViewController animated:YES];
 }
 
 #pragma mark - NSFetchedResultsControllerDelegate

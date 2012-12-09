@@ -7,8 +7,6 @@
 //
 
 #import "UCDGroupedTableViewController.h"
-#import "UCDRightDetailGroupedTableViewCell.h"
-#import "UCDButtonGroupedTableViewCell.h"
 #import "UCDStyleManager.h"
 
 @implementation UCDGroupedTableViewController
@@ -31,6 +29,9 @@
     self.tableView.backgroundView = backgroundView;
     [self.tableView registerClass:UCDRightDetailGroupedTableViewCell.class forCellReuseIdentifier:UCDRightDetailReuseIdentifier];
     [self.tableView registerClass:UCDButtonGroupedTableViewCell.class forCellReuseIdentifier:UCDButtonReuseIdentifier];
+    [self.tableView registerClass:UCDMapGroupedTableViewCell.class forCellReuseIdentifier:UCDMapReuseIdentifier];
+    [self.tableView registerClass:UCDExtendedTextGroupedTableViewCell.class forCellReuseIdentifier:UCDExtendedTextReuseIdentifier];
+    [self.tableView registerClass:UCDSubtitleGroupedTableViewCell.class forCellReuseIdentifier:UCDSubtitleReuseIdentifier];
 }
 
 #pragma mark - UITableViewDelegate

@@ -7,6 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "UCDRightDetailGroupedTableViewCell.h"
+#import "UCDButtonGroupedTableViewCell.h"
+#import "UCDMapGroupedTableViewCell.h"
+#import "UCDExtendedTextGroupedTableViewCell.h"
+#import "UCDSubtitleGroupedTableViewCell.h"
 
 @interface UCDGroupedTableViewController : UITableViewController
 

@@ -8,7 +8,21 @@
 
 #import "UCDGroupedTableViewCell.h"
 
+@interface UCDGroupedTableViewCell ()
+
+- (void)updateBackgroundState:(BOOL)darkened animated:(BOOL)animated;
+
+@end
+
 @implementation UCDGroupedTableViewCell
+
+#pragma mark - UIView
+
+- (void)layoutSubviews
+{
+    [super layoutSubviews];
+    self.backgroundView.alpha = 0.75;
+}
 
 #pragma mark - UITableViewCell
 
@@ -36,20 +50,45 @@
 {
     if (self.selectionStyle != UITableViewCellSelectionStyleNone) {
         [super setHighlighted:highlighted animated:animated];
-        if (highlighted) {
-            self.backgroundView.alpha = 1.0;
+        [self updateBackgroundState:highlighted animated:animated];
+    }
+}
+
+- (void)setSelected:(BOOL)selected animated:(BOOL)animated
+{
+    if (self.selectionStyle != UITableViewCellSelectionStyleNone) {
+        [super setSelected:selected animated:animated];
+        [self updateBackgroundState:selected animated:animated];
+    }
+}
+
+#pragma mark - UCDGroupedTableViewCell
+
+- (void)updateBackgroundState:(BOOL)darkened animated:(BOOL)animated
+{
+    void(^updateBackgroundState)() = ^() {
+        if (darkened) {
             self.textLabel.shadowColor = [UIColor lightGrayColor];
             self.detailTextLabel.shadowColor = [UIColor lightGrayColor];
             self.textLabel.shadowOffset = CGSizeMake(0.0, -1.0);
             self.detailTextLabel.shadowOffset = CGSizeMake(0.0, -1.0);
         } else {
-            self.backgroundView.alpha = 0.75;
             self.textLabel.shadowColor = [UIColor whiteColor];
             self.detailTextLabel.shadowColor = [UIColor whiteColor];
             self.textLabel.shadowOffset = CGSizeMake(0.0, 1.0);
             self.detailTextLabel.shadowOffset = CGSizeMake(0.0, 1.0);
         }
+    };
+    if (animated) {
+        [UIView animateWithDuration:0.3 animations:updateBackgroundState];
+    } else {
+        updateBackgroundState();
     }
+}
+
++ (CGFloat)cellHeight
+{
+    return 44.0;
 }
 
 @end

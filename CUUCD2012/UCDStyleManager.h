@@ -10,6 +10,10 @@
 
 + (UCDStyleManager *)sharedManager;
 
+// Fonts
+- (UIFont *)fontOfSize:(CGFloat)size;
+- (UIFont *)boldFontOfSize:(CGFloat)size;
+
 // Toolbar
 - (void)styleToolbar:(UIToolbar *)toolbar;
 

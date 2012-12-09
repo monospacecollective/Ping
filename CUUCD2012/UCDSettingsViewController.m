@@ -10,8 +10,6 @@
 #import "UCDAppDelegate.h"
 #import "UCDNavigationTitleView.h"
 #import "UCDUser.h"
-#import "UCDRightDetailGroupedTableViewCell.h"
-#import "UCDButtonGroupedTableViewCell.h"
 
 typedef NS_ENUM(NSUInteger, UCDSettingsTableViewSection) {
     UCDSettingsTableViewSectionPing,
@@ -62,16 +60,10 @@ typedef NS_ENUM(NSUInteger, UCDSettingsTableViewSectionAboutRow) {
             return UCDSettingsTableViewSectionAboutRowCount;
         case UCDSettingsTableViewSectionPing:
             return UCDSettingsTableViewSectionPingRowCount;
-        default:
+        case UCDSettingsTableViewSectionSignOut:
             return 1;
-    }
-}
-
-- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
-{
-    switch (section) {
         default:
-            return nil;
+            return 0;
     }
 }
 
