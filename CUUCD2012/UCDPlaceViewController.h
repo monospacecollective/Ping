@@ -11,7 +11,7 @@
 
 @interface UCDPlaceViewController : UCDGroupedTableViewController
 
-@property (nonatomic, strong) NSManagedObject *managedObjectContenxt;
+@property (nonatomic, strong) NSManagedObjectContext *managedObjectContext;
 @property (nonatomic, strong) UCDPlace *place;
 
 @end

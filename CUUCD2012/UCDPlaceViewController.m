@@ -38,11 +38,19 @@ typedef NS_ENUM(NSUInteger, UCDPlaceTableViewSectionAttributesRow) {
 
 @interface UCDPlaceViewController ()
 
+@property (nonatomic, strong) id managedObjectContextUpdateObserver;
 @property (nonatomic, strong) CLPlacemark *geocodedPlacemark;
 
 @end
 
 @implementation UCDPlaceViewController
+
+#pragma mark - NSObject
+
+- (void)dealloc
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self.managedObjectContextUpdateObserver];
+}
 
 #pragma mark - UIViewController
 
@@ -59,6 +67,28 @@ typedef NS_ENUM(NSUInteger, UCDPlaceTableViewSectionAttributesRow) {
             [self.tableView reloadData];
         }
     }];
+    
+    self.managedObjectContextUpdateObserver = [[NSNotificationCenter defaultCenter] addObserverForName:NSManagedObjectContextObjectsDidChangeNotification object:self.managedObjectContext queue:NULL usingBlock:^(NSNotification *notification) {
+        for (NSManagedObject *object in [notification.userInfo objectForKey:NSUpdatedObjectsKey]) {
+            if (object == self.place) {
+                [self.tableView reloadData];
+            }
+        }
+    }];
+    
+    __weak typeof(self) blockSelf = self;
+    SSPullToRefreshView *refreshView = [[UCDStyleManager sharedManager] pullToRefreshViewWithScrollView:self.tableView];
+    A2DynamicDelegate *refreshViewDelegate = [refreshView dynamicDelegateForProtocol:@protocol(SSPullToRefreshViewDelegate)];
+    [refreshViewDelegate implementMethod:@selector(pullToRefreshViewDidStartLoading:) withBlock:^(SSPullToRefreshView *view){
+        [refreshView startLoading];
+        NSFetchRequest *fetchRequest = [NSFetchRequest fetchRequestWithEntityName:@"Place"];
+        fetchRequest.predicate = [NSPredicate predicateWithFormat:@"SELF == %@", self.place];
+        [blockSelf.managedObjectContext performBlockAndWait:^{
+            [blockSelf.managedObjectContext executeFetchRequest:fetchRequest error:nil];
+        }];
+        [refreshView finishLoading];
+    }];
+    refreshView.delegate = (id<SSPullToRefreshViewDelegate>)refreshViewDelegate;
 }
 
 - (void)didReceiveMemoryWarning
