@@ -8,8 +8,11 @@
 
 #import "UCDGroupedTableViewController.h"
 
+@class UCDUser;
+
 @interface UCDSettingsViewController : UCDGroupedTableViewController
 
 @property (nonatomic, strong) NSManagedObjectContext *managedObjectContext;
+@property (nonatomic, strong) UCDUser *user;
 
 @end

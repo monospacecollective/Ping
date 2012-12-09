@@ -10,6 +10,7 @@
 #import "UCDAppDelegate.h"
 #import "UCDNavigationTitleView.h"
 #import "UCDUser.h"
+#import "UCDStyleManager.h"
 
 typedef NS_ENUM(NSUInteger, UCDSettingsTableViewSection) {
     UCDSettingsTableViewSectionPing,
@@ -31,7 +32,20 @@ typedef NS_ENUM(NSUInteger, UCDSettingsTableViewSectionAboutRow) {
     UCDSettingsTableViewSectionAboutRowCount,
 };
 
+@interface UCDSettingsViewController ()
+
+@property (nonatomic, strong) id managedObjectContextUpdateObserver;
+
+@end
+
 @implementation UCDSettingsViewController
+
+#pragma mark - NSObject
+
+- (void)dealloc
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self.managedObjectContextUpdateObserver];
+}
 
 #pragma mark - UIViewController
 
@@ -39,6 +53,30 @@ typedef NS_ENUM(NSUInteger, UCDSettingsTableViewSectionAboutRow) {
 {
     [super viewDidLoad];
     self.navigationItem.titleView = [[UCDNavigationTitleView alloc] initWithTitle:@"Ping" subtitle:@"Settings"];
+    
+    self.user = [[UCDAppDelegate sharedAppDelegate] currentUserInContext:self.managedObjectContext];
+    
+    self.managedObjectContextUpdateObserver = [[NSNotificationCenter defaultCenter] addObserverForName:NSManagedObjectContextObjectsDidChangeNotification object:self.managedObjectContext queue:NULL usingBlock:^(NSNotification *notification) {
+        for (NSManagedObject *object in [notification.userInfo objectForKey:NSUpdatedObjectsKey]) {
+            if (object == self.user) {
+                [self.tableView reloadData];
+            }
+        }
+    }];
+    
+    __weak typeof(self) blockSelf = self;
+    SSPullToRefreshView *refreshView = [[UCDStyleManager sharedManager] pullToRefreshViewWithScrollView:self.tableView];
+    A2DynamicDelegate *refreshViewDelegate = [refreshView dynamicDelegateForProtocol:@protocol(SSPullToRefreshViewDelegate)];
+    [refreshViewDelegate implementMethod:@selector(pullToRefreshViewDidStartLoading:) withBlock:^(SSPullToRefreshView *view){
+        [refreshView startLoading];
+        NSFetchRequest *fetchRequest = [NSFetchRequest fetchRequestWithEntityName:@"User"];
+        fetchRequest.predicate = [NSPredicate predicateWithFormat:@"SELF == %@", self.user];
+        [blockSelf.managedObjectContext performBlockAndWait:^{
+            [blockSelf.managedObjectContext executeFetchRequest:fetchRequest error:nil];
+        }];
+        [refreshView finishLoading];
+    }];
+    refreshView.delegate = (id<SSPullToRefreshViewDelegate>)refreshViewDelegate;
 }
 
 - (void)didReceiveMemoryWarning
@@ -76,12 +114,12 @@ typedef NS_ENUM(NSUInteger, UCDSettingsTableViewSectionAboutRow) {
             switch (indexPath.row) {
                 case UCDSettingsTableViewSectionPingRowInterval: {
                     cell.textLabel.text = @"Ping Interval";
-                    cell.detailTextLabel.text = [[UCDUser currentUserInContext:self.managedObjectContext] collectionIntervalDescription];
+                    cell.detailTextLabel.text = self.user.collectionIntervalDescription;
                     break;
                 }
                 case UCDSettingsTableViewSectionPingRowRadius: {
                     cell.textLabel.text = @"Ping Radius";
-                    cell.detailTextLabel.text = [[UCDUser currentUserInContext:self.managedObjectContext] accuracyRadiusDescription];
+                    cell.detailTextLabel.text = self.user.accuracyRadiusDescription;
                     break;
                 }
             }
@@ -93,17 +131,17 @@ typedef NS_ENUM(NSUInteger, UCDSettingsTableViewSectionAboutRow) {
             switch (indexPath.row) {
                 case UCDSettingsTableViewSectionAboutRowOccupation: {
                     cell.textLabel.text = @"Occupation";
-                    cell.detailTextLabel.text = [[UCDUser currentUserInContext:self.managedObjectContext] occupation];
+                    cell.detailTextLabel.text = self.user.occupation;
                     break;
                 }
                 case UCDSettingsTableViewSectionAboutRowGender: {
                     cell.textLabel.text = @"Gender";
-                    cell.detailTextLabel.text = [[UCDUser currentUserInContext:self.managedObjectContext] gender];
+                    cell.detailTextLabel.text = self.user.gender;
                     break;
                 }
                 case UCDSettingsTableViewSectionAboutRowBirthday: {
                     cell.textLabel.text = @"Birthday";
-                    cell.detailTextLabel.text = [[UCDUser currentUserInContext:self.managedObjectContext] birthdayDescription];
+                    cell.detailTextLabel.text = self.user.birthdayDescription;
                     break;
                 }
             }
