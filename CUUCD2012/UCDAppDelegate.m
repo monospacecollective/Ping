@@ -39,6 +39,33 @@ didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
     NSURLCache *URLCache = [[NSURLCache alloc] initWithMemoryCapacity:8 * 1024 * 1024 diskCapacity:20 * 1024 * 1024 diskPath:nil];
     [NSURLCache setSharedURLCache:URLCache];
     
+#if defined(DEBUG)
+    // To run Pony Debugger, start the server at the command line with "$ ponyd serve -i 0.0.0.0"
+    
+    // Instantiate Pony Debugger
+    _debugger = [PDDebugger defaultInstance];
+    
+    // Connect to the local IP (for devices)
+    NSString *ponyURLString = [NSString stringWithFormat:@"ws://%@:9000/device", @"10.0.1.24"];
+    [_debugger connectToURL:[NSURL URLWithString:ponyURLString]];
+    
+    // Enable network debugging
+    [_debugger enableNetworkTrafficDebugging];
+    [_debugger forwardAllNetworkTraffic];
+    
+    // Enable View Hierarchy debugging. This will swizzle UIView methods to monitor changes in the hierarchy
+    // Choose a few UIView key paths to display as attributes of the dom nodes
+//#warning This causes some definite lag in the UI, so when it's enabled things like modal view transitions will become non-animated
+//    [_debugger enableViewHierarchyDebugging];
+//    [_debugger setDisplayedViewAttributeKeyPaths:@[@"frame", @"hidden", @"alpha", @"opaque", @"userInteractionEnabled"]];
+//    [_debugger setDisplayedViewAttributeKeyPaths:@[@"userInteractionEnabled"]];
+    
+    // Enable core data debugging (MOCs are registered after creation)
+//    [_debugger enableCoreDataDebugging];
+//    [_debugger addManagedObjectContext:self.managedObjectContext];
+#endif
+
+    
     [[AFNetworkActivityIndicatorManager sharedManager] setEnabled:YES];
     
     self.navigationPaneViewController = [[MSNavigationPaneViewController alloc] init];

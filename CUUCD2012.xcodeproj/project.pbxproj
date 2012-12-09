@@ -783,25 +783,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "CUUCD2012/CUUCD2012-Prefix.pch";
 				INFOPLIST_FILE = "CUUCD2012/CUUCD2012-Info.plist";
-				OTHER_LDFLAGS = (
-					"-ObjC",
-					"-Wl,-no_compact_unwind",
-					"-framework",
-					AddressBook,
-					"-framework",
-					AddressBookUI,
-					"-framework",
-					CoreData,
-					"-framework",
-					CoreLocation,
-					"-framework",
-					MobileCoreServices,
-					"-framework",
-					QuartzCore,
-					"-framework",
-					SystemConfiguration,
-				);
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = Ping;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -813,25 +795,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "CUUCD2012/CUUCD2012-Prefix.pch";
 				INFOPLIST_FILE = "CUUCD2012/CUUCD2012-Info.plist";
-				OTHER_LDFLAGS = (
-					"-ObjC",
-					"-Wl,-no_compact_unwind",
-					"-framework",
-					AddressBook,
-					"-framework",
-					AddressBookUI,
-					"-framework",
-					CoreData,
-					"-framework",
-					CoreLocation,
-					"-framework",
-					MobileCoreServices,
-					"-framework",
-					QuartzCore,
-					"-framework",
-					SystemConfiguration,
-				);
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = Ping;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

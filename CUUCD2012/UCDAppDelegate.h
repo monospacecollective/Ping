@@ -24,6 +24,10 @@ extern NSString * const UCDNotificationLocationManagerDidUpdate;
 
 @property (nonatomic, strong, readonly) CLLocationManager *locationManager;
 
+#if defined(DEBUG)
+@property (readonly, strong, nonatomic) PDDebugger *debugger;
+#endif
+
 - (void)saveContext;
 
 - (void)presentWelcomeView;
