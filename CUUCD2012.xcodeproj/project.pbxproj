@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		3A34001C167470D000C1B0A1 /* UCDGroupedTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A34001B167470D000C1B0A1 /* UCDGroupedTableViewController.m */; };
+		3A3400201674757500C1B0A1 /* UCDTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A34001F1674757500C1B0A1 /* UCDTableViewController.m */; };
 		3A7ADBC71670055100362071 /* UCDWelcomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A7ADBC61670055100362071 /* UCDWelcomeViewController.m */; };
 		3A7ADBDD167006A900362071 /* UCDUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A7ADBDC167006A900362071 /* UCDUser.m */; };
 		3A7ADBE1167027C800362071 /* UCDNavigationTitleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A7ADBE0167027C800362071 /* UCDNavigationTitleView.m */; };
@@ -89,6 +90,8 @@
 		11438977B2DB4A26B07FE3DD /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		3A34001A167470D000C1B0A1 /* UCDGroupedTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UCDGroupedTableViewController.h; sourceTree = "<group>"; };
 		3A34001B167470D000C1B0A1 /* UCDGroupedTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UCDGroupedTableViewController.m; sourceTree = "<group>"; };
+		3A34001E1674757500C1B0A1 /* UCDTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UCDTableViewController.h; sourceTree = "<group>"; };
+		3A34001F1674757500C1B0A1 /* UCDTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UCDTableViewController.m; sourceTree = "<group>"; };
 		3A7ADBC51670055100362071 /* UCDWelcomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UCDWelcomeViewController.h; sourceTree = "<group>"; };
 		3A7ADBC61670055100362071 /* UCDWelcomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UCDWelcomeViewController.m; sourceTree = "<group>"; };
 		3A7ADBDB167006A900362071 /* UCDUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UCDUser.h; sourceTree = "<group>"; };
@@ -448,6 +451,8 @@
 				3AB1914A167001E40098227C /* UCDSettingsViewController.m */,
 				3A7ADBC51670055100362071 /* UCDWelcomeViewController.h */,
 				3A7ADBC61670055100362071 /* UCDWelcomeViewController.m */,
+				3A34001E1674757500C1B0A1 /* UCDTableViewController.h */,
+				3A34001F1674757500C1B0A1 /* UCDTableViewController.m */,
 				3A34001A167470D000C1B0A1 /* UCDGroupedTableViewController.h */,
 				3A34001B167470D000C1B0A1 /* UCDGroupedTableViewController.m */,
 			);
@@ -623,6 +628,7 @@
 				3AD849C2167455FE00159856 /* UCDRightDetailGroupedTableViewCell.m in Sources */,
 				3AD849C51674568500159856 /* UCDButtonGroupedTableViewCell.m in Sources */,
 				3A34001C167470D000C1B0A1 /* UCDGroupedTableViewController.m in Sources */,
+				3A3400201674757500C1B0A1 /* UCDTableViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

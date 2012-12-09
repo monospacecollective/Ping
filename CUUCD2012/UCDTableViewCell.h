@@ -10,10 +10,4 @@
 
 @interface UCDTableViewCell : UITableViewCell
 
-@property (weak, nonatomic) IBOutlet UIImageView *iconView;
-
-@property (strong, nonatomic) UIColor *shadowColor;
-@property (strong, nonatomic) UIColor *highlightColor;
-@property (strong, nonatomic) UIColor *selectionColor;
-
 @end

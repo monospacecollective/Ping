@@ -11,7 +11,6 @@
 #import "UCDPlaceCell.h"
 #import "UCDStyleManager.h"
 #import "UCDNavigationTitleView.h"
-#import "UCDTableView.h"
 #import "UCDAppDelegate.h"
 
 NSString * const UCDPlaceCellIdentifier = @"PlaceCell";
@@ -35,13 +34,6 @@ NSString * const UCDPlaceCellIdentifier = @"PlaceCell";
 
 #pragma mark - UIViewController
 
-- (void)loadView
-{
-    self.tableView = [[UCDTableView alloc] init];
-    self.tableView.delegate = self;
-    self.tableView.dataSource = self;
-}
-
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -50,12 +42,8 @@ NSString * const UCDPlaceCellIdentifier = @"PlaceCell";
 
     self.navigationItem.titleView = [[UCDNavigationTitleView alloc] initWithTitle:@"Ping" subtitle:@"Nearby Places"];
     [[UCDStyleManager sharedManager] styleToolbar:self.navigationController.toolbar];
-    [[UCDStyleManager sharedManager] styleNavigationController:self.navigationController];
-    self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"UCDViewBackground"]];
-    self.tableView.separatorColor = [UIColor clearColor];
     
     __weak typeof(self) blockSelf = self;
-    
     SSPullToRefreshView *refreshView = [[UCDStyleManager sharedManager] pullToRefreshViewWithScrollView:self.tableView];
     A2DynamicDelegate *refreshViewDelegate = [refreshView dynamicDelegateForProtocol:@protocol(SSPullToRefreshViewDelegate)];
     [refreshViewDelegate implementMethod:@selector(pullToRefreshViewDidStartLoading:) withBlock:^(SSPullToRefreshView *view){

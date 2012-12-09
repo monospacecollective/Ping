@@ -6,9 +6,9 @@
 //  Copyright (c) 2012 Team 11. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+#import "UCDTableViewController.h"
 
-@interface UCDPlacesViewController : UITableViewController
+@interface UCDPlacesViewController : UCDTableViewController
 
 @property (nonatomic, strong) NSManagedObjectContext *managedObjectContext;
 

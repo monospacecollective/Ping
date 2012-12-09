@@ -41,7 +41,9 @@
 - (void)initialize
 {
     self.highlightColor = [UIColor colorWithWhite:1.0 alpha:0.8];
-    self.shadowColor = [[UIColor blackColor] colorWithAlphaComponent:0.4];
+    self.shadowColor = [[UIColor blackColor] colorWithAlphaComponent:0.3];
+    self.selectionColor = [[UIColor blackColor] colorWithAlphaComponent:0.1];
+    
     self.lineOffset = 0.0;
     
     self.topShadow = [[UIView alloc] init];

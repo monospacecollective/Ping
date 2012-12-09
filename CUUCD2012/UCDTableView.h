@@ -12,6 +12,7 @@
 
 @property (strong, nonatomic) UIColor *shadowColor;
 @property (strong, nonatomic) UIColor *highlightColor;
+@property (strong, nonatomic) UIColor *selectionColor;
 @property (assign, nonatomic) CGFloat lineOffset;
 
 @end

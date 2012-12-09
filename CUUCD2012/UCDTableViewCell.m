@@ -7,6 +7,7 @@
 //
 
 #import "UCDTableViewCell.h"
+#import "UCDTableView.h"
 
 @interface UCDTableViewCell ()
 
@@ -15,12 +16,43 @@
 @property (nonatomic, strong) UIView *shadowView;
 
 - (void)initialize;
+- (void)updateBackgroundState:(BOOL)darkened animated:(BOOL)animated;
 
 @end
 
 @implementation UCDTableViewCell
 
-@synthesize iconView;
+#pragma mark - UIView
+
+- (void)layoutSubviews
+{
+    [super layoutSubviews];
+    self.highlightView.frame = CGRectMake(0.0, 0.0, self.bounds.size.width, 1.0);
+    UITableView *enclosingTableView = (UITableView *)self.superview;
+    NSIndexPath *indexPath = [enclosingTableView indexPathForCell:self];
+    BOOL bottomRow = (indexPath.row == ([enclosingTableView numberOfRowsInSection:indexPath.section] - 1));
+    if (!bottomRow) {
+        self.selectionView.frame = CGRectMake(0.0, 0.0, self.bounds.size.width, self.bounds.size.height - 1.0);
+        self.shadowView.frame = CGRectMake(0.0, self.bounds.size.height - 1.0, self.bounds.size.width, 1.0);
+        self.shadowView.alpha = 1.0;
+    } else {
+        self.selectionView.frame = CGRectMake(0.0, 0.0, self.bounds.size.width, self.bounds.size.height);
+        self.shadowView.alpha = 0.0;
+    }
+}
+
+- (void)willMoveToSuperview:(UIView *)newSuperview
+{
+    if (newSuperview != nil) {
+        UCDTableView *enclosingTableView = (UCDTableView *)newSuperview;
+        NSParameterAssert([enclosingTableView isKindOfClass:UCDTableView.class]);
+        self.shadowView.backgroundColor = enclosingTableView.shadowColor;
+        self.highlightView.backgroundColor = enclosingTableView.highlightColor;
+        self.selectionView.backgroundColor = enclosingTableView.selectionColor;
+    }
+}
+
+#pragma mark - UITableViewCell
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
@@ -31,53 +63,36 @@
     return self;
 }
 
-- (void)layoutSubviews
+- (void)setHighlighted:(BOOL)highlighted animated:(BOOL)animated
 {
-    [super layoutSubviews];
-    
-    if ([self.superview isKindOfClass:UITableView.class]) {
-        
-        UITableView *enclosingTableView = (UITableView *)self.superview;
-        NSIndexPath *indexPath = [enclosingTableView indexPathForCell:self];
-        
-        BOOL bottomRow = (indexPath.row == ([enclosingTableView numberOfRowsInSection:indexPath.section] - 1));
-        
-        self.highlightView.frame = CGRectMake(0.0, 0.0, self.bounds.size.width, 1.0);
-        
-        if (!bottomRow) {
-            self.selectionView.frame = CGRectMake(0.0, 0.0, self.bounds.size.width, self.bounds.size.height - 1.0);
-            self.shadowView.frame = CGRectMake(0.0, self.bounds.size.height - 1.0, self.bounds.size.width, 1.0);
-            self.shadowView.alpha = 1.0;
-        } else {
-            self.selectionView.frame = CGRectMake(0.0, 0.0, self.bounds.size.width, self.bounds.size.height);
-            self.shadowView.alpha = 0.0;
-        }
-    }
+    [super setHighlighted:highlighted animated:animated];
+    [self updateBackgroundState:highlighted animated:animated];
 }
+
+- (void)setSelected:(BOOL)selected animated:(BOOL)animated
+{
+    [super setSelected:selected animated:animated];
+    [self updateBackgroundState:selected animated:animated];
+}
+
+#pragma mark - UCDTableViewCell
 
 - (void)initialize
 {
-    self.highlightColor = [UIColor colorWithWhite:1.0 alpha:0.8];
-    self.shadowColor = [[UIColor blackColor] colorWithAlphaComponent:0.4];
-    self.selectionColor = [[UIColor blackColor] colorWithAlphaComponent:0.1];
     self.selectionStyle = UITableViewCellSelectionStyleNone;
     
     self.selectionView = [[UIView alloc] init];
     [self insertSubview:self.selectionView atIndex:0.0];
-    self.selectionView.backgroundColor = self.selectionColor;
     self.selectionView.alpha = 0.0;
     
     self.highlightView = [[UIView alloc] init];
     [self insertSubview:self.highlightView atIndex:0.0];
-    self.highlightView.backgroundColor = self.highlightColor;
-
+    
     self.shadowView = [[UIView alloc] init];
     [self insertSubview:self.shadowView atIndex:0.0];
-    self.shadowView.backgroundColor = self.shadowColor;
-
 }
 
-- (void)setBackgroundState:(BOOL)darkened animated:(BOOL)animated
+- (void)updateBackgroundState:(BOOL)darkened animated:(BOOL)animated
 {
     void(^updateBackgroundState)() = ^() {
         self.selectionView.alpha = (darkened ? 1.0 : 0.0);
@@ -89,18 +104,6 @@
         updateBackgroundState();
     }
     [self setNeedsDisplay];
-}
-
-- (void)setHighlighted:(BOOL)highlighted animated:(BOOL)animated
-{
-    [super setHighlighted:highlighted animated:animated];
-    [self setBackgroundState:highlighted animated:animated];
-}
-
-- (void)setSelected:(BOOL)selected animated:(BOOL)animated
-{
-    [super setSelected:selected animated:animated];
-    [self setBackgroundState:selected animated:animated];
 }
 
 @end
