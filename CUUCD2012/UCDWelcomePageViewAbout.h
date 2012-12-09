@@ -12,4 +12,8 @@
 
 @property (nonatomic, strong) UIButton *doneButton;
 
+@property (nonatomic, strong) UITextField *occupationField;
+@property (nonatomic, strong) UITextField *birthdayField;
+@property (nonatomic, strong) UITextField *genderField;
+
 @end
