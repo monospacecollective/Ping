@@ -12,12 +12,12 @@
 #import "UCDStyleManager.h"
 #import "UCDNavigationTitleView.h"
 #import "UCDTableView.h"
+#import "UCDAppDelegate.h"
 
 NSString * const UCDPlaceCellIdentifier = @"PlaceCell";
 
 @interface UCDPlacesViewController () <NSFetchedResultsControllerDelegate>
 
-@property (nonatomic, strong) CLLocationManager *locationManager;
 @property (nonatomic, strong) NSFetchedResultsController *fetchedResultsController;
 
 - (void)configureCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath;
@@ -25,6 +25,15 @@ NSString * const UCDPlaceCellIdentifier = @"PlaceCell";
 @end
 
 @implementation UCDPlacesViewController
+
+#pragma mark - NSObject
+
+- (void)dealloc
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self.tableView name:UCDNotificationLocationManagerDidUpdate object:nil];
+}
+
+#pragma mark - UIViewController
 
 - (void)loadView
 {
@@ -36,6 +45,8 @@ NSString * const UCDPlaceCellIdentifier = @"PlaceCell";
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self.tableView selector:@selector(reloadData) name:UCDNotificationLocationManagerDidUpdate object:nil];
 
     self.navigationItem.titleView = [[UCDNavigationTitleView alloc] initWithTitle:@"Ping" subtitle:@"Nearby Places"];
     [[UCDStyleManager sharedManager] styleToolbar:self.navigationController.toolbar];
@@ -53,18 +64,6 @@ NSString * const UCDPlaceCellIdentifier = @"PlaceCell";
         [refreshView finishLoading];
     }];
     refreshView.delegate = (id<SSPullToRefreshViewDelegate>)refreshViewDelegate;
-
-    self.locationManager = [[CLLocationManager alloc] init];
-    self.locationManager.distanceFilter = 1.0;
-    self.locationManager.desiredAccuracy = kCLLocationAccuracyBest;
-    [self.locationManager startUpdatingLocation];
-    
-    A2DynamicDelegate *locationManagerDynamicDelegate = [self.locationManager dynamicDelegateForProtocol:@protocol(CLLocationManagerDelegate)];
-    [locationManagerDynamicDelegate implementMethod:@selector(locationManager:didUpdateToLocation:fromLocation:) withBlock:^(CLLocationManager *locationManager, CLLocation *newLocation, CLLocation *oldLocation){
-        [blockSelf.fetchedResultsController performFetch:nil];
-        [self.tableView reloadData];
-    }];
-    self.locationManager.delegate = (id<CLLocationManagerDelegate>)locationManagerDynamicDelegate;
     
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] initWithEntityName:@"Place"];
     fetchRequest.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"name" ascending:YES]];
@@ -103,7 +102,7 @@ NSString * const UCDPlaceCellIdentifier = @"PlaceCell";
     [locationFormatter setBearingStyle:TTTBearingAbbreviationWordStyle];
     [locationFormatter setUnitSystem:TTTImperialSystem];
     locationFormatter.numberFormatter.maximumSignificantDigits = 1;
-    cell.distanceLabel.text = [locationFormatter stringFromDistanceFromLocation:self.locationManager.location toLocation:place.location];
+    cell.distanceLabel.text = [locationFormatter stringFromDistanceFromLocation:[UCDAppDelegate sharedAppDelegate].locationManager.location toLocation:place.location];
 }
 
 #pragma mark - UITableViewDataSource

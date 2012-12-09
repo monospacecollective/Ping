@@ -12,11 +12,19 @@
 #import "UCDUser.h"
 #import "UCDWelcomeViewController.h"
 
+NSString * const UCDNotificationLocationManagerDidUpdate = @"LocationManagerDidUpdate";
+
+@interface UCDAppDelegate () <CLLocationManagerDelegate>
+
+@end
+
 @implementation UCDAppDelegate
 
 @synthesize managedObjectContext = _managedObjectContext;
 @synthesize managedObjectModel = _managedObjectModel;
 @synthesize persistentStoreCoordinator = _persistentStoreCoordinator;
+
+@synthesize locationManager = _locationManager;
 
 #pragma mark - UIApplicationDelegate
 
@@ -168,7 +176,28 @@ didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     [UCDUser MR_truncateAllInContext:self.managedObjectContext];
     [self.managedObjectContext MR_saveWithErrorCallback:nil];
+    _locationManager = nil;
     [self presentWelcomeView];
+}
+
+- (CLLocationManager *)locationManager
+{
+    if (_locationManager == nil) {
+        _locationManager = [[CLLocationManager alloc] init];
+        _locationManager.distanceFilter = 1.0;
+        _locationManager.desiredAccuracy = kCLLocationAccuracyBest;
+        _locationManager.delegate = self;
+        [_locationManager startUpdatingLocation];
+        NSLog(@"Instantiated location manager");
+    }
+    return _locationManager;
+}
+
+#pragma mark - CLLocationManagerDelegate
+
+- (void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations
+{
+    [[NSNotificationCenter defaultCenter] postNotificationName:UCDNotificationLocationManagerDidUpdate object:manager];
 }
 
 @end

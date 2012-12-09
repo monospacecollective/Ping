@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
+extern NSString * const UCDNotificationLocationManagerDidUpdate;
+
 @class MSNavigationPaneViewController;
 
 @interface UCDAppDelegate : UIResponder <UIApplicationDelegate>
@@ -18,6 +20,8 @@
 @property (readonly, strong, nonatomic) NSManagedObjectContext *managedObjectContext;
 @property (readonly, strong, nonatomic) NSManagedObjectModel *managedObjectModel;
 @property (readonly, strong, nonatomic) NSPersistentStoreCoordinator *persistentStoreCoordinator;
+
+@property (nonatomic, strong, readonly) CLLocationManager *locationManager;
 
 - (void)saveContext;
 

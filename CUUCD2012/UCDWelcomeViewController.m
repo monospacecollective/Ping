@@ -108,6 +108,7 @@ const NSUInteger UCDWelcomeViewPageCount = 5;
     
     UCDWelcomePageViewAccept *welcomePage1 = [[UCDWelcomePageViewAccept alloc] initWithFrame:self.view.bounds];
     [welcomePage1.acceptButton addEventHandler:^{
+        [[UCDAppDelegate sharedAppDelegate] locationManager];
         [blockSelf scrollToPage:(blockSelf.currentPage + 1) animated:YES];
     } forControlEvents:UIControlEventTouchUpInside];
     [welcomePages addObject:welcomePage1];
