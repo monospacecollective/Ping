@@ -9,6 +9,7 @@
     #import <Foundation/Foundation.h>
     #import <CoreData/CoreData.h>
     #import <CoreLocation/CoreLocation.h>
+    #import <QuartzCore/QuartzCore.h>
 
     #import <A2DynamicDelegate/A2DynamicDelegate.h>
     #import <AFNetworking/AFNetworking.h>

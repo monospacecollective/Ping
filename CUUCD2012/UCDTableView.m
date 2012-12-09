@@ -7,7 +7,6 @@
 //
 
 #import "UCDTableView.h"
-#import <QuartzCore/QuartzCore.h>
 
 @interface UCDTableView ()
 
