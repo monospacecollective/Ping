@@ -42,6 +42,7 @@
     if (self.selectionStyle != UITableViewCellSelectionStyleNone) {
         [super setHighlighted:highlighted animated:animated];
         if (highlighted) {
+            self.backgroundView.alpha = 1.0;
             self.textLabel.shadowColor = [UIColor lightGrayColor];
             self.detailTextLabel.shadowColor = [UIColor lightGrayColor];
             self.textLabel.shadowOffset = CGSizeMake(0.0, -1.0);
