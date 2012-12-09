@@ -6,8 +6,6 @@
 //  Copyright (c) 2012 Team 11. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
-
 @interface UCDStyleManager : NSObject
 
 + (UCDStyleManager *)sharedManager;
