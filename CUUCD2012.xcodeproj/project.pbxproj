@@ -26,7 +26,7 @@
 		3A7ADC1216706E8F00362071 /* UCDViewBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = 3A7ADC1016706E8F00362071 /* UCDViewBackground.png */; };
 		3A7ADC1316706E8F00362071 /* UCDViewBackground@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3A7ADC1116706E8F00362071 /* UCDViewBackground@2x.png */; };
 		3A7ADC16167070AC00362071 /* UCDWelcomePageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A7ADC15167070AC00362071 /* UCDWelcomePageView.m */; };
-		3A7ADC1D1671065100362071 /* UCDWelcomeButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A7ADC1C1671065100362071 /* UCDWelcomeButton.m */; };
+		3A7ADC1D1671065100362071 /* UCDButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A7ADC1C1671065100362071 /* UCDButton.m */; };
 		3A7ADC20167106EF00362071 /* UCDWelcomePageViewAccept.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A7ADC1F167106EE00362071 /* UCDWelcomePageViewAccept.m */; };
 		3A7ADC231671169300362071 /* UCDWelcomeButtonBackgroundPressed.png in Resources */ = {isa = PBXBuildFile; fileRef = 3A7ADC211671169300362071 /* UCDWelcomeButtonBackgroundPressed.png */; };
 		3A7ADC241671169300362071 /* UCDWelcomeButtonBackgroundPressed@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3A7ADC221671169300362071 /* UCDWelcomeButtonBackgroundPressed@2x.png */; };
@@ -78,6 +78,9 @@
 		3AD8498D1671A2E200159856 /* UCDTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AD8498C1671A2E200159856 /* UCDTableViewCell.m */; };
 		3AD849AA1671AF2500159856 /* UCDPlaceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AD849A91671AF2500159856 /* UCDPlaceViewController.m */; };
 		3AD849B51671C12700159856 /* UCDGroupedTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AD849B41671C12700159856 /* UCDGroupedTableViewCell.m */; };
+		3AD849BF1673EDF600159856 /* UCDTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AD849BE1673EDF200159856 /* UCDTextField.m */; };
+		3AD849C2167455FE00159856 /* UCDRightDetailGroupedTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AD849C1167455FC00159856 /* UCDRightDetailGroupedTableViewCell.m */; };
+		3AD849C51674568500159856 /* UCDButtonGroupedTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AD849C41674568400159856 /* UCDButtonGroupedTableViewCell.m */; };
 		BDFCF21E5B8A413CB1D08F43 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 11438977B2DB4A26B07FE3DD /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -109,8 +112,8 @@
 		3A7ADC1116706E8F00362071 /* UCDViewBackground@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "UCDViewBackground@2x.png"; sourceTree = "<group>"; };
 		3A7ADC14167070AC00362071 /* UCDWelcomePageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UCDWelcomePageView.h; sourceTree = "<group>"; };
 		3A7ADC15167070AC00362071 /* UCDWelcomePageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UCDWelcomePageView.m; sourceTree = "<group>"; };
-		3A7ADC1B1671065100362071 /* UCDWelcomeButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UCDWelcomeButton.h; sourceTree = "<group>"; };
-		3A7ADC1C1671065100362071 /* UCDWelcomeButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UCDWelcomeButton.m; sourceTree = "<group>"; };
+		3A7ADC1B1671065100362071 /* UCDButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UCDButton.h; sourceTree = "<group>"; };
+		3A7ADC1C1671065100362071 /* UCDButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UCDButton.m; sourceTree = "<group>"; };
 		3A7ADC1E167106EE00362071 /* UCDWelcomePageViewAccept.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UCDWelcomePageViewAccept.h; sourceTree = "<group>"; };
 		3A7ADC1F167106EE00362071 /* UCDWelcomePageViewAccept.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UCDWelcomePageViewAccept.m; sourceTree = "<group>"; };
 		3A7ADC211671169300362071 /* UCDWelcomeButtonBackgroundPressed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = UCDWelcomeButtonBackgroundPressed.png; sourceTree = "<group>"; };
@@ -186,6 +189,12 @@
 		3AD849A91671AF2500159856 /* UCDPlaceViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UCDPlaceViewController.m; sourceTree = "<group>"; };
 		3AD849B31671C12700159856 /* UCDGroupedTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UCDGroupedTableViewCell.h; sourceTree = "<group>"; };
 		3AD849B41671C12700159856 /* UCDGroupedTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UCDGroupedTableViewCell.m; sourceTree = "<group>"; };
+		3AD849BD1673EDF100159856 /* UCDTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UCDTextField.h; sourceTree = "<group>"; };
+		3AD849BE1673EDF200159856 /* UCDTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UCDTextField.m; sourceTree = "<group>"; };
+		3AD849C0167455FC00159856 /* UCDRightDetailGroupedTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UCDRightDetailGroupedTableViewCell.h; sourceTree = "<group>"; };
+		3AD849C1167455FC00159856 /* UCDRightDetailGroupedTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UCDRightDetailGroupedTableViewCell.m; sourceTree = "<group>"; };
+		3AD849C31674568300159856 /* UCDButtonGroupedTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UCDButtonGroupedTableViewCell.h; sourceTree = "<group>"; };
+		3AD849C41674568400159856 /* UCDButtonGroupedTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UCDButtonGroupedTableViewCell.m; sourceTree = "<group>"; };
 		5250BB6505B34302B0001798 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
@@ -206,6 +215,62 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3A34000E16745CC400C1B0A1 /* Grouped Table View */ = {
+			isa = PBXGroup;
+			children = (
+				3AD849C31674568300159856 /* UCDButtonGroupedTableViewCell.h */,
+				3AD849C41674568400159856 /* UCDButtonGroupedTableViewCell.m */,
+				3AD849C0167455FC00159856 /* UCDRightDetailGroupedTableViewCell.h */,
+				3AD849C1167455FC00159856 /* UCDRightDetailGroupedTableViewCell.m */,
+				3AD849B31671C12700159856 /* UCDGroupedTableViewCell.h */,
+				3AD849B41671C12700159856 /* UCDGroupedTableViewCell.m */,
+			);
+			name = "Grouped Table View";
+			sourceTree = "<group>";
+		};
+		3A34001016745CCE00C1B0A1 /* Table View */ = {
+			isa = PBXGroup;
+			children = (
+				3AB19146167000170098227C /* UCDPlaceCell.h */,
+				3AB19147167000170098227C /* UCDPlaceCell.m */,
+				3AD849871671A27E00159856 /* UCDTableView.h */,
+				3AD849881671A27E00159856 /* UCDTableView.m */,
+				3AD8498B1671A2E200159856 /* UCDTableViewCell.h */,
+				3AD8498C1671A2E200159856 /* UCDTableViewCell.m */,
+			);
+			name = "Table View";
+			sourceTree = "<group>";
+		};
+		3A34001116745CEA00C1B0A1 /* Welcome Pages */ = {
+			isa = PBXGroup;
+			children = (
+				3A7ADC14167070AC00362071 /* UCDWelcomePageView.h */,
+				3A7ADC15167070AC00362071 /* UCDWelcomePageView.m */,
+				3A7ADC1E167106EE00362071 /* UCDWelcomePageViewAccept.h */,
+				3A7ADC1F167106EE00362071 /* UCDWelcomePageViewAccept.m */,
+				3A9C1B331671298D00B53BA3 /* UCDWelcomePageViewDuration.h */,
+				3A9C1B341671298D00B53BA3 /* UCDWelcomePageViewDuration.m */,
+				3A9C1B451671371C00B53BA3 /* UCDWelcomePageViewAccuracy.h */,
+				3A9C1B461671371C00B53BA3 /* UCDWelcomePageViewAccuracy.m */,
+				3A9C1B4D16713A6900B53BA3 /* UCDWelcomePageViewAbout.h */,
+				3A9C1B4E16713A6900B53BA3 /* UCDWelcomePageViewAbout.m */,
+				3A9C1B5016713B9800B53BA3 /* UCDWelcomePageViewComplete.h */,
+				3A9C1B5116713B9800B53BA3 /* UCDWelcomePageViewComplete.m */,
+			);
+			name = "Welcome Pages";
+			sourceTree = "<group>";
+		};
+		3A34001216745CF700C1B0A1 /* Welcome Steps */ = {
+			isa = PBXGroup;
+			children = (
+				3A7ADBEC16705CF600362071 /* UCDWelcomeStepsView.h */,
+				3A7ADBED16705CF700362071 /* UCDWelcomeStepsView.m */,
+				3A7ADBF316705E4700362071 /* UCDWelcomeStepView.h */,
+				3A7ADBF416705E4700362071 /* UCDWelcomeStepView.m */,
+			);
+			name = "Welcome Steps";
+			sourceTree = "<group>";
+		};
 		3A7ADBE6167057E200362071 /* Fonts */ = {
 			isa = PBXGroup;
 			children = (
@@ -387,36 +452,18 @@
 		3AB19145167000050098227C /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				3AD849871671A27E00159856 /* UCDTableView.h */,
-				3AD849881671A27E00159856 /* UCDTableView.m */,
-				3AD8498B1671A2E200159856 /* UCDTableViewCell.h */,
-				3AD8498C1671A2E200159856 /* UCDTableViewCell.m */,
-				3AD849B31671C12700159856 /* UCDGroupedTableViewCell.h */,
-				3AD849B41671C12700159856 /* UCDGroupedTableViewCell.m */,
 				3AD8497216717D7700159856 /* UCDBorderedLabel.h */,
 				3AD8497316717D7700159856 /* UCDBorderedLabel.m */,
-				3AB19146167000170098227C /* UCDPlaceCell.h */,
-				3AB19147167000170098227C /* UCDPlaceCell.m */,
+				3A7ADC1B1671065100362071 /* UCDButton.h */,
+				3A7ADC1C1671065100362071 /* UCDButton.m */,
+				3AD849BD1673EDF100159856 /* UCDTextField.h */,
+				3AD849BE1673EDF200159856 /* UCDTextField.m */,
 				3A7ADBDF167027C800362071 /* UCDNavigationTitleView.h */,
 				3A7ADBE0167027C800362071 /* UCDNavigationTitleView.m */,
-				3A7ADBEC16705CF600362071 /* UCDWelcomeStepsView.h */,
-				3A7ADBED16705CF700362071 /* UCDWelcomeStepsView.m */,
-				3A7ADBF316705E4700362071 /* UCDWelcomeStepView.h */,
-				3A7ADBF416705E4700362071 /* UCDWelcomeStepView.m */,
-				3A7ADC14167070AC00362071 /* UCDWelcomePageView.h */,
-				3A7ADC15167070AC00362071 /* UCDWelcomePageView.m */,
-				3A7ADC1B1671065100362071 /* UCDWelcomeButton.h */,
-				3A7ADC1C1671065100362071 /* UCDWelcomeButton.m */,
-				3A7ADC1E167106EE00362071 /* UCDWelcomePageViewAccept.h */,
-				3A7ADC1F167106EE00362071 /* UCDWelcomePageViewAccept.m */,
-				3A9C1B331671298D00B53BA3 /* UCDWelcomePageViewDuration.h */,
-				3A9C1B341671298D00B53BA3 /* UCDWelcomePageViewDuration.m */,
-				3A9C1B451671371C00B53BA3 /* UCDWelcomePageViewAccuracy.h */,
-				3A9C1B461671371C00B53BA3 /* UCDWelcomePageViewAccuracy.m */,
-				3A9C1B4D16713A6900B53BA3 /* UCDWelcomePageViewAbout.h */,
-				3A9C1B4E16713A6900B53BA3 /* UCDWelcomePageViewAbout.m */,
-				3A9C1B5016713B9800B53BA3 /* UCDWelcomePageViewComplete.h */,
-				3A9C1B5116713B9800B53BA3 /* UCDWelcomePageViewComplete.m */,
+				3A34001016745CCE00C1B0A1 /* Table View */,
+				3A34000E16745CC400C1B0A1 /* Grouped Table View */,
+				3A34001216745CF700C1B0A1 /* Welcome Steps */,
+				3A34001116745CEA00C1B0A1 /* Welcome Pages */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -555,7 +602,7 @@
 				3A7ADBF516705E4700362071 /* UCDWelcomeStepView.m in Sources */,
 				3A7ADC0716706B1D00362071 /* UCDStyleManager.m in Sources */,
 				3A7ADC16167070AC00362071 /* UCDWelcomePageView.m in Sources */,
-				3A7ADC1D1671065100362071 /* UCDWelcomeButton.m in Sources */,
+				3A7ADC1D1671065100362071 /* UCDButton.m in Sources */,
 				3A7ADC20167106EF00362071 /* UCDWelcomePageViewAccept.m in Sources */,
 				3A9C1B351671298D00B53BA3 /* UCDWelcomePageViewDuration.m in Sources */,
 				3A9C1B471671371C00B53BA3 /* UCDWelcomePageViewAccuracy.m in Sources */,
@@ -567,6 +614,9 @@
 				3AD8498D1671A2E200159856 /* UCDTableViewCell.m in Sources */,
 				3AD849AA1671AF2500159856 /* UCDPlaceViewController.m in Sources */,
 				3AD849B51671C12700159856 /* UCDGroupedTableViewCell.m in Sources */,
+				3AD849BF1673EDF600159856 /* UCDTextField.m in Sources */,
+				3AD849C2167455FE00159856 /* UCDRightDetailGroupedTableViewCell.m in Sources */,
+				3AD849C51674568500159856 /* UCDButtonGroupedTableViewCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
