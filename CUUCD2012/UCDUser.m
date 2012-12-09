@@ -21,15 +21,11 @@
 @dynamic favoritePlaces;
 @dynamic pings;
 
+NSString * const UCDDefaultsCurrentUserObjectID = @"CurrentUserObjectID";
+
 + (NSEntityDescription *)entityInManagedObjectContext:(NSManagedObjectContext *)context
 {
     return [NSEntityDescription entityForName:@"User" inManagedObjectContext:context];
-}
-
-+ (UCDUser *)currentUserInContext:(NSManagedObjectContext *)context
-{
-    UCDUser *user = [UCDUser MR_findFirstInContext:context];
-    return user;
 }
 
 - (NSString *)accuracyRadiusDescription

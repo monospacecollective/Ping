@@ -11,6 +11,7 @@
 extern NSString * const UCDNotificationLocationManagerDidUpdate;
 
 @class MSNavigationPaneViewController;
+@class UCDUser;
 
 @interface UCDAppDelegate : UIResponder <UIApplicationDelegate>
 
@@ -26,9 +27,13 @@ extern NSString * const UCDNotificationLocationManagerDidUpdate;
 - (void)saveContext;
 
 - (void)presentWelcomeView;
-- (void)welcomeComplete;
+- (void)welcomeCompleteForUser:(UCDUser *)user;
 - (void)signOut;
 
 + (UCDAppDelegate *)sharedAppDelegate;
+
+- (UCDUser *)currentUserInContext:(NSManagedObjectContext *)context;
+- (void)setCurrentUser:(UCDUser *)user;
+- (void)removeCurrentUser;
 
 @end

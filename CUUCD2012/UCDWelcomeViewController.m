@@ -148,8 +148,8 @@ const NSUInteger UCDWelcomeViewPageCount = 5;
 
     UCDWelcomePageViewComplete *welcomePage5 = [[UCDWelcomePageViewComplete alloc] initWithFrame:self.view.bounds];
     [welcomePage5.completeButton addEventHandler:^{
-        [self.managedObjectContext MR_save];
-        [[UCDAppDelegate sharedAppDelegate] welcomeComplete];
+        [blockSelf.managedObjectContext MR_save];
+        [[UCDAppDelegate sharedAppDelegate] welcomeCompleteForUser:user];
     } forControlEvents:UIControlEventTouchUpInside];
     [welcomePages addObject:welcomePage5];
     [self.welcomeScrollView addSubview:welcomePage5];

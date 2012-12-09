@@ -16,6 +16,11 @@ NSString * const UCDNotificationLocationManagerDidUpdate = @"LocationManagerDidU
 
 @interface UCDAppDelegate () <CLLocationManagerDelegate>
 
+@property (nonatomic, strong) id currentUserObserver;
+@property (nonatomic, strong) NSString *persistentStoreIdentifier;
+
+- (void)updateCurrentUserForPersistentStore:(NSPersistentStore *)persistentStore;
+
 @end
 
 @implementation UCDAppDelegate
@@ -43,7 +48,7 @@ didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
     
     self.navigationPaneViewController.masterViewController = masterViewController;
     
-    if ([UCDUser currentUserInContext:self.managedObjectContext] == nil) {
+    if ([self currentUserInContext:self.managedObjectContext] == nil) {
         [self presentWelcomeView];
     } else {
         [masterViewController transitionToViewController:UCDPaneViewControllerTypePlaces];
@@ -130,6 +135,7 @@ didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
     _persistentStoreCoordinator = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:[self managedObjectModel]];
     
     AFIncrementalStore *incrementalStore = (AFIncrementalStore *)[_persistentStoreCoordinator addPersistentStoreWithType:[CUUCD2012IncrementalStore type] configuration:nil URL:nil options:nil error:nil];
+    [self updateCurrentUserForPersistentStore:incrementalStore];
     
     NSURL *applicationDocumentsDirectory = [[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask] lastObject];
     NSURL *storeURL = [applicationDocumentsDirectory URLByAppendingPathComponent:@"CUUCD2012.sqlite"];
@@ -165,8 +171,12 @@ didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
     }];
 }
 
-- (void)welcomeComplete
+
+- (void)welcomeCompleteForUser:(UCDUser *)user;
 {
+    [self setCurrentUser:user];
+    NSLog(@"Welcome complete for user %@", user);
+    
     UCDMasterViewController *masterViewController = (UCDMasterViewController *)self.navigationPaneViewController.masterViewController;
     [masterViewController transitionToViewController:UCDPaneViewControllerTypePlaces];
     self.navigationPaneViewController.paneView.draggingEnabled = YES;
@@ -174,8 +184,9 @@ didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 
 - (void)signOut
 {
-    [UCDUser MR_truncateAllInContext:self.managedObjectContext];
+    [[self currentUserInContext:self.managedObjectContext] deleteInContext:self.managedObjectContext];
     [self.managedObjectContext MR_saveWithErrorCallback:nil];
+    [self removeCurrentUser];
     _locationManager = nil;
     [self presentWelcomeView];
 }
@@ -198,6 +209,66 @@ didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 - (void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations
 {
     [[NSNotificationCenter defaultCenter] postNotificationName:UCDNotificationLocationManagerDidUpdate object:manager];
+}
+
+#pragma mark - Current User
+
+- (void)updateCurrentUserForPersistentStore:(NSPersistentStore *)persistentStore
+{
+    NSString *currentUserObjectID = [[NSUserDefaults standardUserDefaults] objectForKey:UCDDefaultsCurrentUserObjectID];
+    if (currentUserObjectID == nil) {
+        return;
+    }
+    NSScanner *scanner = [NSScanner scannerWithString:currentUserObjectID];
+    [scanner scanUpToString:@"/User" intoString:nil];
+    NSString *objectID = [[scanner string] substringFromIndex:[scanner scanLocation]];
+    currentUserObjectID = [NSString stringWithFormat:@"x-coredata://%@%@", [persistentStore identifier], objectID];
+    [[NSUserDefaults standardUserDefaults] setObject:currentUserObjectID forKey:UCDDefaultsCurrentUserObjectID];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+}
+
+- (UCDUser *)currentUserInContext:(NSManagedObjectContext *)context
+{
+    NSString *currentUserObjectID = [[NSUserDefaults standardUserDefaults] objectForKey:UCDDefaultsCurrentUserObjectID];
+    if (!currentUserObjectID) {
+        return nil;
+    }
+    NSManagedObjectID *managedObjectID = [[context persistentStoreCoordinator] managedObjectIDForURIRepresentation:[NSURL URLWithString:currentUserObjectID]];
+    if (!managedObjectID) {
+        return nil;
+    }
+    UCDUser *user = (UCDUser *)[context existingObjectWithID:managedObjectID error:nil];
+    NSParameterAssert([user isKindOfClass:UCDUser.class]);
+    return user;
+}
+
+- (void)removeCurrentUser
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self.currentUserObserver];
+    [[NSUserDefaults standardUserDefaults] removeObjectForKey:UCDDefaultsCurrentUserObjectID];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+}
+
+- (void)setCurrentUser:(UCDUser *)user
+{
+    NSParameterAssert([user isKindOfClass:UCDUser.class]);
+    
+    void(^updateCurrentUserObjectID)(UCDUser *user) = ^(UCDUser *user) {
+        NSString *currentUserObjectID = [[user.objectID URIRepresentation] absoluteString];
+        [[NSUserDefaults standardUserDefaults] setObject:currentUserObjectID forKey:UCDDefaultsCurrentUserObjectID];
+        [[NSUserDefaults standardUserDefaults] synchronize];
+    };
+    
+    self.currentUserObserver = [[NSNotificationCenter defaultCenter] addObserverForName:NSManagedObjectContextObjectsDidChangeNotification object:self.managedObjectContext queue:NULL usingBlock:^(NSNotification *notification) {
+        for (NSManagedObject *object in [notification.userInfo objectForKey:NSUpdatedObjectsKey]) {
+            if ([object isKindOfClass:UCDUser.class]) {
+                updateCurrentUserObjectID((UCDUser *)object);
+            }
+        }
+    }];
+    
+    [self.managedObjectContext obtainPermanentIDsForObjects:@[user] error:nil];
+    updateCurrentUserObjectID(user);
 }
 
 @end

@@ -23,6 +23,8 @@ typedef NS_ENUM(NSUInteger, UCDUserAccuracyInterval) {
     UCDUserAccuracyIntervalOneKilometer = (1000),
 };
 
+extern NSString * const UCDDefaultsCurrentUserObjectID;
+
 @class UCDPing, UCDPlace;
 
 @interface UCDUser : NSManagedObject
@@ -35,8 +37,6 @@ typedef NS_ENUM(NSUInteger, UCDUserAccuracyInterval) {
 @property (nonatomic, retain) NSString * occupation;
 @property (nonatomic, retain) NSSet *favoritePlaces;
 @property (nonatomic, retain) NSSet *pings;
-
-+ (UCDUser *)currentUserInContext:(NSManagedObjectContext *)context;
 
 - (NSString *)accuracyRadiusDescription;
 - (NSString *)collectionIntervalDescription;
