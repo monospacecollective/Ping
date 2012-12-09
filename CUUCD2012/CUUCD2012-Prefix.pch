@@ -20,6 +20,10 @@
     #import <FormatterKit/TTTLocationFormatter.h>
     #import "SSPullToRefresh/SSPullToRefresh.h"
 
+    #if defined(DEBUG)
+    #import <PonyDebugger/PDDebugger.h>
+    #endif
+
     #define MR_SHORTHAND
     #import <MagicalRecord/CoreData+MagicalRecord.h>
 
