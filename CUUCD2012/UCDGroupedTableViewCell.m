@@ -32,11 +32,6 @@
     return self;
 }
 
-- (void)layoutSubviews
-{
-    [super layoutSubviews];
-}
-
 - (void)setHighlighted:(BOOL)highlighted animated:(BOOL)animated
 {
     if (self.selectionStyle != UITableViewCellSelectionStyleNone) {
