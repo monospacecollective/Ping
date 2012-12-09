@@ -153,8 +153,7 @@ typedef NS_ENUM(NSUInteger, UCDPlaceTableViewSectionAttributesRow) {
             }
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
             break;
-        }
-            
+        }       
     }
     return cell;
 }
