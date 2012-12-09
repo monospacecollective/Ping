@@ -6,9 +6,9 @@
 //  Copyright (c) 2012 Team 11. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+#import "UCDGroupedTableViewController.h"
 
-@interface UCDSettingsViewController : UITableViewController
+@interface UCDSettingsViewController : UCDGroupedTableViewController
 
 @property (nonatomic, strong) NSManagedObjectContext *managedObjectContext;
 

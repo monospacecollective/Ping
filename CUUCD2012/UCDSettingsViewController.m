@@ -8,18 +8,22 @@
 
 #import "UCDSettingsViewController.h"
 #import "UCDAppDelegate.h"
-#import "UCDStyleManager.h"
 #import "UCDNavigationTitleView.h"
 #import "UCDUser.h"
 #import "UCDRightDetailGroupedTableViewCell.h"
 #import "UCDButtonGroupedTableViewCell.h"
 
 typedef NS_ENUM(NSUInteger, UCDSettingsTableViewSection) {
-    UCDSettingsTableViewSectionInterval,
-    UCDSettingsTableViewSectionRadius,
+    UCDSettingsTableViewSectionPing,
     UCDSettingsTableViewSectionAbout,
     UCDSettingsTableViewSectionSignOut,
     UCDSettingsTableViewSectionCount,
+};
+
+typedef NS_ENUM(NSUInteger, UCDSettingsTableViewSectionPingRow) {
+    UCDSettingsTableViewSectionPingRowInterval,
+    UCDSettingsTableViewSectionPingRowRadius,
+    UCDSettingsTableViewSectionPingRowCount,
 };
 
 typedef NS_ENUM(NSUInteger, UCDSettingsTableViewSectionAboutRow) {
@@ -29,29 +33,14 @@ typedef NS_ENUM(NSUInteger, UCDSettingsTableViewSectionAboutRow) {
     UCDSettingsTableViewSectionAboutRowCount,
 };
 
-@interface UCDSettingsViewController ()
-
-@end
-
 @implementation UCDSettingsViewController
 
-- (void)loadView
-{
-    self.tableView = [[UITableView alloc] initWithFrame:CGRectZero style:UITableViewStyleGrouped];
-    self.tableView.delegate = self;
-    self.tableView.dataSource = self;
-}
+#pragma mark - UIViewController
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     self.navigationItem.titleView = [[UCDNavigationTitleView alloc] initWithTitle:@"Ping" subtitle:@"Settings"];
-    [[UCDStyleManager sharedManager] styleNavigationController:self.navigationController];
-    UIView *backgroundView = [[UIView alloc] init];
-    backgroundView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"UCDViewBackground"]];
-    self.tableView.backgroundView = backgroundView;
-    [self.tableView registerClass:UCDRightDetailGroupedTableViewCell.class forCellReuseIdentifier:UCDRightDetailReuseIdentifier];
-    [self.tableView registerClass:UCDButtonGroupedTableViewCell.class forCellReuseIdentifier:UCDButtonReuseIdentifier];
 }
 
 - (void)didReceiveMemoryWarning
@@ -71,6 +60,8 @@ typedef NS_ENUM(NSUInteger, UCDSettingsTableViewSectionAboutRow) {
     switch (section) {
         case UCDSettingsTableViewSectionAbout:
             return UCDSettingsTableViewSectionAboutRowCount;
+        case UCDSettingsTableViewSectionPing:
+            return UCDSettingsTableViewSectionPingRowCount;
         default:
             return 1;
     }
@@ -79,8 +70,6 @@ typedef NS_ENUM(NSUInteger, UCDSettingsTableViewSectionAboutRow) {
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
 {
     switch (section) {
-        case UCDSettingsTableViewSectionAbout:
-            return @"About Me";
         default:
             return nil;
     }
@@ -89,19 +78,21 @@ typedef NS_ENUM(NSUInteger, UCDSettingsTableViewSectionAboutRow) {
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     UITableViewCell *cell = nil;
-    
     switch (indexPath.section) {
-        case UCDSettingsTableViewSectionInterval: {
+        case UCDSettingsTableViewSectionPing: {
             cell = [tableView dequeueReusableCellWithIdentifier:UCDRightDetailReuseIdentifier forIndexPath:indexPath];
-            cell.textLabel.text = @"Ping Interval";
-            cell.detailTextLabel.text = [[UCDUser currentUserInContext:self.managedObjectContext] collectionIntervalDescription];
-            cell.selectionStyle = UITableViewCellSelectionStyleNone;
-            break;
-        }
-        case UCDSettingsTableViewSectionRadius: {
-            cell = [tableView dequeueReusableCellWithIdentifier:UCDRightDetailReuseIdentifier forIndexPath:indexPath];
-            cell.textLabel.text = @"Ping Radius";
-            cell.detailTextLabel.text = [[UCDUser currentUserInContext:self.managedObjectContext] accuracyRadiusDescription];
+            switch (indexPath.row) {
+                case UCDSettingsTableViewSectionPingRowInterval: {
+                    cell.textLabel.text = @"Ping Interval";
+                    cell.detailTextLabel.text = [[UCDUser currentUserInContext:self.managedObjectContext] collectionIntervalDescription];
+                    break;
+                }
+                case UCDSettingsTableViewSectionPingRowRadius: {
+                    cell.textLabel.text = @"Ping Radius";
+                    cell.detailTextLabel.text = [[UCDUser currentUserInContext:self.managedObjectContext] accuracyRadiusDescription];
+                    break;
+                }
+            }
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
             break;
         }
@@ -129,41 +120,30 @@ typedef NS_ENUM(NSUInteger, UCDSettingsTableViewSectionAboutRow) {
         }
         case UCDSettingsTableViewSectionSignOut: {
             cell = [tableView dequeueReusableCellWithIdentifier:UCDButtonReuseIdentifier forIndexPath:indexPath];
-            cell.textLabel.textAlignment = NSTextAlignmentCenter;
             cell.textLabel.text = @"Sign Out";
             break;
         }
     }
-    
     return cell;
 }
 
 #pragma mark - UITableViewDelegate
 
-- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
-{
-    CGRect headerLabelRect = [tableView rectForHeaderInSection:section];
-    headerLabelRect.origin = CGPointMake(0.0, 0.0);
-    headerLabelRect = CGRectInset(headerLabelRect, 16.0, 0.0);
-    UILabel *headerLabel = [[UILabel alloc] initWithFrame:headerLabelRect];
-    headerLabel.text = [tableView.dataSource tableView:tableView titleForHeaderInSection:section];
-    headerLabel.textColor = [UIColor blackColor];
-    headerLabel.shadowColor = [[UIColor whiteColor] colorWithAlphaComponent:0.7];
-    headerLabel.shadowOffset = CGSizeMake(0.0, 1.0);
-    headerLabel.font = [UIFont fontWithName:@"Gotham HTF" size:17.0];
-    headerLabel.backgroundColor = [UIColor clearColor];
-    
-    UIView *headerView = [[UIView alloc] init];
-    [headerView addSubview:headerLabel];
-    return headerView;
-}
-
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     switch (indexPath.section) {
-        case UCDSettingsTableViewSectionSignOut:
-            [[UCDAppDelegate sharedAppDelegate] signOut];
+        case UCDSettingsTableViewSectionSignOut: {
+            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Warning" message:@"Are you sure you want to sign out? You will lose all data associated with your account and will not be able to sign back in." delegate:nil cancelButtonTitle:@"Cancel" otherButtonTitles:@"Sign Out", nil];
+            A2DynamicDelegate *dynamicDelegate = alertView.dynamicDelegate;
+            [dynamicDelegate implementMethod:@selector(alertView:didDismissWithButtonIndex:) withBlock:^(UIAlertView *alertView, NSInteger buttonIndex) {
+                if (buttonIndex == 1) {
+                    [[UCDAppDelegate sharedAppDelegate] signOut];
+                }
+            }];
+            alertView.delegate = dynamicDelegate;
+            [alertView show];
             break;
+        }
     }
 }
 
