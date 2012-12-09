@@ -26,15 +26,6 @@ NSString * const UCDPlaceCellIdentifier = @"PlaceCell";
 
 @implementation UCDPlacesViewController
 
-- (id)initWithStyle:(UITableViewStyle)style
-{
-    self = [super initWithStyle:style];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
-}
-
 - (void)loadView
 {
     self.tableView = [[UCDTableView alloc] init];
