@@ -40,6 +40,7 @@ typedef NS_ENUM(NSUInteger, UCDUserAccuracyInterval) {
 
 - (NSString *)accuracyRadiusDescription;
 - (NSString *)collectionIntervalDescription;
+- (NSString *)birthdayDescription;
 
 @end
 

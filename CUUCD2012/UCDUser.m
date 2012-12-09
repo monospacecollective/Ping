@@ -64,4 +64,16 @@
     }
 }
 
+- (NSString *)birthdayDescription
+{
+    if (self.birthday) {
+        NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+        dateFormatter.dateStyle = NSDateFormatterShortStyle;
+        dateFormatter.timeStyle = NSDateFormatterNoStyle;
+        return [dateFormatter stringFromDate:self.birthday];
+    } else {
+        return nil;
+    }
+}
+
 @end
