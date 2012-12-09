@@ -10,8 +10,9 @@
 #import "UCDAppDelegate.h"
 #import "UCDStyleManager.h"
 #import "UCDNavigationTitleView.h"
-#import "UCDGroupedTableViewCell.h"
 #import "UCDUser.h"
+#import "UCDRightDetailGroupedTableViewCell.h"
+#import "UCDButtonGroupedTableViewCell.h"
 
 typedef NS_ENUM(NSUInteger, UCDSettingsTableViewSection) {
     UCDSettingsTableViewSectionInterval,
@@ -20,8 +21,6 @@ typedef NS_ENUM(NSUInteger, UCDSettingsTableViewSection) {
     UCDSettingsTableViewSectionSignOut,
     UCDSettingsTableViewSectionCount,
 };
-
-NSString * const UCDSettingsCellIdentifier = @"SettingsCell";
 
 @interface UCDSettingsViewController ()
 
@@ -44,7 +43,8 @@ NSString * const UCDSettingsCellIdentifier = @"SettingsCell";
     UIView *backgroundView = [[UIView alloc] init];
     backgroundView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"UCDViewBackground"]];
     self.tableView.backgroundView = backgroundView;
-    [self.tableView registerClass:UCDGroupedTableViewCell.class forCellReuseIdentifier:UCDSettingsCellIdentifier];
+    [self.tableView registerClass:UCDRightDetailGroupedTableViewCell.class forCellReuseIdentifier:UCDRightDetailReuseIdentifier];
+    [self.tableView registerClass:UCDButtonGroupedTableViewCell.class forCellReuseIdentifier:UCDButtonReuseIdentifier];
 }
 
 - (void)didReceiveMemoryWarning
@@ -66,26 +66,30 @@ NSString * const UCDSettingsCellIdentifier = @"SettingsCell";
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:UCDSettingsCellIdentifier forIndexPath:indexPath];
+    UITableViewCell *cell = nil;
     
     switch (indexPath.section) {
         case UCDSettingsTableViewSectionInterval: {
+            cell = [tableView dequeueReusableCellWithIdentifier:UCDRightDetailReuseIdentifier forIndexPath:indexPath];
             cell.textLabel.text = @"Ping Interval";
             cell.detailTextLabel.text = [[UCDUser currentUserInContext:self.managedObjectContext] collectionIntervalDescription];
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
             break;
         }
         case UCDSettingsTableViewSectionRadius: {
+            cell = [tableView dequeueReusableCellWithIdentifier:UCDRightDetailReuseIdentifier forIndexPath:indexPath];
             cell.textLabel.text = @"Ping Radius";
             cell.detailTextLabel.text = [[UCDUser currentUserInContext:self.managedObjectContext] accuracyRadiusDescription];
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
             break;
         }
         case UCDSettingsTableViewSectionAbout:
+            cell = [tableView dequeueReusableCellWithIdentifier:UCDRightDetailReuseIdentifier forIndexPath:indexPath];
             cell.textLabel.text = @"About Me";
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
             break;
         case UCDSettingsTableViewSectionSignOut:
+            cell = [tableView dequeueReusableCellWithIdentifier:UCDButtonReuseIdentifier forIndexPath:indexPath];
             cell.textLabel.textAlignment = NSTextAlignmentCenter;
             cell.textLabel.text = @"Sign Out";
             break;
