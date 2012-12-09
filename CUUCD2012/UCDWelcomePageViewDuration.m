@@ -7,7 +7,7 @@
 //
 
 #import "UCDWelcomePageViewDuration.h"
-#import "UCDWelcomeButton.h"
+#import "UCDButton.h"
 
 @interface UCDWelcomePageViewDuration ()
 
@@ -41,7 +41,7 @@
         ];
         
         for (NSUInteger durationButtonIndex = 0; durationButtonIndex < 4; durationButtonIndex++) {
-            UCDWelcomeButton *durationButton = [[UCDWelcomeButton alloc] init];
+            UCDButton *durationButton = [[UCDButton alloc] init];
             durationButton.frame = CGRectInset(durationButton.frame, 56.0, 0.0);
             [durationButton setTitle:durationTitles[durationButtonIndex] forState:UIControlStateNormal];
             [durationButton addEventHandler:^{
@@ -70,7 +70,7 @@
     CGRect workingRect = CGRectMake(CGRectGetMinX(self.title.frame), buttonsY, CGRectGetWidth([self.durationButonArray[0] frame]), CGRectGetHeight([self.durationButonArray[0] frame]));
     
     for (NSUInteger durationButtonIndex = 0; durationButtonIndex < 4; durationButtonIndex++) {
-        UCDWelcomeButton *durationButton = self.durationButonArray[durationButtonIndex];
+        UCDButton *durationButton = self.durationButonArray[durationButtonIndex];
         durationButton.frame = workingRect;
         workingRect = CGRectOffset(workingRect, (CGRectGetWidth(workingRect) + 9.0), 0.0);
     }

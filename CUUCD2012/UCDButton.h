@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface UCDWelcomeButton : UIButton
+@interface UCDButton : UIButton
 
 @end

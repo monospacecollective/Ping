@@ -7,7 +7,7 @@
 //
 
 #import "UCDWelcomePageViewComplete.h"
-#import "UCDWelcomeButton.h"
+#import "UCDButton.h"
 
 @implementation UCDWelcomePageViewComplete
 
@@ -18,7 +18,7 @@
         self.title.text = @"You're ready to get started with Ping.\n\nWe hope you'll find Ping useful. Just by sharing your location you're making Ping better for everyone!";
         self.subtitle.text = @"We'd love to hear what you have to say about Ping. Don't hesitate to contact us with your feedback!";
         
-        self.completeButton = [[UCDWelcomeButton alloc] init];
+        self.completeButton = [[UCDButton alloc] init];
         [self.completeButton setTitle:@"Get Started!" forState:UIControlStateNormal];
         [self addSubview:self.completeButton];
     }

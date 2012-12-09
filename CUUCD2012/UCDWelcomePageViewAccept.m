@@ -7,7 +7,7 @@
 //
 
 #import "UCDWelcomePageViewAccept.h"
-#import "UCDWelcomeButton.h"
+#import "UCDButton.h"
 
 @implementation UCDWelcomePageViewAccept
 
@@ -18,7 +18,7 @@
         self.title.text = @"Ping is a service that anonymously collects information about your location.\n\nDo you agree to let Ping collect your location information?";
         self.subtitle.text = @"You can disable location sharing at any time from Ping’s “Settings” pane.";
         
-        self.acceptButton = [[UCDWelcomeButton alloc] init];
+        self.acceptButton = [[UCDButton alloc] init];
         [self.acceptButton setTitle:@"I Agree" forState:UIControlStateNormal];
         [self addSubview:self.acceptButton];
     }

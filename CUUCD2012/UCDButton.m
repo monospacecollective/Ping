@@ -6,9 +6,9 @@
 //  Copyright (c) 2012 Team 11. All rights reserved.
 //
 
-#import "UCDWelcomeButton.h"
+#import "UCDButton.h"
 
-@implementation UCDWelcomeButton
+@implementation UCDButton
 
 - (id)initWithFrame:(CGRect)frame
 {

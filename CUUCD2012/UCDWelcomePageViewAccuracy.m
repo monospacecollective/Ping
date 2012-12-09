@@ -7,7 +7,7 @@
 //
 
 #import "UCDWelcomePageViewAccuracy.h"
-#import "UCDWelcomeButton.h"
+#import "UCDButton.h"
 
 @interface UCDWelcomePageViewAccuracy ()
 
@@ -41,7 +41,7 @@
         ];
         
         for (NSUInteger accuracyButtonIndex = 0; accuracyButtonIndex < 4; accuracyButtonIndex++) {
-            UCDWelcomeButton *accuracyButton = [[UCDWelcomeButton alloc] init];
+            UCDButton *accuracyButton = [[UCDButton alloc] init];
             accuracyButton.frame = CGRectInset(accuracyButton.frame, 56.0, 0.0);
             [accuracyButton setTitle:accuracyTitles[accuracyButtonIndex] forState:UIControlStateNormal];
             [accuracyButton addEventHandler:^{
@@ -70,7 +70,7 @@
     CGRect workingRect = CGRectMake(CGRectGetMinX(self.title.frame), buttonsY, CGRectGetWidth([self.accuracyButonArray[0] frame]), CGRectGetHeight([self.accuracyButonArray[0] frame]));
     
     for (NSUInteger accuracyButtonIndex = 0; accuracyButtonIndex < 4; accuracyButtonIndex++) {
-        UCDWelcomeButton *accuracyButton = self.accuracyButonArray[accuracyButtonIndex];
+        UCDButton *accuracyButton = self.accuracyButonArray[accuracyButtonIndex];
         accuracyButton.frame = workingRect;
         workingRect = CGRectOffset(workingRect, (CGRectGetWidth(workingRect) + 9.0), 0.0);
     }

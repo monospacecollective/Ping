@@ -7,7 +7,7 @@
 //
 
 #import "UCDWelcomePageViewAbout.h"
-#import "UCDWelcomeButton.h"
+#import "UCDButton.h"
 
 @implementation UCDWelcomePageViewAbout
 
@@ -18,7 +18,7 @@
         self.title.text = @"Tell us a little about you:";
         self.subtitle.text = @"You can change what ping knows about you at any time from Ping’s “Settings” pane.";
         
-        self.doneButton = [[UCDWelcomeButton alloc] init];
+        self.doneButton = [[UCDButton alloc] init];
         [self.doneButton setTitle:@"Done" forState:UIControlStateNormal];
         [self addSubview:self.doneButton];
     }
