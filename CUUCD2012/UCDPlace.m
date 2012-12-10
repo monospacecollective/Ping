@@ -23,6 +23,12 @@
     return [NSEntityDescription entityForName:@"Place" inManagedObjectContext:context];
 }
 
+- (CLLocationCoordinate2D)coordinate
+{
+    NSAssert(self.latitude && self.longitude, @"Requires latitude and longitude");
+    return CLLocationCoordinate2DMake(self.latitude.floatValue, self.longitude.floatValue);
+}
+
 - (CLLocation *)location
 {
     NSAssert(self.latitude && self.longitude, @"Requires latitude and longitude");

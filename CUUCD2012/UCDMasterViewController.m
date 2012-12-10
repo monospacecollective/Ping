@@ -13,6 +13,7 @@
 #import "UCDSettingsViewController.h"
 #import "UCDMasterTableView.h"
 #import "UCDMasterTableViewHeader.h"
+#import "UCDMapViewController.h"
 
 typedef NS_ENUM(NSUInteger, UCDMasterViewControllerTableViewSectionType) {
     UCDMasterViewControllerTableViewSectionTypePing,
@@ -45,7 +46,7 @@ typedef NS_ENUM(NSUInteger, UCDMasterViewControllerTableViewSectionType) {
         };
         self.paneViewControllerClasses = @{
             @(UCDPaneViewControllerTypePlaces) : UCDPlacesViewController.class,
-            @(UCDPaneViewControllerTypeMap) : UCDTableViewController.class,
+            @(UCDPaneViewControllerTypeMap) : UCDMapViewController.class,
             @(UCDPaneViewControllerTypePings) : UCDTableViewController.class,
             @(UCDPaneViewControllerTypeSettings) : UCDSettingsViewController.class,
         };
