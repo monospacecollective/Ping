@@ -53,7 +53,6 @@
         self.topShadowLine = [[UIView alloc] init];
         self.topShadowLine.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0.7];
         [self addSubview:self.topShadowLine];
-        
     }
     return self;
 }

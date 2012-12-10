@@ -17,6 +17,7 @@
 @property (nonatomic, retain) UCDPlace *user;
 
 - (CLLocation *)location;
+- (CLLocationCoordinate2D)coordinate;
 - (CGFloat)distanceFromPlace:(UCDPlace *)place;
 - (CGFloat)distanceFromLocation:(CLLocation *)place;
 - (NSString *)starRating;

@@ -7,12 +7,12 @@
 //
 
 #import "UCDPlacesViewController.h"
-#import "UCDPlace.h"
 #import "UCDPlaceCell.h"
 #import "UCDStyleManager.h"
 #import "UCDNavigationTitleView.h"
 #import "UCDAppDelegate.h"
 #import "UCDPlaceViewController.h"
+#import "UCDPlace.h"
 
 NSString * const UCDPlaceCellIdentifier = @"PlaceCell";
 
@@ -58,10 +58,9 @@ NSString * const UCDPlaceCellIdentifier = @"PlaceCell";
     fetchRequest.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"name" ascending:YES]];
     self.fetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest managedObjectContext:self.managedObjectContext sectionNameKeyPath:nil cacheName:nil];
     self.fetchedResultsController.delegate = self;
+    [self.fetchedResultsController performFetch:nil];
     
     [self.tableView registerClass:UCDPlaceCell.class forCellReuseIdentifier:UCDPlaceCellIdentifier];
-    
-    [self.fetchedResultsController performFetch:nil];
     
     //    fetchRequest.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"location" ascending:YES comparator:^NSComparisonResult(CLLocation *location1, CLLocation *location2) {
     //        if (blockSelf.locationManager.location == nil) {
@@ -117,7 +116,6 @@ NSString * const UCDPlaceCellIdentifier = @"PlaceCell";
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-//    [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
     UCDPlaceViewController *placeViewController = [[UCDPlaceViewController alloc] initWithNibName:nil bundle:nil];
     placeViewController.place = [self.fetchedResultsController objectAtIndexPath:indexPath];
     __weak typeof(self) blockSelf = self;

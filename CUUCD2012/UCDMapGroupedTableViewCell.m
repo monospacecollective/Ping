@@ -57,7 +57,7 @@ NSString * const UCDMapReuseIdentifier = @"MapReuseIdentifier";
 - (MKAnnotationView *)mapView:(MKMapView *)theMapView viewForAnnotation:(id <MKAnnotation>)annotation
 {
     if (annotation == self) {
-        return [[MKPinAnnotationView alloc] initWithAnnotation:self reuseIdentifier:nil];
+        return [[MKPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:nil];
     } else {
         return nil;
     }
