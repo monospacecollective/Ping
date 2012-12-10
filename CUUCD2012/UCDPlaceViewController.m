@@ -156,7 +156,6 @@ typedef NS_ENUM(NSUInteger, UCDPlaceTableViewSectionAttributesRow) {
                 case UCDPlaceTableViewSectionMapRowMap: {
                     cell = [tableView dequeueReusableCellWithIdentifier:UCDMapReuseIdentifier forIndexPath:indexPath];
                     ((UCDMapGroupedTableViewCell *)cell).coordinate = self.place.location.coordinate;
-                    cell.textLabel.text = @"Map Cell!";
                     break;
                 }
             }
