@@ -61,10 +61,11 @@ typedef NS_ENUM(NSUInteger, UCDPlaceTableViewSectionAttributesRow) {
     
     CLGeocoder *geocoder = [[CLGeocoder alloc] init];
     [geocoder reverseGeocodeLocation:self.place.location completionHandler:^(NSArray *placemarks, NSError *error) {
-        NSLog(@"Geocoded! %@", placemarks);
         if (!error) {
             self.geocodedPlacemark = placemarks[0];
             [self.tableView reloadData];
+        } else {
+            NSLog(@"Unable to geocode with error %@", [error debugDescription]);
         }
     }];
     
