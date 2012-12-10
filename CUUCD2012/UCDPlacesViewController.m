@@ -116,7 +116,6 @@ NSString * const UCDPlaceCellIdentifier = @"PlaceCell";
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-//    [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
     UCDPlaceViewController *placeViewController = [[UCDPlaceViewController alloc] initWithNibName:nil bundle:nil];
     placeViewController.place = [self.fetchedResultsController objectAtIndexPath:indexPath];
     __weak typeof(self) blockSelf = self;
