@@ -24,6 +24,7 @@ typedef NS_ENUM(NSUInteger, UCDMasterViewControllerTableViewSectionType) {
 @interface UCDMasterViewController ()
 
 @property (nonatomic, strong) NSDictionary *paneViewControllerTitles;
+@property (nonatomic, strong) NSDictionary *paneViewControllerIcons;
 @property (nonatomic, strong) NSDictionary *paneViewControllerClasses;
 @property (nonatomic, strong) NSArray *tableViewSectionBreaks;
 
@@ -43,6 +44,12 @@ typedef NS_ENUM(NSUInteger, UCDMasterViewControllerTableViewSectionType) {
             @(UCDPaneViewControllerTypeMap) : @"Map",
             @(UCDPaneViewControllerTypePings) : @"Pings",
             @(UCDPaneViewControllerTypeSettings) : @"Settings",
+        };
+        self.paneViewControllerIcons = @{
+            @(UCDPaneViewControllerTypePlaces) : @"\U0001F4CD",
+            @(UCDPaneViewControllerTypeMap) : @"\U0000E673",
+            @(UCDPaneViewControllerTypePings) : @"\U000025CE",
+            @(UCDPaneViewControllerTypeSettings) : @"\U00002699",
         };
         self.paneViewControllerClasses = @{
             @(UCDPaneViewControllerTypePlaces) : UCDPlacesViewController.class,
@@ -157,8 +164,9 @@ typedef NS_ENUM(NSUInteger, UCDMasterViewControllerTableViewSectionType) {
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:UCDMasterCellReuseIdentifier forIndexPath:indexPath];
+    UCDMasterTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:UCDMasterCellReuseIdentifier forIndexPath:indexPath];
     cell.textLabel.text = self.paneViewControllerTitles[@([self paneViewControllerTypeForIndexPath:indexPath])];
+    cell.iconLabel.text = self.paneViewControllerIcons[@([self paneViewControllerTypeForIndexPath:indexPath])];
     return cell;
 }
 

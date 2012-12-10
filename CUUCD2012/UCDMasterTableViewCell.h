@@ -12,4 +12,6 @@ extern NSString * const UCDMasterCellReuseIdentifier;
 
 @interface UCDMasterTableViewCell : UCDTableViewCell
 
+@property (nonatomic, strong) UILabel *iconLabel;
+
 @end
