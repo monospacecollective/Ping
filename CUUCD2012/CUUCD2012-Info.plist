@@ -30,6 +30,7 @@
 	<array>
 		<string>gothamhtfbold.ttf</string>
 		<string>gothamhtfbook.ttf</string>
+		<string>ssstandard.ttf</string>
 	</array>
 	<key>UIRequiredDeviceCapabilities</key>
 	<array>

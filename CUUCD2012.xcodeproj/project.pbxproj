@@ -86,6 +86,8 @@
 		3AB19113166FFBA40098227C /* MSBarButtonIconNavigationPane@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3AB19111166FFBA40098227C /* MSBarButtonIconNavigationPane@2x.png */; };
 		3AB19148167000170098227C /* UCDPlaceCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AB19147167000170098227C /* UCDPlaceCell.m */; };
 		3AB1914B167001E40098227C /* UCDSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AB1914A167001E40098227C /* UCDSettingsViewController.m */; };
+		3AD33C7A16765D83001C179F /* UCDMapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AD33C7916765D83001C179F /* UCDMapViewController.m */; };
+		3AD33C8B16766A46001C179F /* ssstandard.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3AD33C8A16766A46001C179F /* ssstandard.ttf */; };
 		3AD849691671779900159856 /* UCDBarButtonBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = 3AD849651671779900159856 /* UCDBarButtonBackground.png */; };
 		3AD8496A1671779900159856 /* UCDBarButtonBackground@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3AD849661671779900159856 /* UCDBarButtonBackground@2x.png */; };
 		3AD8496B1671779900159856 /* UCDBarButtonBackgroundPressed.png in Resources */ = {isa = PBXBuildFile; fileRef = 3AD849671671779900159856 /* UCDBarButtonBackgroundPressed.png */; };
@@ -219,6 +221,9 @@
 		3AB19147167000170098227C /* UCDPlaceCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UCDPlaceCell.m; sourceTree = "<group>"; };
 		3AB19149167001E40098227C /* UCDSettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UCDSettingsViewController.h; sourceTree = "<group>"; };
 		3AB1914A167001E40098227C /* UCDSettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UCDSettingsViewController.m; sourceTree = "<group>"; };
+		3AD33C7816765D83001C179F /* UCDMapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UCDMapViewController.h; sourceTree = "<group>"; };
+		3AD33C7916765D83001C179F /* UCDMapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UCDMapViewController.m; sourceTree = "<group>"; };
+		3AD33C8A16766A46001C179F /* ssstandard.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = ssstandard.ttf; sourceTree = "<group>"; };
 		3AD849651671779900159856 /* UCDBarButtonBackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = UCDBarButtonBackground.png; sourceTree = "<group>"; };
 		3AD849661671779900159856 /* UCDBarButtonBackground@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "UCDBarButtonBackground@2x.png"; sourceTree = "<group>"; };
 		3AD849671671779900159856 /* UCDBarButtonBackgroundPressed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = UCDBarButtonBackgroundPressed.png; sourceTree = "<group>"; };
@@ -362,6 +367,7 @@
 			children = (
 				3A7ADBE2167057DD00362071 /* gothamhtfbold.ttf */,
 				3A7ADBE3167057DD00362071 /* gothamhtfbook.ttf */,
+				3AD33C8A16766A46001C179F /* ssstandard.ttf */,
 			);
 			name = Fonts;
 			sourceTree = "<group>";
@@ -527,6 +533,8 @@
 		3AB1910A166FF87D0098227C /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				3AD33C7816765D83001C179F /* UCDMapViewController.h */,
+				3AD33C7916765D83001C179F /* UCDMapViewController.m */,
 				3AB1910C166FF8910098227C /* UCDMasterViewController.h */,
 				3AB1910D166FF8910098227C /* UCDMasterViewController.m */,
 				3AB190D4166FE2A00098227C /* UCDPlacesViewController.h */,
@@ -664,6 +672,7 @@
 				3A3400451675187400C1B0A1 /* iTunesArtwork@2x.png in Resources */,
 				3AE1E6CB16755B3300819247 /* UCDMasterTableViewBackground.png in Resources */,
 				3AE1E6CC16755B3300819247 /* UCDMasterTableViewBackground@2x.png in Resources */,
+				3AD33C8B16766A46001C179F /* ssstandard.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -733,6 +742,7 @@
 				3AE1E6C716755AE700819247 /* UCDMasterTableView.m in Sources */,
 				3AE1E6CF16755CFF00819247 /* UCDMasterTableViewCell.m in Sources */,
 				3AE1E6DD167564C200819247 /* UCDMasterTableViewHeader.m in Sources */,
+				3AD33C7A16765D83001C179F /* UCDMapViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

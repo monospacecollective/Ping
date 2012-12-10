@@ -33,6 +33,11 @@ static UCDStyleManager *singletonInstance = nil;
     return [UIFont fontWithName:@"Gotham HTF" size:size];
 }
 
+- (UIFont *)symbolSetFontOfSize:(CGFloat)size
+{
+    return [UIFont fontWithName:@"SS Standard" size:size];    
+}
+
 #pragma mark - Toolbar
 
 - (void)styleToolbar:(UIToolbar *)toolbar
@@ -64,7 +69,7 @@ static UCDStyleManager *singletonInstance = nil;
 - (UIButton *)barButtonCustomView
 {
     UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
-    UIEdgeInsets buttonBackgroundImageCapInsets = UIEdgeInsetsMake(0.0, 6.0, 0.0, 6.0);
+    UIEdgeInsets buttonBackgroundImageCapInsets = UIEdgeInsetsMake(6.0, 6.0, 6.0, 6.0);
     [button setBackgroundImage:[[UIImage imageNamed:@"UCDBarButtonBackground"] resizableImageWithCapInsets:buttonBackgroundImageCapInsets] forState:UIControlStateNormal];
     [button setBackgroundImage:[[UIImage imageNamed:@"UCDBarButtonBackgroundPressed"] resizableImageWithCapInsets:buttonBackgroundImageCapInsets] forState:UIControlStateHighlighted];
     return button;
@@ -107,7 +112,7 @@ static UCDStyleManager *singletonInstance = nil;
     UIButton* button = [self barButtonCustomView];
     button.adjustsImageWhenHighlighted = NO;
     
-    button.titleLabel.font = [UIFont boldSystemFontOfSize:12];
+    button.titleLabel.font = [self fontOfSize:12.0];
     button.titleLabel.shadowColor = [UIColor blackColor];
     button.titleLabel.shadowOffset = CGSizeMake(0.0, -1.0);
     button.contentMode = UIViewContentModeCenter;
@@ -124,7 +129,7 @@ static UCDStyleManager *singletonInstance = nil;
 - (UIButton *)backButtonWithTitle:(NSString*)title
 {
     UIButton* button = [UIButton buttonWithType:UIButtonTypeCustom];
-    button.titleLabel.font = [UIFont fontWithName:@"Gotham HTF" size:12.0];
+    button.titleLabel.font = [self fontOfSize:12.0];
     button.titleLabel.shadowColor = [UIColor blackColor];
     button.titleLabel.shadowOffset = CGSizeMake(0.0, -1.0);
     button.contentMode = UIViewContentModeLeft;
@@ -154,6 +159,17 @@ static UCDStyleManager *singletonInstance = nil;
 - (UIBarButtonItem *)barButtonItemWithTitle:(NSString*)title action:(void(^)(void))handler
 {
     UIButton *button = [self buttonWithTitle:title];
+    [button addEventHandler:handler forControlEvents:UIControlEventTouchUpInside];
+    UIBarButtonItem* barButtonItem = [[UIBarButtonItem alloc] initWithCustomView:button];
+    return barButtonItem;
+}
+
+- (UIBarButtonItem *)barButtonItemWithSymbolSetTitle:(NSString*)title action:(void(^)(void))handler
+{
+    UIButton *button = [self buttonWithTitle:title];
+    button.titleLabel.font = [[UCDStyleManager sharedManager] symbolSetFontOfSize:14.0];
+    button.contentEdgeInsets = UIEdgeInsetsMake(6.0, 13.0, 0.0, 13.0);
+    [button sizeToFit];
     [button addEventHandler:handler forControlEvents:UIControlEventTouchUpInside];
     UIBarButtonItem* barButtonItem = [[UIBarButtonItem alloc] initWithCustomView:button];
     return barButtonItem;

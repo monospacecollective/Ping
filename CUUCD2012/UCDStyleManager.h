@@ -13,6 +13,7 @@
 // Fonts
 - (UIFont *)fontOfSize:(CGFloat)size;
 - (UIFont *)boldFontOfSize:(CGFloat)size;
+- (UIFont *)symbolSetFontOfSize:(CGFloat)size;
 
 // Toolbar
 - (void)styleToolbar:(UIToolbar *)toolbar;
@@ -25,6 +26,7 @@
 - (UIButton *)buttonWithTitle:(NSString*)title;
 - (UIButton *)backButtonWithTitle:(NSString*)title;
 - (UIBarButtonItem *)barButtonItemWithTitle:(NSString*)title action:(void(^)(void))handler;
+- (UIBarButtonItem *)barButtonItemWithSymbolSetTitle:(NSString*)title action:(void(^)(void))handler;
 - (UIBarButtonItem *)barButtonItemWithImage:(UIImage*)image action:(void(^)(void))handler;
 - (UIBarButtonItem *)backBarButtonItemWithTitle:(NSString*)title action:(void(^)(void))handler;
 
