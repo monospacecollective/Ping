@@ -42,7 +42,7 @@ typedef NS_ENUM(NSUInteger, UCDMasterViewControllerTableViewSectionType) {
         self.paneViewControllerTitles = @{
             @(UCDPaneViewControllerTypePlaces) : @"Nearby Places",
             @(UCDPaneViewControllerTypeMap) : @"Map",
-            @(UCDPaneViewControllerTypePings) : @"Pings",
+            @(UCDPaneViewControllerTypePings) : @"My Pings",
             @(UCDPaneViewControllerTypeSettings) : @"Settings",
         };
         self.paneViewControllerIcons = @{
