@@ -15,7 +15,7 @@
 #import "UCDPlaceViewController.h"
 
 NSString * const UCDMapViewControllerPlaceAnnotationReuseIdentifier = @"MapViewControllerPlaceAnnotationReuseIdentifier";
-CGFloat const UCDMapViewControllerZoomRegion = 5000.0;
+CGFloat const UCDMapViewControllerZoomRegion = 1250.0;
 
 @interface UCDMapViewController () <MKMapViewDelegate, NSFetchedResultsControllerDelegate>
 
@@ -23,6 +23,9 @@ CGFloat const UCDMapViewControllerZoomRegion = 5000.0;
 @property (nonatomic, strong) NSFetchedResultsController *fetchedResultsController;
 
 - (void)zoomToUserAnimated:(BOOL)animated;
+- (void)addPlaceAnnotations;
+- (void)removePlaceAnnotations;
+- (UCDPlaceAnnotation *)annotationForPlace:(UCDPlace *)place;
 
 @end
 
@@ -51,9 +54,11 @@ CGFloat const UCDMapViewControllerZoomRegion = 5000.0;
     
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] initWithEntityName:@"Place"];
     fetchRequest.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"name" ascending:YES]];
-    self.fetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest managedObjectContext:self.managedObjectContext sectionNameKeyPath:nil cacheName:nil];
+    self.fetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest managedObjectContext:self.managedObjectContext sectionNameKeyPath:nil cacheName:NSStringFromClass(self.class)];
     self.fetchedResultsController.delegate = self;
     [self.fetchedResultsController performFetch:nil];
+    [self addPlaceAnnotations];
+    
 }
 
 - (void)didReceiveMemoryWarning
@@ -69,9 +74,17 @@ CGFloat const UCDMapViewControllerZoomRegion = 5000.0;
     [self.mapView setRegion:region animated:animated];
 }
 
-#pragma mark - NSFetchedResultsControllerDelegate
+- (void)addPlaceAnnotations
+{
+    NSMutableArray *placeAnnotations = [NSMutableArray array];
+    for (UCDPlace *place in self.fetchedResultsController.fetchedObjects) {
+        UCDPlaceAnnotation *placeAnnotation = [[UCDPlaceAnnotation alloc] initWithPlace:place];
+        [placeAnnotations addObject:placeAnnotation];
+    }
+    [self.mapView addAnnotations:placeAnnotations];
+}
 
-- (void)controllerWillChangeContent:(NSFetchedResultsController *)controller
+- (void)removePlaceAnnotations
 {
     for (id<MKAnnotation>annotation in self.mapView.annotations) {
         if ([annotation isKindOfClass:UCDPlaceAnnotation.class]) {
@@ -80,17 +93,46 @@ CGFloat const UCDMapViewControllerZoomRegion = 5000.0;
     }
 }
 
-- (void)controllerDidChangeContent:(NSFetchedResultsController *)controller
+- (UCDPlaceAnnotation *)annotationForPlace:(UCDPlace *)place
 {
-    NSMutableArray *placeAnnotations = [NSMutableArray array];
-    for (UCDPlace *place in controller.fetchedObjects) {
-        UCDPlaceAnnotation *placeAnnotation = [[UCDPlaceAnnotation alloc] init];
-        [placeAnnotation setPlace:place];
-        [placeAnnotations addObject:placeAnnotation];
+    for (id<MKAnnotation>annotation in self.mapView.annotations) {
+        if ([annotation isKindOfClass:UCDPlaceAnnotation.class] && (((UCDPlaceAnnotation *)annotation).place == place)) {
+            return (UCDPlaceAnnotation *)annotation;
+        }
     }
-    [self.mapView addAnnotations:placeAnnotations];
+    return nil;
 }
 
+#pragma mark - NSFetchedResultsControllerDelegate
+
+- (void)controller:(NSFetchedResultsController *)controller didChangeObject:(id)object atIndexPath:(NSIndexPath *)indexPath forChangeType:(NSFetchedResultsChangeType)type newIndexPath:(NSIndexPath *)newIndexPath
+{
+    NSParameterAssert([object isKindOfClass:UCDPlace.class]);
+    UCDPlace *place = object;
+    UCDPlaceAnnotation *placeAnnotation = [self annotationForPlace:place];
+    switch(type) {
+        case NSFetchedResultsChangeInsert: {
+            if (placeAnnotation) {
+                UCDPlaceAnnotation *placeAnnotation = [[UCDPlaceAnnotation alloc] initWithPlace:place];
+                [self.mapView addAnnotation:placeAnnotation];
+            }
+            break;
+        }
+        case NSFetchedResultsChangeDelete: {
+            if (placeAnnotation) {
+                [self.mapView removeAnnotation:placeAnnotation];
+            }
+            break;
+        }
+        case NSFetchedResultsChangeUpdate: {
+            if (placeAnnotation) {
+                [self.mapView removeAnnotation:placeAnnotation];
+                [self.mapView addAnnotation:placeAnnotation];
+            }
+            break;
+        }
+    }
+}
 #pragma mark - MKMapViewDelegate
 
 - (MKAnnotationView *)mapView:(MKMapView *)theMapView viewForAnnotation:(UCDPlaceAnnotation *)annotation

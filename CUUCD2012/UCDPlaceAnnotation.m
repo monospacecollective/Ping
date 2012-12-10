@@ -10,6 +10,15 @@
 
 @implementation UCDPlaceAnnotation
 
+- (id)initWithPlace:(UCDPlace *)place
+{
+    self = [super init];
+    if (self) {
+        self.place = place;
+    }
+    return self;
+}
+
 - (CLLocationCoordinate2D)coordinate
 {
     return self.place.coordinate;

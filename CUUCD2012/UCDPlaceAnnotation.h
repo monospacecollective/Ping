@@ -12,4 +12,6 @@
 
 @property (nonatomic, weak) UCDPlace* place;
 
+- (id)initWithPlace:(UCDPlace *)place;
+
 @end
