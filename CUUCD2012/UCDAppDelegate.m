@@ -211,9 +211,10 @@ didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 
 - (void)signOut
 {
-    [[self currentUserInContext:self.managedObjectContext] deleteInContext:self.managedObjectContext];
-    [self.managedObjectContext MR_saveWithErrorCallback:nil];
+    UCDUser *currentUser = [self currentUserInContext:self.managedObjectContext];
     [self removeCurrentUser];
+    [currentUser deleteInContext:self.managedObjectContext];
+    [self.managedObjectContext MR_saveWithErrorCallback:nil];
     _locationManager = nil;
     [self presentWelcomeView];
 }
@@ -266,6 +267,7 @@ didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
     }
     UCDUser *user = (UCDUser *)[context existingObjectWithID:managedObjectID error:nil];
     NSParameterAssert([user isKindOfClass:UCDUser.class]);
+    NSLog(@"Current user for ID %@ %@", currentUserObjectID, user);
     return user;
 }
 
@@ -284,6 +286,7 @@ didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
         NSString *currentUserObjectID = [[user.objectID URIRepresentation] absoluteString];
         [[NSUserDefaults standardUserDefaults] setObject:currentUserObjectID forKey:UCDDefaultsCurrentUserObjectID];
         [[NSUserDefaults standardUserDefaults] synchronize];
+        NSLog(@"Setting current user ID to %@", currentUserObjectID);
     };
     
     self.currentUserObserver = [[NSNotificationCenter defaultCenter] addObserverForName:NSManagedObjectContextObjectsDidChangeNotification object:self.managedObjectContext queue:NULL usingBlock:^(NSNotification *notification) {
