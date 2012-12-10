@@ -14,8 +14,6 @@
 @property (nonatomic, strong) UIView *bottomHighlight;
 @property (nonatomic, strong) UIView *bottomShadow;
 
-- (void)initialize;
-
 @end
 
 @implementation UCDTableView
@@ -24,46 +22,34 @@
 {
     self = [super initWithFrame:frame];
     if (self) {
-        [self initialize];
+        self.highlightColor = [UIColor colorWithWhite:1.0 alpha:0.8];
+        self.shadowColor = [[UIColor blackColor] colorWithAlphaComponent:0.3];
+        self.selectionColor = [[UIColor blackColor] colorWithAlphaComponent:0.1];
+        
+        self.lineOffset = 0.0;
+        
+        self.topShadow = [[UIView alloc] init];
+        [self addSubview:self.topShadow];
+        
+        self.bottomShadow = [[UIView alloc] init];
+        [self addSubview:self.bottomShadow];
+        
+        self.bottomHighlight = [[UIView alloc] init];
+        [self addSubview:self.bottomHighlight];
+        
+        self.layer.masksToBounds = NO;
+        self.separatorStyle = UITableViewCellSeparatorStyleNone;
     }
     return self;
-}
-
-- (id)initWithCoder:(NSCoder *)aDecoder
-{
-    self = [super initWithCoder:aDecoder];
-    if (self) {
-        [self initialize];
-    }
-    return self;
-}
-
-- (void)initialize
-{
-    self.highlightColor = [UIColor colorWithWhite:1.0 alpha:0.8];
-    self.shadowColor = [[UIColor blackColor] colorWithAlphaComponent:0.3];
-    self.selectionColor = [[UIColor blackColor] colorWithAlphaComponent:0.1];
-    
-    self.lineOffset = 0.0;
-    
-    self.topShadow = [[UIView alloc] init];
-    self.topShadow.backgroundColor = self.shadowColor;
-    [self addSubview:self.topShadow];
-    
-    self.bottomShadow = [[UIView alloc] init];
-    self.bottomShadow.backgroundColor = self.shadowColor;
-    [self addSubview:self.bottomShadow];
-    
-    self.bottomHighlight = [[UIView alloc] init];
-    self.bottomHighlight.backgroundColor = self.highlightColor;
-    [self addSubview:self.bottomHighlight];
-    
-    self.layer.masksToBounds = NO;
 }
 
 - (void)layoutSubviews
 {
     [super layoutSubviews];
+    
+    self.bottomHighlight.backgroundColor = self.highlightColor;
+    self.bottomShadow.backgroundColor = self.shadowColor;
+    self.topShadow.backgroundColor = self.shadowColor;
     
     if ((self.numberOfSections != 0) && ([self numberOfRowsInSection:0] != 0)) {
         

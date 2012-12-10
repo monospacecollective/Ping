@@ -99,6 +99,11 @@
 		3AD849BF1673EDF600159856 /* UCDTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AD849BE1673EDF200159856 /* UCDTextField.m */; };
 		3AD849C2167455FE00159856 /* UCDRightDetailGroupedTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AD849C1167455FC00159856 /* UCDRightDetailGroupedTableViewCell.m */; };
 		3AD849C51674568500159856 /* UCDButtonGroupedTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AD849C41674568400159856 /* UCDButtonGroupedTableViewCell.m */; };
+		3AE1E6C716755AE700819247 /* UCDMasterTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AE1E6C616755AE700819247 /* UCDMasterTableView.m */; };
+		3AE1E6CB16755B3300819247 /* UCDMasterTableViewBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = 3AE1E6C916755B3300819247 /* UCDMasterTableViewBackground.png */; };
+		3AE1E6CC16755B3300819247 /* UCDMasterTableViewBackground@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3AE1E6CA16755B3300819247 /* UCDMasterTableViewBackground@2x.png */; };
+		3AE1E6CF16755CFF00819247 /* UCDMasterTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AE1E6CE16755CFF00819247 /* UCDMasterTableViewCell.m */; };
+		3AE1E6DD167564C200819247 /* UCDMasterTableViewHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AE1E6DC167564C200819247 /* UCDMasterTableViewHeader.m */; };
 		BDFCF21E5B8A413CB1D08F43 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 11438977B2DB4A26B07FE3DD /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -236,6 +241,14 @@
 		3AD849C1167455FC00159856 /* UCDRightDetailGroupedTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UCDRightDetailGroupedTableViewCell.m; sourceTree = "<group>"; };
 		3AD849C31674568300159856 /* UCDButtonGroupedTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UCDButtonGroupedTableViewCell.h; sourceTree = "<group>"; };
 		3AD849C41674568400159856 /* UCDButtonGroupedTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UCDButtonGroupedTableViewCell.m; sourceTree = "<group>"; };
+		3AE1E6C516755AE700819247 /* UCDMasterTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UCDMasterTableView.h; sourceTree = "<group>"; };
+		3AE1E6C616755AE700819247 /* UCDMasterTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UCDMasterTableView.m; sourceTree = "<group>"; };
+		3AE1E6C916755B3300819247 /* UCDMasterTableViewBackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = UCDMasterTableViewBackground.png; sourceTree = "<group>"; };
+		3AE1E6CA16755B3300819247 /* UCDMasterTableViewBackground@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "UCDMasterTableViewBackground@2x.png"; sourceTree = "<group>"; };
+		3AE1E6CD16755CFF00819247 /* UCDMasterTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UCDMasterTableViewCell.h; sourceTree = "<group>"; };
+		3AE1E6CE16755CFF00819247 /* UCDMasterTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UCDMasterTableViewCell.m; sourceTree = "<group>"; };
+		3AE1E6DB167564C200819247 /* UCDMasterTableViewHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UCDMasterTableViewHeader.h; sourceTree = "<group>"; };
+		3AE1E6DC167564C200819247 /* UCDMasterTableViewHeader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UCDMasterTableViewHeader.m; sourceTree = "<group>"; };
 		5250BB6505B34302B0001798 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
@@ -281,6 +294,12 @@
 		3A34001016745CCE00C1B0A1 /* Table View */ = {
 			isa = PBXGroup;
 			children = (
+				3AE1E6C516755AE700819247 /* UCDMasterTableView.h */,
+				3AE1E6C616755AE700819247 /* UCDMasterTableView.m */,
+				3AE1E6CD16755CFF00819247 /* UCDMasterTableViewCell.h */,
+				3AE1E6CE16755CFF00819247 /* UCDMasterTableViewCell.m */,
+				3AE1E6DB167564C200819247 /* UCDMasterTableViewHeader.h */,
+				3AE1E6DC167564C200819247 /* UCDMasterTableViewHeader.m */,
 				3AB19146167000170098227C /* UCDPlaceCell.h */,
 				3AB19147167000170098227C /* UCDPlaceCell.m */,
 				3AD849871671A27E00159856 /* UCDTableView.h */,
@@ -350,6 +369,8 @@
 		3A7ADBE716705A1600362071 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				3AE1E6C916755B3300819247 /* UCDMasterTableViewBackground.png */,
+				3AE1E6CA16755B3300819247 /* UCDMasterTableViewBackground@2x.png */,
 				3A3400461675187900C1B0A1 /* Icon */,
 				3AD849651671779900159856 /* UCDBarButtonBackground.png */,
 				3AD849661671779900159856 /* UCDBarButtonBackground@2x.png */,
@@ -641,6 +662,8 @@
 				3A3400431675187400C1B0A1 /* Icon@2x.png in Resources */,
 				3A3400441675187400C1B0A1 /* iTunesArtwork.png in Resources */,
 				3A3400451675187400C1B0A1 /* iTunesArtwork@2x.png in Resources */,
+				3AE1E6CB16755B3300819247 /* UCDMasterTableViewBackground.png in Resources */,
+				3AE1E6CC16755B3300819247 /* UCDMasterTableViewBackground@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -707,6 +730,9 @@
 				3A34002316747C8F00C1B0A1 /* UCDMapGroupedTableViewCell.m in Sources */,
 				3A3400281674841200C1B0A1 /* UCDExtendedTextGroupedTableViewCell.m in Sources */,
 				3A34003116748AFF00C1B0A1 /* UCDSubtitleGroupedTableViewCell.m in Sources */,
+				3AE1E6C716755AE700819247 /* UCDMasterTableView.m in Sources */,
+				3AE1E6CF16755CFF00819247 /* UCDMasterTableViewCell.m in Sources */,
+				3AE1E6DD167564C200819247 /* UCDMasterTableViewHeader.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

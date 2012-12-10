@@ -52,7 +52,6 @@
 {
     self = [super initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:reuseIdentifier];
     if (self) {
-        
         self.distanceLabel = [[UCDBorderedLabel alloc] init];
         self.distanceLabel.font = [UIFont fontWithName:@"Gotham HTF Book" size:12.0];
         self.distanceLabel.borderColor = [UIColor colorWithRed:0.56 green:0.24 blue:0.24 alpha:1.0];
@@ -61,17 +60,6 @@
         self.distanceLabel.shouldFill = YES;
         self.distanceLabel.textEdgeInsets = UIEdgeInsetsMake(1.0, 2.0, 2.0, 2.0);
         [self.contentView addSubview:self.distanceLabel];
-        
-        self.textLabel.font = [UIFont fontWithName:@"Gotham HTF" size:17.0];
-        self.textLabel.backgroundColor = [UIColor clearColor];
-        self.textLabel.shadowColor = [UIColor whiteColor];
-        self.textLabel.shadowOffset = CGSizeMake(0.0, 1.0);
-        
-        self.detailTextLabel.font = [UIFont fontWithName:@"Gotham HTF Book" size:13.0];
-        self.detailTextLabel.backgroundColor = [UIColor clearColor];
-        self.detailTextLabel.textColor = [UIColor darkGrayColor];
-        self.detailTextLabel.shadowColor = [UIColor whiteColor];
-        self.detailTextLabel.shadowOffset = CGSizeMake(0.0, 1.0);
     }
     return self;
 }

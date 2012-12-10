@@ -11,8 +11,8 @@
 #import "UCDStyleManager.h"
 #import "UCDPlacesViewController.h"
 #import "UCDSettingsViewController.h"
-
-NSString * const UCDMasterViewControllerCellReuseIdentifier = @"MasterViewControllerCellReuseIdentifier";
+#import "UCDMasterTableView.h"
+#import "UCDMasterTableViewHeader.h"
 
 typedef NS_ENUM(NSUInteger, UCDMasterViewControllerTableViewSectionType) {
     UCDMasterViewControllerTableViewSectionTypePing,
@@ -53,11 +53,18 @@ typedef NS_ENUM(NSUInteger, UCDMasterViewControllerTableViewSectionType) {
     return self;
 }
 
+- (void)loadView
+{
+    self.tableView = [[UCDMasterTableView alloc] init];
+    self.tableView.delegate = self;
+    self.tableView.dataSource = self;
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     self.tableView.scrollsToTop = NO;
-    [self.tableView registerClass:UITableViewCell.class forCellReuseIdentifier:UCDMasterViewControllerCellReuseIdentifier];
+    [self.tableView registerClass:UCDMasterTableViewCell.class forCellReuseIdentifier:UCDMasterCellReuseIdentifier];
 }
 
 #pragma mark - UCDMasterViewController
@@ -132,9 +139,20 @@ typedef NS_ENUM(NSUInteger, UCDMasterViewControllerTableViewSectionType) {
     }
 }
 
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
+{
+    NSString *headerTitle = [self tableView:tableView titleForHeaderInSection:section];
+    if (headerTitle == nil) {
+        return nil;
+    }
+    UCDMasterTableViewHeader *headerView = [[UCDMasterTableViewHeader alloc] initWithFrame:CGRectZero];
+    headerView.title.text = [headerTitle uppercaseString];
+    return headerView;
+}
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:UCDMasterViewControllerCellReuseIdentifier forIndexPath:indexPath];
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:UCDMasterCellReuseIdentifier forIndexPath:indexPath];
     cell.textLabel.text = self.paneViewControllerTitles[@([self paneViewControllerTypeForIndexPath:indexPath])];
     return cell;
 }
