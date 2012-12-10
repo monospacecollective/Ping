@@ -7,7 +7,6 @@
 //
 
 #import "UCDPlace.h"
-#import "UCDPlace.h"
 
 @implementation UCDPlace
 
