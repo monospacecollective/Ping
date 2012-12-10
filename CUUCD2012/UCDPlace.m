@@ -16,7 +16,9 @@
 @dynamic latitude;
 @dynamic longitude;
 @dynamic accuracyRadius;
+@dynamic rating;
 @dynamic user;
+
 
 + (NSEntityDescription *)entityInManagedObjectContext:(NSManagedObjectContext *)context
 {
@@ -41,6 +43,23 @@
     CGFloat dLatitude = (self.latitude.floatValue - location.coordinate.latitude);
     CGFloat dLongitude = (self.longitude.floatValue - location.coordinate.longitude);
     return sqrt(dLatitude*dLatitude + dLongitude*dLongitude );
+}
+
+- (NSString *)starRating
+{
+    NSInteger rating = nearbyintf(([self.rating floatValue] * 5));
+    NSInteger emptyStars = 5.0 - rating;
+    
+    NSMutableString *starRating = [[NSMutableString alloc] init];
+    
+    for (int i = 0; i < rating; i++) {
+        [starRating appendString:@"★"];
+    }
+    for (int i = 0; i < emptyStars; i++) {
+        [starRating appendString:@"☆"];
+    }
+    
+    return starRating;
 }
 
 @end

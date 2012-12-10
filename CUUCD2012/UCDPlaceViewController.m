@@ -172,7 +172,7 @@ typedef NS_ENUM(NSUInteger, UCDPlaceTableViewSectionAttributesRow) {
                 }
                 case UCDPlaceTableViewSectionAttributesRowRating: {
                     cell.textLabel.text = @"Rating";
-                    cell.detailTextLabel.text = @"★★★★☆";
+                    cell.detailTextLabel.text = self.place.starRating;
                     break;
                 }
                 case UCDPlaceTableViewSectionAttributesRowFavorite: {
