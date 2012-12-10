@@ -10,6 +10,8 @@
 
 typedef NS_ENUM(NSUInteger, UCDPaneViewControllerType) {
     UCDPaneViewControllerTypePlaces,
+    UCDPaneViewControllerTypeMap,
+    UCDPaneViewControllerTypePings,
     UCDPaneViewControllerTypeSettings,
     UCDPaneViewControllerTypeCount,
 };

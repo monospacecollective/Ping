@@ -38,11 +38,15 @@ typedef NS_ENUM(NSUInteger, UCDMasterViewControllerTableViewSectionType) {
     if (self) {
         self.paneViewControllerType = NSUIntegerMax;
         self.paneViewControllerTitles = @{
-            @(UCDPaneViewControllerTypePlaces) : @"Places",
+            @(UCDPaneViewControllerTypePlaces) : @"Nearby Places",
+            @(UCDPaneViewControllerTypeMap) : @"Map",
+            @(UCDPaneViewControllerTypePings) : @"Pings",
             @(UCDPaneViewControllerTypeSettings) : @"Settings",
         };
         self.paneViewControllerClasses = @{
             @(UCDPaneViewControllerTypePlaces) : UCDPlacesViewController.class,
+            @(UCDPaneViewControllerTypeMap) : UCDTableViewController.class,
+            @(UCDPaneViewControllerTypePings) : UCDTableViewController.class,
             @(UCDPaneViewControllerTypeSettings) : UCDSettingsViewController.class,
         };
         self.tableViewSectionBreaks = @[
