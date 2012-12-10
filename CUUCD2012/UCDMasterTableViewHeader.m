@@ -61,12 +61,8 @@
 - (void)layoutSubviews
 {
     [super layoutSubviews];
-    
     self.gradient.frame = self.bounds;
-    
-    CGFloat labelHorizontalInset = 10.0;
-    self.title.frame = CGRectMake(labelHorizontalInset, 0.0, (CGRectGetWidth(self.frame) - (labelHorizontalInset * 2.0)), CGRectGetHeight(self.frame));
-    
+    self.title.frame = CGRectInset(self.bounds, 10.0, 0.0);
     self.bottomShadowLine.frame = CGRectMake(0.0, (CGRectGetHeight(self.frame) - 1.0), self.frame.size.width, 1.0);
     self.topShadowLine.frame = CGRectMake(0.0, -1.0, CGRectGetWidth(self.frame), 1.0);
     self.topHighlightLine.frame = CGRectMake(0.0, 0.0, CGRectGetWidth(self.frame), 1.0);

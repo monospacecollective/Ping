@@ -17,7 +17,9 @@
         self.highlightColor = [[UIColor whiteColor] colorWithAlphaComponent:0.075];
         self.shadowColor = [[UIColor blackColor] colorWithAlphaComponent:0.7];
         self.selectionColor = [[UIColor blackColor] colorWithAlphaComponent:0.1];
-        self.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"UCDMasterTableViewBackground"]];
+        UIView *backgroundView = [[UIView alloc] init];
+        backgroundView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"UCDMasterTableViewBackground"]];
+        self.backgroundView = backgroundView;
     }
     return self;
 }
