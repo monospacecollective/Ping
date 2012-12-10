@@ -163,6 +163,7 @@ typedef NS_ENUM(NSUInteger, UCDSettingsTableViewSectionAboutRow) {
 {
     switch (indexPath.section) {
         case UCDSettingsTableViewSectionSignOut: {
+            [self.tableView deselectRowAtIndexPath:self.tableView.indexPathForSelectedRow animated:YES];
             UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Warning" message:@"Are you sure you want to sign out? You will lose all data associated with your account and will not be able to sign back in." delegate:nil cancelButtonTitle:@"Cancel" otherButtonTitles:@"Sign Out", nil];
             A2DynamicDelegate *dynamicDelegate = alertView.dynamicDelegate;
             [dynamicDelegate implementMethod:@selector(alertView:didDismissWithButtonIndex:) withBlock:^(UIAlertView *alertView, NSInteger buttonIndex) {
