@@ -16,6 +16,9 @@
 @dynamic longitude;
 @dynamic accuracyRadius;
 @dynamic rating;
+@dynamic peopleHere;
+@dynamic phone;
+@dynamic website;
 @dynamic user;
 
 
@@ -65,6 +68,11 @@
     }
     
     return starRating;
+}
+
+- (NSString *)peopleHereDescripton
+{
+    return [NSString stringWithFormat:@"%d", [self.peopleHere integerValue]];
 }
 
 @end

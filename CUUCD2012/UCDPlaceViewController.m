@@ -166,7 +166,7 @@ typedef NS_ENUM(NSUInteger, UCDPlaceTableViewSectionAttributesRow) {
             switch (indexPath.row) {
                 case UCDPlaceTableViewSectionAttributesRowPeopleHere: {
                     cell.textLabel.text = @"People Here";
-                    cell.detailTextLabel.text = @"5";
+                    cell.detailTextLabel.text = self.place.peopleHereDescripton;
                     break;
                 }
                 case UCDPlaceTableViewSectionAttributesRowRating: {

@@ -8,9 +8,11 @@
 
 #import "UCDTableViewCell.h"
 #import "UCDBorderedLabel.h"
+#import "UCDPopularityView.h"
 
 @interface UCDPlaceCell : UCDTableViewCell
 
 @property (nonatomic, strong) UCDBorderedLabel *distanceLabel;
+@property (nonatomic, strong) UCDPopularityView *popularityView;
 
 @end

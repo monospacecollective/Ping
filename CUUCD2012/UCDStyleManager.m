@@ -209,4 +209,22 @@ static UCDStyleManager *singletonInstance = nil;
     return button;
 }
 
+#pragma mark - Popularity View
+
+- (UCDPopularityView *)calloutPopularityView
+{
+    UCDPopularityView *popularityView = [[UCDPopularityView alloc] init];
+    popularityView.fillView.backgroundColor = [UIColor colorWithRed:0.56 green:0.24 blue:0.24 alpha:1.0];
+    popularityView.borderView.layer.borderColor = [[[UIColor whiteColor] colorWithAlphaComponent:0.7] CGColor];
+    popularityView.borderView.layer.shadowColor = [[[UIColor blackColor] colorWithAlphaComponent:0.5] CGColor];
+    popularityView.borderView.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0.2];
+    popularityView.borderView.layer.shadowOffset = CGSizeMake(0.0, -1.0);
+    popularityView.fillView.layer.borderWidth = 0.0;
+    popularityView.fillView.layer.shadowColor = [[UIColor colorWithRed:0.65 green:0.30 blue:0.30 alpha:1.0] CGColor];
+    popularityView.fillView.layer.shadowOpacity = 1.0;
+    popularityView.fillView.layer.shadowOffset = CGSizeMake(0.0, -1.0);
+    popularityView.fillView.layer.shadowRadius = 0.0;
+    return popularityView;
+}
+
 @end

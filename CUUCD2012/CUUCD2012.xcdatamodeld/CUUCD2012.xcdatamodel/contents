@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model name="" userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="1810" systemVersion="12C60" minimumToolsVersion="Automatic" macOSVersion="Automatic" iOSVersion="Automatic">
+<model name="" userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="1811" systemVersion="12C2034" minimumToolsVersion="Automatic" macOSVersion="Automatic" iOSVersion="Automatic">
     <entity name="Ping" representedClassName="UCDPing" syncable="YES">
         <attribute name="accuracyRadius" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
         <attribute name="latitude" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
@@ -12,6 +12,7 @@
         <attribute name="latitude" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
         <attribute name="longitude" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="peopleHere" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <attribute name="rating" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
         <relationship name="usersFavorited" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="User" inverseName="favoritePlaces" inverseEntity="User" syncable="YES"/>
     </entity>
@@ -26,7 +27,7 @@
     </entity>
     <elements>
         <element name="Ping" positionX="160" positionY="192" width="128" height="105"/>
-        <element name="Place" positionX="160" positionY="192" width="128" height="150"/>
+        <element name="Place" positionX="160" positionY="192" width="128" height="165"/>
         <element name="User" positionX="160" positionY="192" width="128" height="150"/>
     </elements>
 </model>

@@ -13,6 +13,7 @@
 #import "UCDAppDelegate.h"
 #import "UCDPlaceAnnotation.h"
 #import "UCDPlaceViewController.h"
+#import "UCDPopularityView.h"
 
 NSString * const UCDMapViewControllerPlaceAnnotationReuseIdentifier = @"MapViewControllerPlaceAnnotationReuseIdentifier";
 CGFloat const UCDMapViewControllerZoomRegion = 1250.0;
@@ -21,10 +22,12 @@ CGFloat const UCDMapViewControllerZoomRegion = 1250.0;
 
 @property (nonatomic, strong) MKMapView *mapView;
 @property (nonatomic, strong) NSFetchedResultsController *fetchedResultsController;
+@property (nonatomic, strong) NSNumber *maxPeopleHere;
 
 - (void)zoomToUserAnimated:(BOOL)animated;
 - (void)addPlaceAnnotations;
 - (void)removePlaceAnnotations;
+- (void)updateMaxPeopleHere;
 - (UCDPlaceAnnotation *)annotationForPlace:(UCDPlace *)place;
 
 @end
@@ -57,7 +60,7 @@ CGFloat const UCDMapViewControllerZoomRegion = 1250.0;
     self.fetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest managedObjectContext:self.managedObjectContext sectionNameKeyPath:nil cacheName:nil];
     self.fetchedResultsController.delegate = self;
     [self.fetchedResultsController performFetch:nil];
-    [self addPlaceAnnotations];
+    [self updateMaxPeopleHere];
     
 }
 
@@ -78,6 +81,7 @@ CGFloat const UCDMapViewControllerZoomRegion = 1250.0;
 {
     NSMutableArray *placeAnnotations = [NSMutableArray array];
     for (UCDPlace *place in self.fetchedResultsController.fetchedObjects) {
+        
         UCDPlaceAnnotation *placeAnnotation = [[UCDPlaceAnnotation alloc] initWithPlace:place];
         [placeAnnotations addObject:placeAnnotation];
     }
@@ -101,6 +105,22 @@ CGFloat const UCDMapViewControllerZoomRegion = 1250.0;
         }
     }
     return nil;
+}
+
+- (void)updateMaxPeopleHere
+{
+    NSUInteger maxPeopleHere = 0;
+    for (UCDPlace *place in self.fetchedResultsController.fetchedObjects) {
+        NSUInteger peopleHere = [place.peopleHere integerValue];
+        if (peopleHere > maxPeopleHere) {
+            maxPeopleHere = peopleHere;
+        }
+    }
+    if ([self.maxPeopleHere integerValue] != maxPeopleHere) {
+        self.maxPeopleHere = @(maxPeopleHere);
+        [self removePlaceAnnotations];
+        [self addPlaceAnnotations];
+    }
 }
 
 #pragma mark - NSFetchedResultsControllerDelegate
@@ -145,6 +165,11 @@ CGFloat const UCDMapViewControllerZoomRegion = 1250.0;
         pinAnnotation.annotation = annotation;
         pinAnnotation.canShowCallout = YES;
         pinAnnotation.rightCalloutAccessoryView = [[UCDStyleManager sharedManager] disclosureButton];
+        
+        UCDPopularityView *popularityView = [[UCDStyleManager sharedManager] calloutPopularityView];
+        popularityView.fill = ([annotation.place.peopleHere floatValue] / [self.maxPeopleHere floatValue]);
+        pinAnnotation.leftCalloutAccessoryView = popularityView;
+        
         return pinAnnotation;
     } else {
         return nil;

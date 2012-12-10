@@ -40,6 +40,9 @@ static NSString * const kCUUCD2012APIBaseURLString = @"http://ping.monospacecoll
     NSMutableDictionary *mutablePropertyValues = [[super attributesForRepresentation:representation ofEntity:entity fromResponse:response] mutableCopy];
     
     // Customize the response object to fit the expected attribute keys and values  
+    if ([entity.name isEqualToString:@"Place"]) {
+        [mutablePropertyValues setValue:@([[representation valueForKey:@"people_here"] integerValue]) forKey:@"peopleHere"];
+    }
     
     return mutablePropertyValues;
 }

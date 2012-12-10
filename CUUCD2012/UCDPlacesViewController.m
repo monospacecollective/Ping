@@ -19,8 +19,10 @@ NSString * const UCDPlaceCellIdentifier = @"PlaceCell";
 @interface UCDPlacesViewController () <NSFetchedResultsControllerDelegate>
 
 @property (nonatomic, strong) NSFetchedResultsController *fetchedResultsController;
+@property (nonatomic, strong) NSNumber *maxPeopleHere;
 
 - (void)configureCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath;
+- (void)updateMaxPeopleHere;
 
 @end
 
@@ -39,8 +41,11 @@ NSString * const UCDPlaceCellIdentifier = @"PlaceCell";
 {
     [super viewDidLoad];
     
+    self.maxPeopleHere = @(MAXFLOAT);
+    
     [[NSNotificationCenter defaultCenter] addObserver:self.tableView selector:@selector(reloadData) name:UCDNotificationLocationManagerDidUpdate object:nil];
-
+    [self.tableView registerClass:UCDPlaceCell.class forCellReuseIdentifier:UCDPlaceCellIdentifier];
+    
     self.navigationItem.titleView = [[UCDNavigationTitleView alloc] initWithTitle:@"Ping" subtitle:@"Nearby Places"];
     [[UCDStyleManager sharedManager] styleToolbar:self.navigationController.toolbar];
     
@@ -55,21 +60,11 @@ NSString * const UCDPlaceCellIdentifier = @"PlaceCell";
     refreshView.delegate = (id<SSPullToRefreshViewDelegate>)refreshViewDelegate;
     
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] initWithEntityName:@"Place"];
-    fetchRequest.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"name" ascending:YES]];
+    fetchRequest.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"peopleHere" ascending:NO], [NSSortDescriptor sortDescriptorWithKey:@"name" ascending:YES]];
     self.fetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest managedObjectContext:self.managedObjectContext sectionNameKeyPath:nil cacheName:nil];
     self.fetchedResultsController.delegate = self;
     [self.fetchedResultsController performFetch:nil];
-    
-    [self.tableView registerClass:UCDPlaceCell.class forCellReuseIdentifier:UCDPlaceCellIdentifier];
-    
-    //    fetchRequest.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"location" ascending:YES comparator:^NSComparisonResult(CLLocation *location1, CLLocation *location2) {
-    //        if (blockSelf.locationManager.location == nil) {
-    //            return NSOrderedSame;
-    //        }
-    //        CLLocationDistance distance1 = [location1 distanceFromLocation:blockSelf.locationManager.location];
-    //        CLLocationDistance distance2 = [location2 distanceFromLocation:blockSelf.locationManager.location];
-    //        return [@(distance1) compare:@(distance2)];
-    //    }]];
+    [self updateMaxPeopleHere];
 }
 
 - (void)didReceiveMemoryWarning
@@ -86,11 +81,29 @@ NSString * const UCDPlaceCellIdentifier = @"PlaceCell";
     cell.textLabel.text = place.name;
     cell.detailTextLabel.text = place.detail;
     
+    CGFloat fill = (place.peopleHere.floatValue / self.maxPeopleHere.floatValue);
+    cell.popularityView.fill = fill;
+    
     TTTLocationFormatter *locationFormatter = [[TTTLocationFormatter alloc] init];
     [locationFormatter setBearingStyle:TTTBearingAbbreviationWordStyle];
     [locationFormatter setUnitSystem:TTTImperialSystem];
     locationFormatter.numberFormatter.maximumSignificantDigits = 1;
     cell.distanceLabel.text = [locationFormatter stringFromDistanceFromLocation:[UCDAppDelegate sharedAppDelegate].locationManager.location toLocation:place.location];
+}
+
+- (void)updateMaxPeopleHere
+{
+    NSUInteger maxPeopleHere = 0;
+    for (UCDPlace *place in self.fetchedResultsController.fetchedObjects) {
+        NSUInteger peopleHere = [place.peopleHere integerValue];
+        if (peopleHere > maxPeopleHere) {
+            maxPeopleHere = peopleHere;
+        }
+    }
+    if ([self.maxPeopleHere integerValue] != maxPeopleHere) {
+        self.maxPeopleHere = @(maxPeopleHere);
+        [self.tableView reloadData];
+    }
 }
 
 #pragma mark - UITableViewDataSource
@@ -129,6 +142,7 @@ NSString * const UCDPlaceCellIdentifier = @"PlaceCell";
 
 - (void)controllerWillChangeContent:(NSFetchedResultsController *)controller
 {
+    [self updateMaxPeopleHere];
     [self.tableView beginUpdates];
 }
 

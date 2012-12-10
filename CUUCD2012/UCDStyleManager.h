@@ -6,6 +6,8 @@
 //  Copyright (c) 2012 Team 11. All rights reserved.
 //
 
+#import "UCDPopularityView.h"
+
 @interface UCDStyleManager : NSObject
 
 + (UCDStyleManager *)sharedManager;
@@ -35,5 +37,8 @@
 
 // Button
 - (UIButton *)disclosureButton;
+
+// Popularity View
+- (UCDPopularityView *)calloutPopularityView;
 
 @end

@@ -14,6 +14,9 @@
 @property (nonatomic, retain) NSNumber * longitude;
 @property (nonatomic, retain) NSNumber * accuracyRadius;
 @property (nonatomic, retain) NSNumber * rating;
+@property (nonatomic, retain) NSNumber * peopleHere;
+@property (nonatomic, retain) NSNumber * phone;
+@property (nonatomic, retain) NSNumber * website;
 @property (nonatomic, retain) UCDPlace *user;
 
 - (CLLocation *)location;
@@ -21,5 +24,6 @@
 - (CGFloat)distanceFromPlace:(UCDPlace *)place;
 - (CGFloat)distanceFromLocation:(CLLocation *)place;
 - (NSString *)starRating;
+- (NSString *)peopleHereDescripton;
 
 @end
