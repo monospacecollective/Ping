@@ -13,11 +13,13 @@
 @property (nonatomic, retain) NSNumber * latitude;
 @property (nonatomic, retain) NSNumber * longitude;
 @property (nonatomic, retain) NSNumber * accuracyRadius;
+@property (nonatomic, retain) NSNumber * rating;
 @property (nonatomic, retain) UCDPlace *user;
 
 - (CLLocation *)location;
 - (CLLocationCoordinate2D)coordinate;
 - (CGFloat)distanceFromPlace:(UCDPlace *)place;
 - (CGFloat)distanceFromLocation:(CLLocation *)place;
+- (NSString *)starRating;
 
 @end
