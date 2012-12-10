@@ -54,7 +54,7 @@
     if ((self.numberOfSections != 0) && ([self numberOfRowsInSection:0] != 0)) {
         
         NSInteger maxSection = ([self.dataSource numberOfSectionsInTableView:self] - 1);
-        NSInteger maxRow = ([self.dataSource tableView:self numberOfRowsInSection:(maxSection - 1)] - 1);
+        NSInteger maxRow = ([self.dataSource tableView:self numberOfRowsInSection:maxSection] - 1);
         CGRect bottomCellRect = [self rectForRowAtIndexPath:[NSIndexPath indexPathForRow:maxRow inSection:maxSection]];
         CGRect topCellRect = [self rectForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]];
         
