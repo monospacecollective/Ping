@@ -39,12 +39,36 @@ static NSString * const kCUUCD2012APIBaseURLString = @"http://ping.monospacecoll
 {
     NSMutableDictionary *mutablePropertyValues = [[super attributesForRepresentation:representation ofEntity:entity fromResponse:response] mutableCopy];
     
-    // Customize the response object to fit the expected attribute keys and values  
     if ([entity.name isEqualToString:@"Place"]) {
         [mutablePropertyValues setValue:@([[representation valueForKey:@"people_here"] integerValue]) forKey:@"peopleHere"];
     }
+    if ([entity.name isEqualToString:@"User"]) {
+        if (![[representation valueForKey:@"location_accuracy_radius"] isKindOfClass:NSNull.class]) {
+            [mutablePropertyValues setValue:@([[representation valueForKey:@"location_accuracy_radius"] integerValue]) forKey:@"locationAccuracyRadius"];
+        }
+        if (![[representation valueForKey:@"location_collection_interval"] isKindOfClass:NSNull.class]) {
+            [mutablePropertyValues setValue:@([[representation valueForKey:@"location_collection_interval"] integerValue]) forKey:@"locationCollectionInterval"];
+        }
+        [mutablePropertyValues setValue:[representation valueForKey:@"gender"] forKey:@"gender"];
+        [mutablePropertyValues setValue:[representation valueForKey:@"occupation"] forKey:@"occupation"];
+    }
     
     return mutablePropertyValues;
+}
+
+- (NSDictionary *)representationOfAttributes:(NSDictionary *)attributes
+                             ofManagedObject:(NSManagedObject *)managedObject
+
+{
+    if ([managedObject.entity.name isEqualToString:@"User"]) {
+        NSMutableDictionary *mutableAttributes = [NSMutableDictionary dictionaryWithDictionary:attributes];
+        [mutableAttributes setValue:nil forKey:@"locationAccuracyRadius"];
+        [mutableAttributes setValue:nil forKey:@"locationCollectionInterval"];
+        [mutableAttributes setValue:[attributes valueForKey:@"locationAccuracyRadius"] forKey:@"location_accuracy_radius"];
+        [mutableAttributes setValue:[attributes valueForKey:@"locationCollectionInterval"] forKey:@"location_collection_interval"];
+        return @{@"user" : mutableAttributes};
+    }
+    return attributes;
 }
 
 - (BOOL)shouldFetchRemoteAttributeValuesForObjectWithID:(NSManagedObjectID *)objectID
