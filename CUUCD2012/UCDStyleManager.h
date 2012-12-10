@@ -33,4 +33,7 @@
 // Pull to refresh
 - (SSPullToRefreshView *)pullToRefreshViewWithScrollView:(UIScrollView *)scrollView;
 
+// Button
+- (UIButton *)disclosureButton;
+
 @end

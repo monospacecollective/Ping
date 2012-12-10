@@ -11,6 +11,8 @@
 #import "UCDStyleManager.h"
 #import "UCDPlace.h"
 #import "UCDAppDelegate.h"
+#import "UCDPlaceAnnotation.h"
+#import "UCDPlaceViewController.h"
 
 NSString * const UCDMapViewControllerPlaceAnnotationReuseIdentifier = @"MapViewControllerPlaceAnnotationReuseIdentifier";
 CGFloat const UCDMapViewControllerZoomRegion = 5000.0;
@@ -71,30 +73,52 @@ CGFloat const UCDMapViewControllerZoomRegion = 5000.0;
 
 - (void)controllerWillChangeContent:(NSFetchedResultsController *)controller
 {
-    [self.mapView removeAnnotations:self.fetchedResultsController.fetchedObjects];
+    for (id<MKAnnotation>annotation in self.mapView.annotations) {
+        if ([annotation isKindOfClass:UCDPlaceAnnotation.class]) {
+            [self.mapView removeAnnotation:annotation];
+        }
+    }
 }
 
 - (void)controllerDidChangeContent:(NSFetchedResultsController *)controller
 {
-    [self.mapView addAnnotations:self.fetchedResultsController.fetchedObjects];
+    NSMutableArray *placeAnnotations = [NSMutableArray array];
+    for (UCDPlace *place in controller.fetchedObjects) {
+        UCDPlaceAnnotation *placeAnnotation = [[UCDPlaceAnnotation alloc] init];
+        [placeAnnotation setPlace:place];
+        [placeAnnotations addObject:placeAnnotation];
+    }
+    [self.mapView addAnnotations:placeAnnotations];
 }
 
 #pragma mark - MKMapViewDelegate
 
-- (MKAnnotationView *)mapView:(MKMapView *)theMapView viewForAnnotation:(id<MKAnnotation>)annotation
+- (MKAnnotationView *)mapView:(MKMapView *)theMapView viewForAnnotation:(UCDPlaceAnnotation *)annotation
 {
-    if ([annotation isKindOfClass:UCDPlace.class]) {
+    if ([annotation isKindOfClass:UCDPlaceAnnotation.class]) {
         MKPinAnnotationView *pinAnnotation = (MKPinAnnotationView *)[self.mapView dequeueReusableAnnotationViewWithIdentifier:UCDMapViewControllerPlaceAnnotationReuseIdentifier];
         if (pinAnnotation == nil) {
             pinAnnotation = [[MKPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:UCDMapViewControllerPlaceAnnotationReuseIdentifier];
-            pinAnnotation.animatesDrop = YES;
-        } else {
-            pinAnnotation.annotation = annotation;
         }
+        pinAnnotation.annotation = annotation;
+        pinAnnotation.canShowCallout = YES;
+        pinAnnotation.rightCalloutAccessoryView = [[UCDStyleManager sharedManager] disclosureButton];
         return pinAnnotation;
     } else {
         return nil;
     }
+}
+
+- (void)mapView:(MKMapView *)mapView annotationView:(MKAnnotationView *)view calloutAccessoryControlTapped:(UIControl *)control
+{
+    UCDPlaceAnnotation *placeAnnotation = view.annotation;
+    UCDPlaceViewController *placeViewController = [[UCDPlaceViewController alloc] initWithNibName:nil bundle:nil];
+    placeViewController.place = placeAnnotation.place;
+    __weak typeof(self) blockSelf = self;
+    placeViewController.navigationItem.leftBarButtonItem = [[UCDStyleManager sharedManager] backBarButtonItemWithTitle:@"Back" action:^{
+        [blockSelf.navigationController popViewControllerAnimated:YES];
+    }];
+    [self.navigationController pushViewController:placeViewController animated:YES];
 }
 
 @end

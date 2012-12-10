@@ -88,6 +88,9 @@
 		3AB1914B167001E40098227C /* UCDSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AB1914A167001E40098227C /* UCDSettingsViewController.m */; };
 		3AD33C7A16765D83001C179F /* UCDMapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AD33C7916765D83001C179F /* UCDMapViewController.m */; };
 		3AD33C8B16766A46001C179F /* ssstandard.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3AD33C8A16766A46001C179F /* ssstandard.ttf */; };
+		3AD33CA11676729E001C179F /* UCDPlaceAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AD33CA01676729E001C179F /* UCDPlaceAnnotation.m */; };
+		3AD33CA41676740F001C179F /* UCDDisclosureIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 3AD33CA21676740F001C179F /* UCDDisclosureIcon.png */; };
+		3AD33CA51676740F001C179F /* UCDDisclosureIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3AD33CA31676740F001C179F /* UCDDisclosureIcon@2x.png */; };
 		3AD849691671779900159856 /* UCDBarButtonBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = 3AD849651671779900159856 /* UCDBarButtonBackground.png */; };
 		3AD8496A1671779900159856 /* UCDBarButtonBackground@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3AD849661671779900159856 /* UCDBarButtonBackground@2x.png */; };
 		3AD8496B1671779900159856 /* UCDBarButtonBackgroundPressed.png in Resources */ = {isa = PBXBuildFile; fileRef = 3AD849671671779900159856 /* UCDBarButtonBackgroundPressed.png */; };
@@ -224,6 +227,10 @@
 		3AD33C7816765D83001C179F /* UCDMapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UCDMapViewController.h; sourceTree = "<group>"; };
 		3AD33C7916765D83001C179F /* UCDMapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UCDMapViewController.m; sourceTree = "<group>"; };
 		3AD33C8A16766A46001C179F /* ssstandard.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = ssstandard.ttf; sourceTree = "<group>"; };
+		3AD33C9F1676729E001C179F /* UCDPlaceAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UCDPlaceAnnotation.h; sourceTree = "<group>"; };
+		3AD33CA01676729E001C179F /* UCDPlaceAnnotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UCDPlaceAnnotation.m; sourceTree = "<group>"; };
+		3AD33CA21676740F001C179F /* UCDDisclosureIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = UCDDisclosureIcon.png; sourceTree = "<group>"; };
+		3AD33CA31676740F001C179F /* UCDDisclosureIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "UCDDisclosureIcon@2x.png"; sourceTree = "<group>"; };
 		3AD849651671779900159856 /* UCDBarButtonBackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = UCDBarButtonBackground.png; sourceTree = "<group>"; };
 		3AD849661671779900159856 /* UCDBarButtonBackground@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "UCDBarButtonBackground@2x.png"; sourceTree = "<group>"; };
 		3AD849671671779900159856 /* UCDBarButtonBackgroundPressed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = UCDBarButtonBackgroundPressed.png; sourceTree = "<group>"; };
@@ -375,6 +382,8 @@
 		3A7ADBE716705A1600362071 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				3AD33CA21676740F001C179F /* UCDDisclosureIcon.png */,
+				3AD33CA31676740F001C179F /* UCDDisclosureIcon@2x.png */,
 				3AE1E6C916755B3300819247 /* UCDMasterTableViewBackground.png */,
 				3AE1E6CA16755B3300819247 /* UCDMasterTableViewBackground@2x.png */,
 				3A3400461675187900C1B0A1 /* Icon */,
@@ -568,6 +577,8 @@
 				3A34000E16745CC400C1B0A1 /* Grouped Table View */,
 				3A34001216745CF700C1B0A1 /* Welcome Steps */,
 				3A34001116745CEA00C1B0A1 /* Welcome Pages */,
+				3AD33C9F1676729E001C179F /* UCDPlaceAnnotation.h */,
+				3AD33CA01676729E001C179F /* UCDPlaceAnnotation.m */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -673,6 +684,8 @@
 				3AE1E6CB16755B3300819247 /* UCDMasterTableViewBackground.png in Resources */,
 				3AE1E6CC16755B3300819247 /* UCDMasterTableViewBackground@2x.png in Resources */,
 				3AD33C8B16766A46001C179F /* ssstandard.ttf in Resources */,
+				3AD33CA41676740F001C179F /* UCDDisclosureIcon.png in Resources */,
+				3AD33CA51676740F001C179F /* UCDDisclosureIcon@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -743,6 +756,7 @@
 				3AE1E6CF16755CFF00819247 /* UCDMasterTableViewCell.m in Sources */,
 				3AE1E6DD167564C200819247 /* UCDMasterTableViewHeader.m in Sources */,
 				3AD33C7A16765D83001C179F /* UCDMapViewController.m in Sources */,
+				3AD33CA11676729E001C179F /* UCDPlaceAnnotation.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -820,6 +834,7 @@
 				GCC_PREFIX_HEADER = "CUUCD2012/CUUCD2012-Prefix.pch";
 				INFOPLIST_FILE = "CUUCD2012/CUUCD2012-Info.plist";
 				PRODUCT_NAME = Ping;
+				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -832,6 +847,7 @@
 				GCC_PREFIX_HEADER = "CUUCD2012/CUUCD2012-Prefix.pch";
 				INFOPLIST_FILE = "CUUCD2012/CUUCD2012-Info.plist";
 				PRODUCT_NAME = Ping;
+				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

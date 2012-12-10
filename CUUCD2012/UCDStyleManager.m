@@ -183,7 +183,7 @@ static UCDStyleManager *singletonInstance = nil;
     return barButtonItem;
 }
 
-#pragma mark - Pull to refresh
+#pragma mark - Pull to Refresh
 
 - (SSPullToRefreshView *)pullToRefreshViewWithScrollView:(UIScrollView *)scrollView
 {
@@ -195,6 +195,18 @@ static UCDStyleManager *singletonInstance = nil;
     defaultContentView.statusLabel.shadowOffset = CGSizeMake(0.0, 1.0);
     refreshView.contentView = defaultContentView;
     return refreshView;
+}
+
+#pragma mark - Button
+
+- (UIButton *)disclosureButton
+{
+    UIButton *button = [UIButton buttonWithType:UIButtonTypeDetailDisclosure];
+    UIImage *disclosureIcon = [UIImage imageNamed:@"UCDDisclosureIcon"];
+    [button setImage:disclosureIcon forState:UIControlStateNormal];
+    [button setImage:[disclosureIcon darkenedImageWithOverlayAlpha:0.3] forState:UIControlStateHighlighted];
+    [button setFrame:CGRectMake(0.0, 0.0, disclosureIcon.size.width, disclosureIcon.size.height)];
+    return button;
 }
 
 @end
