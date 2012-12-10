@@ -1,7 +1,7 @@
 #import "CUUCD2012APIClient.h"
 #import "AFJSONRequestOperation.h"
 
-static NSString * const kCUUCD2012APIBaseURLString = @"http://mighty-ravine-3570.herokuapp.com/";
+static NSString * const kCUUCD2012APIBaseURLString = @"http://ping.monospacecollective.com/";
 
 @implementation CUUCD2012APIClient
 
