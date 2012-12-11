@@ -68,6 +68,12 @@ static NSString * const kCUUCD2012APIBaseURLString = @"http://ping.monospacecoll
         [mutableAttributes setValue:[attributes valueForKey:@"locationCollectionInterval"] forKey:@"location_collection_interval"];
         return @{@"user" : mutableAttributes};
     }
+    if ([managedObject.entity.name isEqualToString:@"Ping"]) {
+        NSMutableDictionary *mutableAttributes = [NSMutableDictionary dictionaryWithDictionary:attributes];
+        [mutableAttributes setValue:nil forKey:@"accuracyRadius"];
+        [mutableAttributes setValue:[attributes valueForKey:@"accuracyRadius"] forKey:@"accuracy_radius"];
+        return @{@"ping" : mutableAttributes};
+    }
     return attributes;
 }
 

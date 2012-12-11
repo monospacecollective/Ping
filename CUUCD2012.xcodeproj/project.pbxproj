@@ -92,6 +92,9 @@
 		3AD33CA41676740F001C179F /* UCDDisclosureIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 3AD33CA21676740F001C179F /* UCDDisclosureIcon.png */; };
 		3AD33CA51676740F001C179F /* UCDDisclosureIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3AD33CA31676740F001C179F /* UCDDisclosureIcon@2x.png */; };
 		3AD33CA816768A02001C179F /* UCDPopularityView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AD33CA716768A02001C179F /* UCDPopularityView.m */; };
+		3AD33CB71676A949001C179F /* UCDPing.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AD33CB61676A949001C179F /* UCDPing.m */; };
+		3AD33CBA1676AA46001C179F /* UCDPingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AD33CB91676AA46001C179F /* UCDPingsViewController.m */; };
+		3AD33CBD1676B06D001C179F /* UCDPingCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AD33CBC1676B06D001C179F /* UCDPingCell.m */; };
 		3AD849691671779900159856 /* UCDBarButtonBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = 3AD849651671779900159856 /* UCDBarButtonBackground.png */; };
 		3AD8496A1671779900159856 /* UCDBarButtonBackground@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3AD849661671779900159856 /* UCDBarButtonBackground@2x.png */; };
 		3AD8496B1671779900159856 /* UCDBarButtonBackgroundPressed.png in Resources */ = {isa = PBXBuildFile; fileRef = 3AD849671671779900159856 /* UCDBarButtonBackgroundPressed.png */; };
@@ -234,6 +237,12 @@
 		3AD33CA31676740F001C179F /* UCDDisclosureIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "UCDDisclosureIcon@2x.png"; sourceTree = "<group>"; };
 		3AD33CA616768A02001C179F /* UCDPopularityView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UCDPopularityView.h; sourceTree = "<group>"; };
 		3AD33CA716768A02001C179F /* UCDPopularityView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UCDPopularityView.m; sourceTree = "<group>"; };
+		3AD33CB51676A949001C179F /* UCDPing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UCDPing.h; sourceTree = "<group>"; };
+		3AD33CB61676A949001C179F /* UCDPing.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UCDPing.m; sourceTree = "<group>"; };
+		3AD33CB81676AA45001C179F /* UCDPingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UCDPingsViewController.h; sourceTree = "<group>"; };
+		3AD33CB91676AA46001C179F /* UCDPingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UCDPingsViewController.m; sourceTree = "<group>"; };
+		3AD33CBB1676B06D001C179F /* UCDPingCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UCDPingCell.h; sourceTree = "<group>"; };
+		3AD33CBC1676B06D001C179F /* UCDPingCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UCDPingCell.m; sourceTree = "<group>"; };
 		3AD849651671779900159856 /* UCDBarButtonBackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = UCDBarButtonBackground.png; sourceTree = "<group>"; };
 		3AD849661671779900159856 /* UCDBarButtonBackground@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "UCDBarButtonBackground@2x.png"; sourceTree = "<group>"; };
 		3AD849671671779900159856 /* UCDBarButtonBackgroundPressed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = UCDBarButtonBackgroundPressed.png; sourceTree = "<group>"; };
@@ -315,6 +324,8 @@
 				3AE1E6CE16755CFF00819247 /* UCDMasterTableViewCell.m */,
 				3AE1E6DB167564C200819247 /* UCDMasterTableViewHeader.h */,
 				3AE1E6DC167564C200819247 /* UCDMasterTableViewHeader.m */,
+				3AD33CBB1676B06D001C179F /* UCDPingCell.h */,
+				3AD33CBC1676B06D001C179F /* UCDPingCell.m */,
 				3AB19146167000170098227C /* UCDPlaceCell.h */,
 				3AB19147167000170098227C /* UCDPlaceCell.m */,
 				3AD849871671A27E00159856 /* UCDTableView.h */,
@@ -513,6 +524,8 @@
 			isa = PBXGroup;
 			children = (
 				3AB190BB166FBF990098227C /* CUUCD2012.xcdatamodeld */,
+				3AD33CB51676A949001C179F /* UCDPing.h */,
+				3AD33CB61676A949001C179F /* UCDPing.m */,
 				3AB190DB166FE3910098227C /* UCDPlace.h */,
 				3AB190DC166FE3910098227C /* UCDPlace.m */,
 				3A7ADBDB167006A900362071 /* UCDUser.h */,
@@ -561,6 +574,8 @@
 				3A34001F1674757500C1B0A1 /* UCDTableViewController.m */,
 				3A34001A167470D000C1B0A1 /* UCDGroupedTableViewController.h */,
 				3A34001B167470D000C1B0A1 /* UCDGroupedTableViewController.m */,
+				3AD33CB81676AA45001C179F /* UCDPingsViewController.h */,
+				3AD33CB91676AA46001C179F /* UCDPingsViewController.m */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -763,6 +778,9 @@
 				3AD33C7A16765D83001C179F /* UCDMapViewController.m in Sources */,
 				3AD33CA11676729E001C179F /* UCDPlaceAnnotation.m in Sources */,
 				3AD33CA816768A02001C179F /* UCDPopularityView.m in Sources */,
+				3AD33CB71676A949001C179F /* UCDPing.m in Sources */,
+				3AD33CBA1676AA46001C179F /* UCDPingsViewController.m in Sources */,
+				3AD33CBD1676B06D001C179F /* UCDPingCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
