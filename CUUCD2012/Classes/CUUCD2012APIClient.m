@@ -41,6 +41,9 @@ static NSString * const kCUUCD2012APIBaseURLString = @"http://ping.monospacecoll
     
     if ([entity.name isEqualToString:@"Place"]) {
         [mutablePropertyValues setValue:@([[representation valueForKey:@"people_here"] integerValue]) forKey:@"peopleHere"];
+        if (![[representation valueForKey:@"is_open?"] isKindOfClass:NSNull.class]) {
+            [mutablePropertyValues setValue:@([[representation valueForKey:@"is_open?"] boolValue]) forKey:@"open"];
+        }
     }
     if ([entity.name isEqualToString:@"User"]) {
         if (![[representation valueForKey:@"location_accuracy_radius"] isKindOfClass:NSNull.class]) {
@@ -62,10 +65,13 @@ static NSString * const kCUUCD2012APIBaseURLString = @"http://ping.monospacecoll
 {
     if ([managedObject.entity.name isEqualToString:@"User"]) {
         NSMutableDictionary *mutableAttributes = [NSMutableDictionary dictionaryWithDictionary:attributes];
+        
         [mutableAttributes setValue:nil forKey:@"locationAccuracyRadius"];
         [mutableAttributes setValue:nil forKey:@"locationCollectionInterval"];
+        
         [mutableAttributes setValue:[attributes valueForKey:@"locationAccuracyRadius"] forKey:@"location_accuracy_radius"];
         [mutableAttributes setValue:[attributes valueForKey:@"locationCollectionInterval"] forKey:@"location_collection_interval"];
+        
         return @{@"user" : mutableAttributes};
     }
     if ([managedObject.entity.name isEqualToString:@"Ping"]) {
