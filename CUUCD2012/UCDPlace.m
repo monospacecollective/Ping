@@ -20,7 +20,8 @@
 @dynamic phone;
 @dynamic website;
 @dynamic user;
-
+@dynamic status;
+@dynamic open;
 
 + (NSEntityDescription *)entityInManagedObjectContext:(NSManagedObjectContext *)context
 {
