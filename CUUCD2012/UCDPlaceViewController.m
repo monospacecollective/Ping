@@ -220,7 +220,11 @@ typedef NS_ENUM(NSUInteger, UCDPlaceTableViewSectionWebsiteRow) {
                     break;
                 case UCDPlaceTableViewSectionHoursRowOpen:
                     cell.textLabel.text = @"Open?";
-                    cell.detailTextLabel.text = [self.place.open boolValue] ? @"Yes" : @"No";
+                    if (self.place.status) {
+                        cell.detailTextLabel.text = [self.place.open boolValue] ? @"Yes" : @"No";
+                    } else {
+                        cell.detailTextLabel.text = @"Not Available";
+                    }
                     break;
                 default:
                     break;
@@ -262,6 +266,15 @@ typedef NS_ENUM(NSUInteger, UCDPlaceTableViewSectionWebsiteRow) {
     [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
     
     switch (indexPath.section) {
+        case UCDPlaceTableViewSectionMap: {
+            MKPlacemark *placemark = [[MKPlacemark alloc] initWithCoordinate:self.place.coordinate addressDictionary:nil];
+            MKMapItem *mapItem = [[MKMapItem alloc] initWithPlacemark:placemark];
+            mapItem.name = self.place.name;
+            MKMapItem *currentLocationMapItem = [MKMapItem mapItemForCurrentLocation];
+            [MKMapItem openMapsWithItems:[NSArray arrayWithObjects:currentLocationMapItem, mapItem, nil]
+                           launchOptions:[NSDictionary dictionaryWithObject:MKLaunchOptionsDirectionsModeWalking
+                                                                     forKey:MKLaunchOptionsDirectionsModeKey]];
+        }
         case UCDPlaceTableViewSectionWebsite: {
             NSURL *url = [NSURL URLWithString:self.place.website];
             [[UIApplication sharedApplication] openURL:url];
