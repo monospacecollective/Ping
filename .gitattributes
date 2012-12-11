@@ -1,0 +1,8 @@
+# Classifying Xcode's Various Files
+
+*.pbxproj 	merge=union
+*.storyboard	merge=binary
+*.nib 		merge=binary
+*.xib 		merge=binary
+*.m		diff=objc
+*.mm		diff=objc
