@@ -15,9 +15,11 @@
 @property (nonatomic, retain) NSNumber * accuracyRadius;
 @property (nonatomic, retain) NSNumber * rating;
 @property (nonatomic, retain) NSNumber * peopleHere;
-@property (nonatomic, retain) NSNumber * phone;
-@property (nonatomic, retain) NSNumber * website;
-@property (nonatomic, retain) UCDPlace *user;
+@property (nonatomic, retain) NSString * phone;
+@property (nonatomic, retain) NSString * website;
+@property (nonatomic, retain) NSString * status;
+@property (nonatomic, retain) NSNumber * open;
+@property (nonatomic, retain) UCDPlace * user;
 
 - (CLLocation *)location;
 - (CLLocationCoordinate2D)coordinate;

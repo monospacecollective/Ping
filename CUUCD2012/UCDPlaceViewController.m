@@ -14,6 +14,8 @@ typedef NS_ENUM(NSUInteger, UCDPlaceTableViewSection) {
     UCDPlaceTableViewSectionInfo,
     UCDPlaceTableViewSectionMap,
     UCDPlaceTableViewSectionAttributes,
+    UCDPlaceTableViewSectionHours,
+    UCDPlaceTableViewSectionWebsite,
     UCDPlaceTableViewSectionCount,
 };
 
@@ -33,7 +35,19 @@ typedef NS_ENUM(NSUInteger, UCDPlaceTableViewSectionAttributesRow) {
     UCDPlaceTableViewSectionAttributesRowPeopleHere,
     UCDPlaceTableViewSectionAttributesRowRating,
     UCDPlaceTableViewSectionAttributesRowFavorite,
+    UCDPlaceTableViewSectionAttributesRowPhone,
     UCDPlaceTableViewSectionAttributesRowCount,
+};
+
+typedef NS_ENUM(NSUInteger, UCDPlaceTableViewSectionHoursRow) {
+    UCDPlaceTableViewSectionHoursRowOpen,
+    UCDPlaceTableViewSectionHoursRowStatus,
+    UCDPlaceTableViewSectionHoursRowCount,
+};
+
+typedef NS_ENUM(NSUInteger, UCDPlaceTableViewSectionWebsiteRow) {
+    UCDPlaceTableViewSectionWebsiteRowVisit,
+    UCDPlaceTableViewSectionWebsiteRowCount,
 };
 
 @interface UCDPlaceViewController ()
@@ -101,7 +115,7 @@ typedef NS_ENUM(NSUInteger, UCDPlaceTableViewSectionAttributesRow) {
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return UCDPlaceTableViewSectionCount;
+    return UCDPlaceTableViewSectionCount - !self.place.website;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -113,6 +127,10 @@ typedef NS_ENUM(NSUInteger, UCDPlaceTableViewSectionAttributesRow) {
             return UCDPlaceTableViewSectionMapRowCount;
         case UCDPlaceTableViewSectionAttributes:
             return UCDPlaceTableViewSectionAttributesRowCount;
+        case UCDPlaceTableViewSectionHours:
+            return UCDPlaceTableViewSectionHoursRowCount - !self.place.status;
+        case UCDPlaceTableViewSectionWebsite:
+            return UCDPlaceTableViewSectionWebsiteRowCount;
         default:
             return 0;
     }
@@ -127,12 +145,14 @@ typedef NS_ENUM(NSUInteger, UCDPlaceTableViewSectionAttributesRow) {
                 case UCDPlaceTableViewSectionInfoRowName: {
                     cell = [tableView dequeueReusableCellWithIdentifier:UCDRightDetailReuseIdentifier forIndexPath:indexPath];
                     cell.textLabel.text = self.place.name;
+                    cell.detailTextLabel.text = @"";
                     cell.selectionStyle = UITableViewCellSelectionStyleNone;
                     break;
                 }
                 case UCDPlaceTableViewSectionInfoRowDetail: {
                     cell = [tableView dequeueReusableCellWithIdentifier:UCDExtendedTextReuseIdentifier forIndexPath:indexPath];
                     cell.textLabel.text = self.place.detail;
+                    cell.detailTextLabel.text = @"";
                     break;
                 }
             }
@@ -146,8 +166,10 @@ typedef NS_ENUM(NSUInteger, UCDPlaceTableViewSectionAttributesRow) {
                     NSString *address = ABCreateStringWithAddressDictionary(self.geocodedPlacemark.addressDictionary, NO);
                     if (!self.geocodedPlacemark.name) {
                         cell.textLabel.text = @"Loading...";
+                        cell.detailTextLabel.text = @"";
                     } else if ([self.geocodedPlacemark.name isEqualToString:self.geocodedPlacemark.addressDictionary[(NSString *)kABPersonAddressStreetKey]]) {
                         cell.textLabel.text = self.geocodedPlacemark.name;
+                        cell.detailTextLabel.text = @"";
                     } else {
                         cell.textLabel.text = self.geocodedPlacemark.name;
                         cell.detailTextLabel.text = address;
@@ -175,6 +197,11 @@ typedef NS_ENUM(NSUInteger, UCDPlaceTableViewSectionAttributesRow) {
                     cell.detailTextLabel.text = self.place.starRating;
                     break;
                 }
+                case UCDPlaceTableViewSectionAttributesRowPhone: {
+                    cell.textLabel.text = @"Phone";
+                    cell.detailTextLabel.text = [self.place.phone isEqualToString:@""] ? @"Not Available" : self.place.phone;
+                    break;
+                }
                 case UCDPlaceTableViewSectionAttributesRowFavorite: {
                     cell.textLabel.text = @"Favorite";
                     cell.detailTextLabel.text = @"No";
@@ -183,7 +210,29 @@ typedef NS_ENUM(NSUInteger, UCDPlaceTableViewSectionAttributesRow) {
             }
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
             break;
-        }       
+        }
+        case UCDPlaceTableViewSectionHours: {
+            cell = [tableView dequeueReusableCellWithIdentifier:UCDRightDetailReuseIdentifier forIndexPath:indexPath];
+            switch (indexPath.row) {
+                case UCDPlaceTableViewSectionHoursRowStatus:
+                    cell.textLabel.text = self.place.status;
+                    cell.detailTextLabel.text = @"";
+                    break;
+                case UCDPlaceTableViewSectionHoursRowOpen:
+                    cell.textLabel.text = @"Open?";
+                    cell.detailTextLabel.text = [self.place.open boolValue] ? @"Yes" : @"No";
+                    break;
+                default:
+                    break;
+            }
+            cell.selectionStyle = UITableViewCellSelectionStyleNone;
+            break;
+        }
+        case UCDPlaceTableViewSectionWebsite: {
+            cell = [tableView dequeueReusableCellWithIdentifier:UCDButtonReuseIdentifier forIndexPath:indexPath];
+            cell.textLabel.text = @"Visit Website";
+            break;
+        }
     }
     return cell;
 }
@@ -211,6 +260,16 @@ typedef NS_ENUM(NSUInteger, UCDPlaceTableViewSectionAttributesRow) {
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
+    
+    switch (indexPath.section) {
+        case UCDPlaceTableViewSectionWebsite: {
+            NSURL *url = [NSURL URLWithString:self.place.website];
+            [[UIApplication sharedApplication] openURL:url];
+            break;
+        }
+        default:
+            break;
+    }
 }
 
 @end
