@@ -4,6 +4,7 @@
         <attribute name="accuracyRadius" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
         <attribute name="latitude" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
         <attribute name="longitude" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="time" optional="YES" attributeType="Date" syncable="YES"/>
         <relationship name="user" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="User" inverseName="pings" inverseEntity="User" syncable="YES"/>
     </entity>
     <entity name="Place" representedClassName="UCDPlace" syncable="YES">
@@ -30,7 +31,7 @@
         <relationship name="pings" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Ping" inverseName="user" inverseEntity="Ping" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Ping" positionX="160" positionY="192" width="128" height="105"/>
+        <element name="Ping" positionX="160" positionY="192" width="128" height="120"/>
         <element name="Place" positionX="160" positionY="192" width="128" height="225"/>
         <element name="User" positionX="160" positionY="192" width="128" height="150"/>
     </elements>
