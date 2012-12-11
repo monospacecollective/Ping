@@ -55,6 +55,11 @@ static NSString * const kCUUCD2012APIBaseURLString = @"http://ping.monospacecoll
         [mutablePropertyValues setValue:[representation valueForKey:@"gender"] forKey:@"gender"];
         [mutablePropertyValues setValue:[representation valueForKey:@"occupation"] forKey:@"occupation"];
     }
+    if ([entity.name isEqualToString:@"Ping"]) {
+        NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+        [dateFormatter setDateFormat:@"yyyy-MM-dd'T'HH:mm:ssZ"];
+        [mutablePropertyValues setValue:[dateFormatter dateFromString:[representation valueForKey:@"time"]] forKey:@"time"];
+    }
     
     return mutablePropertyValues;
 }
@@ -64,6 +69,7 @@ static NSString * const kCUUCD2012APIBaseURLString = @"http://ping.monospacecoll
 
 {
     if ([managedObject.entity.name isEqualToString:@"User"]) {
+       
         NSMutableDictionary *mutableAttributes = [NSMutableDictionary dictionaryWithDictionary:attributes];
         
         [mutableAttributes setValue:nil forKey:@"locationAccuracyRadius"];
@@ -75,9 +81,11 @@ static NSString * const kCUUCD2012APIBaseURLString = @"http://ping.monospacecoll
         return @{@"user" : mutableAttributes};
     }
     if ([managedObject.entity.name isEqualToString:@"Ping"]) {
+        
         NSMutableDictionary *mutableAttributes = [NSMutableDictionary dictionaryWithDictionary:attributes];
         [mutableAttributes setValue:nil forKey:@"accuracyRadius"];
         [mutableAttributes setValue:[attributes valueForKey:@"accuracyRadius"] forKey:@"accuracy_radius"];
+                
         return @{@"ping" : mutableAttributes};
     }
     return attributes;
