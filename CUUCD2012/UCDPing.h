@@ -16,12 +16,12 @@
 @property (nonatomic, retain) NSNumber * accuracyRadius;
 @property (nonatomic, retain) NSNumber * latitude;
 @property (nonatomic, retain) NSNumber * longitude;
-@property (nonatomic, retain) NSDate * time;
+@property (nonatomic, retain) NSDate *time;
 @property (nonatomic, retain) UCDUser *user;
 
 @property (nonatomic, assign) CLLocationCoordinate2D coordinate;
-- (CLLocation *)location;
 
+- (CLLocation *)location;
 - (NSString *)timeDescription;
 - (void)setCoordinate:(CLLocationCoordinate2D)coordinate;
 
