@@ -16,13 +16,13 @@ After you set up the project using the `pod` ruby gem, open the `CUUCD2012.xcwor
 
 ##Screenshots
 
-![Map](https://raw.github.com/monospacecollective/Ping/master/Screenshots/Map.png)
-![Navigation Pane](https://raw.github.com/monospacecollective/Ping/master/Screenshots/Navigation Pane.png)
-![Nearby Places](https://raw.github.com/monospacecollective/Ping/master/Screenshots/Nearby Places.png)
-![Pings](https://raw.github.com/monospacecollective/Ping/master/Screenshots/Pings.png)
-![Settings](https://raw.github.com/monospacecollective/Ping/master/Screenshots/Settings.png)
-![Welcome About](https://raw.github.com/monospacecollective/Ping/master/Screenshots/Welcome About.png)
 ![Welcome Agree](https://raw.github.com/monospacecollective/Ping/master/Screenshots/Welcome Agree.png)
 ![Welcome Collection Interval](https://raw.github.com/monospacecollective/Ping/master/Screenshots/Welcome Collection Interval.png)
-![Welcome Complete](https://raw.github.com/monospacecollective/Ping/master/Screenshots/Welcome Complete.png)
 ![Welcome Location Interval](https://raw.github.com/monospacecollective/Ping/master/Screenshots/Welcome Location Interval.png)
+![Welcome About](https://raw.github.com/monospacecollective/Ping/master/Screenshots/Welcome About.png)
+![Welcome Complete](https://raw.github.com/monospacecollective/Ping/master/Screenshots/Welcome Complete.png)
+![Nearby Places](https://raw.github.com/monospacecollective/Ping/master/Screenshots/Nearby Places.png)
+![Map](https://raw.github.com/monospacecollective/Ping/master/Screenshots/Map.png)
+![Navigation Pane](https://raw.github.com/monospacecollective/Ping/master/Screenshots/Navigation Pane.png)
+![Pings](https://raw.github.com/monospacecollective/Ping/master/Screenshots/Pings.png)
+![Settings](https://raw.github.com/monospacecollective/Ping/master/Screenshots/Settings.png)
