@@ -16,13 +16,33 @@ After you set up the project using the `pod` ruby gem, open the `CUUCD2012.xcwor
 
 ##Screenshots
 
+Welcome Agree
 ![Welcome Agree](https://raw.github.com/monospacecollective/Ping/master/Screenshots/Welcome Agree.png)
+
+Welcome Collection Interval
 ![Welcome Collection Interval](https://raw.github.com/monospacecollective/Ping/master/Screenshots/Welcome Collection Interval.png)
+
+Welcome Location Interval
 ![Welcome Location Interval](https://raw.github.com/monospacecollective/Ping/master/Screenshots/Welcome Location Interval.png)
+
+Welcome About
 ![Welcome About](https://raw.github.com/monospacecollective/Ping/master/Screenshots/Welcome About.png)
+
+Welcome Complete
 ![Welcome Complete](https://raw.github.com/monospacecollective/Ping/master/Screenshots/Welcome Complete.png)
+
+Nearby Places
 ![Nearby Places](https://raw.github.com/monospacecollective/Ping/master/Screenshots/Nearby Places.png)
+
+Map
 ![Map](https://raw.github.com/monospacecollective/Ping/master/Screenshots/Map.png)
+
+Navigation Pane
 ![Navigation Pane](https://raw.github.com/monospacecollective/Ping/master/Screenshots/Navigation Pane.png)
+
+Pings
 ![Pings](https://raw.github.com/monospacecollective/Ping/master/Screenshots/Pings.png)
+
+Settings
 ![Settings](https://raw.github.com/monospacecollective/Ping/master/Screenshots/Settings.png)
+
