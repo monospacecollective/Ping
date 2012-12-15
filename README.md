@@ -32,9 +32,9 @@ After you set up the project using the `pod` ruby gem, open the `CUUCD2012.xcwor
 
 ![Welcome About](https://raw.github.com/monospacecollective/Ping/master/Screenshots/Welcome About.png)
 
-**Welcome Complete**
+**Welcome Finished**
 
-![Welcome Complete](https://raw.github.com/monospacecollective/Ping/master/Screenshots/Welcome Complete.png)
+![Welcome Finished](https://raw.github.com/monospacecollective/Ping/master/Screenshots/Welcome Finished.png)
 
 **Nearby Places**
 
