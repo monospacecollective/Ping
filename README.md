@@ -1,6 +1,6 @@
 #CSCI 4229 Semester Project
 
-Semester Project Demo App for Tomasz Miaskiewicz **CSCI CSCI 4839 User-Centered Design** Class
+Semester Project Demo App for Tomasz Miaskiewicz **CSCI 4839 User-Centered Design** Class
 
 By **Eric Horacek**, **Devon Tivona**, and **Bradley Macnee**
 
