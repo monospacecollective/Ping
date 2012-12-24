@@ -41,8 +41,6 @@
 		3A7ADC0D16706B9400362071 /* UCDFooterBackground@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3A7ADC0916706B9400362071 /* UCDFooterBackground@2x.png */; };
 		3A7ADC0E16706B9400362071 /* UCDHeaderBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = 3A7ADC0A16706B9400362071 /* UCDHeaderBackground.png */; };
 		3A7ADC0F16706B9400362071 /* UCDHeaderBackground@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3A7ADC0B16706B9400362071 /* UCDHeaderBackground@2x.png */; };
-		3A7ADC1216706E8F00362071 /* UCDViewBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = 3A7ADC1016706E8F00362071 /* UCDViewBackground.png */; };
-		3A7ADC1316706E8F00362071 /* UCDViewBackground@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3A7ADC1116706E8F00362071 /* UCDViewBackground@2x.png */; };
 		3A7ADC16167070AC00362071 /* UCDWelcomePageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A7ADC15167070AC00362071 /* UCDWelcomePageView.m */; };
 		3A7ADC1D1671065100362071 /* UCDButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A7ADC1C1671065100362071 /* UCDButton.m */; };
 		3A7ADC20167106EF00362071 /* UCDWelcomePageViewAccept.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A7ADC1F167106EE00362071 /* UCDWelcomePageViewAccept.m */; };
@@ -163,8 +161,6 @@
 		3A7ADC0916706B9400362071 /* UCDFooterBackground@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "UCDFooterBackground@2x.png"; sourceTree = "<group>"; };
 		3A7ADC0A16706B9400362071 /* UCDHeaderBackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = UCDHeaderBackground.png; sourceTree = "<group>"; };
 		3A7ADC0B16706B9400362071 /* UCDHeaderBackground@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "UCDHeaderBackground@2x.png"; sourceTree = "<group>"; };
-		3A7ADC1016706E8F00362071 /* UCDViewBackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = UCDViewBackground.png; sourceTree = "<group>"; };
-		3A7ADC1116706E8F00362071 /* UCDViewBackground@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "UCDViewBackground@2x.png"; sourceTree = "<group>"; };
 		3A7ADC14167070AC00362071 /* UCDWelcomePageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UCDWelcomePageView.h; sourceTree = "<group>"; };
 		3A7ADC15167070AC00362071 /* UCDWelcomePageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UCDWelcomePageView.m; sourceTree = "<group>"; };
 		3A7ADC1B1671065100362071 /* UCDButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UCDButton.h; sourceTree = "<group>"; };
@@ -417,8 +413,6 @@
 				3A7ADC221671169300362071 /* UCDWelcomeButtonBackgroundPressed@2x.png */,
 				3A9C1B27167117DD00B53BA3 /* UCDWelcomeButtonBackground.png */,
 				3A9C1B28167117DD00B53BA3 /* UCDWelcomeButtonBackground@2x.png */,
-				3A7ADC1016706E8F00362071 /* UCDViewBackground.png */,
-				3A7ADC1116706E8F00362071 /* UCDViewBackground@2x.png */,
 				3A7ADC0816706B9400362071 /* UCDFooterBackground.png */,
 				3A7ADC0916706B9400362071 /* UCDFooterBackground@2x.png */,
 				3A7ADC0A16706B9400362071 /* UCDHeaderBackground.png */,
@@ -673,8 +667,6 @@
 				3A7ADC0D16706B9400362071 /* UCDFooterBackground@2x.png in Resources */,
 				3A7ADC0E16706B9400362071 /* UCDHeaderBackground.png in Resources */,
 				3A7ADC0F16706B9400362071 /* UCDHeaderBackground@2x.png in Resources */,
-				3A7ADC1216706E8F00362071 /* UCDViewBackground.png in Resources */,
-				3A7ADC1316706E8F00362071 /* UCDViewBackground@2x.png in Resources */,
 				3A7ADC231671169300362071 /* UCDWelcomeButtonBackgroundPressed.png in Resources */,
 				3A7ADC241671169300362071 /* UCDWelcomeButtonBackgroundPressed@2x.png in Resources */,
 				3A9C1B29167117DD00B53BA3 /* UCDWelcomeButtonBackground.png in Resources */,

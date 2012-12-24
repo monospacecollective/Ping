@@ -18,8 +18,9 @@
     #import <AFNetworking/AFNetworking.h>
     #import <MSNavigationPaneViewController/MSNavigationPaneViewController.h>
     #import <FormatterKit/TTTLocationFormatter.h>
-    #import "SSPullToRefresh/SSPullToRefresh.h"
-
+    #import <SSPullToRefresh/SSPullToRefresh.h>
+    #import <KGNoise/KGNoise.h>
+    
     #if defined(DEBUG)
     #import <PonyDebugger/PDDebugger.h>
     #endif

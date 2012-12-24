@@ -74,7 +74,7 @@ const NSUInteger UCDWelcomeViewPageCount = 5;
     self.navigationItem.leftBarButtonItem = self.previousPageBarButtonItem;
     self.previousPageBarButtonItem.customView.alpha = 0.0;
 
-    self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"UCDViewBackground"]];
+    self.view.backgroundColor = [[UCDStyleManager sharedManager] viewBackgroundColor];
     
     [self.navigationController setToolbarHidden:NO];
     

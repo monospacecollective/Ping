@@ -12,6 +12,9 @@
 
 + (UCDStyleManager *)sharedManager;
 
+// Colors
+- (UIColor *)viewBackgroundColor;
+
 // Fonts
 - (UIFont *)fontOfSize:(CGFloat)size;
 - (UIFont *)boldFontOfSize:(CGFloat)size;

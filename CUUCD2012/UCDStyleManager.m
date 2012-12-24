@@ -21,6 +21,17 @@ static UCDStyleManager *singletonInstance = nil;
     return singletonInstance;
 }
 
+#pragma mark - Colors
+
+- (UIColor *)viewBackgroundColor
+{
+    static UIColor *viewBackgroundColor = nil;
+    if (!viewBackgroundColor) {
+        viewBackgroundColor = [[UIColor colorWithRed:0.91 green:0.89 blue:0.85 alpha:1.0] colorWithNoiseWithOpacity:0.1 andBlendMode:kCGBlendModeMultiply];
+    }
+    return viewBackgroundColor;
+}
+
 #pragma mark - Fonts
 
 - (UIFont *)fontOfSize:(CGFloat)size
@@ -112,7 +123,7 @@ static UCDStyleManager *singletonInstance = nil;
     UIButton* button = [self barButtonCustomView];
     button.adjustsImageWhenHighlighted = NO;
     
-    button.titleLabel.font = [self fontOfSize:12.0];
+    button.titleLabel.font = [self boldFontOfSize:12.0];
     button.titleLabel.shadowColor = [UIColor blackColor];
     button.titleLabel.shadowOffset = CGSizeMake(0.0, -1.0);
     button.contentMode = UIViewContentModeCenter;
@@ -129,7 +140,7 @@ static UCDStyleManager *singletonInstance = nil;
 - (UIButton *)backButtonWithTitle:(NSString*)title
 {
     UIButton* button = [UIButton buttonWithType:UIButtonTypeCustom];
-    button.titleLabel.font = [self fontOfSize:12.0];
+    button.titleLabel.font = [self boldFontOfSize:12.0];
     button.titleLabel.shadowColor = [UIColor blackColor];
     button.titleLabel.shadowOffset = CGSizeMake(0.0, -1.0);
     button.contentMode = UIViewContentModeLeft;

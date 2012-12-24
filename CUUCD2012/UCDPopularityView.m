@@ -21,6 +21,9 @@
         
         self.fill = 0.0;
         
+        self.layer.shouldRasterize = YES;
+        self.layer.rasterizationScale = [[UIScreen mainScreen] scale];
+        
         self.borderView = [[UIView alloc] init];
         self.borderView.layer.borderColor = [[UIColor blackColor] CGColor];
         self.borderView.layer.borderWidth = 1.0;

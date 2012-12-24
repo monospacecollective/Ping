@@ -23,9 +23,9 @@
 {
     [super viewDidLoad];
     [[UCDStyleManager sharedManager] styleNavigationController:self.navigationController];
-    UIView *backgroundView = [[UIView alloc] init];
-    backgroundView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"UCDViewBackground"]];
-    self.tableView.backgroundView = backgroundView;
+    
+    self.tableView.backgroundColor = [[UCDStyleManager sharedManager] viewBackgroundColor];
+    self.tableView.backgroundView = nil;
     self.tableView.separatorColor = [UIColor clearColor];
 }
 

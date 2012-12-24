@@ -24,9 +24,10 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    UIView *backgroundView = [[UIView alloc] init];
-    backgroundView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"UCDViewBackground"]];
-    self.tableView.backgroundView = backgroundView;
+    
+    self.tableView.backgroundColor = [[UCDStyleManager sharedManager] viewBackgroundColor];
+    self.tableView.backgroundView = nil;
+    
     [self.tableView registerClass:UCDRightDetailGroupedTableViewCell.class forCellReuseIdentifier:UCDRightDetailReuseIdentifier];
     [self.tableView registerClass:UCDButtonGroupedTableViewCell.class forCellReuseIdentifier:UCDButtonReuseIdentifier];
     [self.tableView registerClass:UCDMapGroupedTableViewCell.class forCellReuseIdentifier:UCDMapReuseIdentifier];
